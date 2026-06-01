@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANDREUW VANDY LENGKONG // DIGITAL ANARCHIST PORTFOLIO</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for Punk Aesthetic -->
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Special+Elite&family=Rubik+Mono+One&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        mono: ['"Courier Prime"', 'monospace'],
+                        punk: ['"Special Elite"', 'cursive'],
+                        heavy: ['"Rubik Mono One"', 'sans-serif'],
+                        sans: ['"Space Grotesk"', 'sans-serif'],
+                    },
+                    colors: {
+                        punkBlack: '#0a0a0a',
+                        punkGray: '#121212',
+                        punkLightGray: '#1e1e1e',
+                        punkPink: '#ff007f',
+                        punkYellow: '#fff200',
+                        punkGreen: '#00ff66',
+                        punkCyan: '#00f0ff',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Immersive Anti-Design Textures */
+        body {
+            background-color: #0a0a0a;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated Grain Overlay */
+        .animated-grain {
+            position: fixed;
+            top: -150%;
+            left: -150%;
+            right: -150%;
+            bottom: -150%;
+            width: 400%;
+            height: 400%;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.05;
+            pointer-events: none;
+            z-index: 9999;
+            animation: grainShift 8s steps(10) infinite;
+        }
+
+        @keyframes grainShift {
+            0%, 100% { transform:translate(0, 0) }
+            10% { transform:translate(-2%, -4%) }
+            20% { transform:translate(-6%, 2%) }
+            30% { transform:translate(4%, 6%) }
+            40% { transform:translate(-2%, -8%) }
+            50% { transform:translate(-8%, 4%) }
+            60% { transform:translate(6%, -2%) }
+            70% { transform:translate(2%, 8%) }
+            80% { transform:translate(-4%, -4%) }
+            90% { transform:translate(4%, -6%) }
+        }
+
+        /* Screen Flicker CRT scanlines */
+        .crt-scanlines {
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(
+                rgba(18, 16, 16, 0) 50%, 
+                rgba(0, 0, 0, 0.25) 50%
+            ), linear-gradient(
+                90deg, 
+                rgba(255, 0, 0, 0.06), 
+                rgba(0, 255, 0, 0.02), 
+                rgba(0, 0, 255, 0.06)
+            );
+            background-size: 100% 4px, 6px 100%;
+            pointer-events: none;
+            z-index: 999;
+            opacity: 0.8;
+        }
+
+        /* Glitch text keyframe styling */
+        @keyframes rawGlitch {
+            0% { clip-path: inset(40% 0 61% 0); transform: skew(0.3deg); }
+            20% { clip-path: inset(92% 0 1% 0); transform: skew(-0.5deg); }
+            40% { clip-path: inset(15% 0 80% 0); transform: skew(0.5deg); }
+            60% { clip-path: inset(80% 0 5% 0); transform: skew(-0.3deg); }
+            80% { clip-path: inset(3% 0 92% 0); transform: skew(0.8deg); }
+            100% { clip-path: inset(40% 0 61% 0); transform: skew(0deg); }
+        }
+
+        .glitch-text-active {
+            animation: rawGlitch 1s infinite linear alternate-reverse;
+        }
+
+        /* Distress Paper Ripped Border Simulations */
+        .ripped-edge-top {
+            clip-path: polygon(0% 12%, 4% 0%, 9% 15%, 15% 3%, 22% 18%, 28% 5%, 34% 14%, 41% 2%, 49% 19%, 56% 4%, 64% 15%, 72% 2%, 80% 18%, 88% 6%, 94% 15%, 100% 0%, 100% 100%, 0% 100%);
+        }
+
+        .ripped-edge-bottom {
+            clip-path: polygon(0% 0%, 100% 0%, 100% 88%, 95% 100%, 88% 85%, 81% 97%, 75% 82%, 67% 95%, 59% 84%, 51% 98%, 44% 83%, 38% 95%, 30% 81%, 23% 97%, 15% 84%, 8% 96%, 0% 85%);
+        }
+
+        /* Tape Overlay simulation styles */
+        .duct-tape {
+            background-color: rgba(220, 220, 220, 0.15);
+            backdrop-filter: blur(2px);
+            border-left: 3px dashed rgba(255, 255, 255, 0.4);
+            border-right: 3px dashed rgba(255, 255, 255, 0.4);
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+        }
+
+        /* Halftone Pattern for Images */
+        .halftone-box {
+            position: relative;
+            background-color: #ff007f;
+        }
+        .halftone-box::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(circle, #000 24%, transparent 25%);
+            background-size: 5px 5px;
+            opacity: 0.35;
+            pointer-events: none;
+            mix-blend-mode: multiply;
+        }
+
+        /* Full page Graffiti Overlay Canvas */
+        #graffiti-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none; /* Controlled dynamically via button */
+            z-index: 100;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 14px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+            border-left: 3px solid #ff007f;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #fff200;
+            border: 3px solid #0a0a0a;
+        }
+
+        .draggable {
+            touch-action: none;
+            user-select: none;
+        }
+    </style>
+</head>
+<body class="font-mono text-white selection:bg-punkYellow selection:text-black antialiased">
+
+    <!-- CSS Animated Film Grain and CRT Line Layers -->
+    <div class="animated-grain"></div>
+    <div class="crt-scanlines"></div>
+
+    <!-- FULLSCREEN INTERACTIVE GRAFFITI CANVAS -->
+    <canvas id="graffiti-canvas"></canvas>
+
+    <!-- TOP CONTROL & UTILITIES DESK (STYLIZED PUNK PANEL) -->
+    <div class="bg-black border-b-4 border-punkPink p-2 sticky top-0 z-[110] flex flex-wrap justify-between items-center text-xs px-4">
+        <div class="flex items-center space-x-3 my-1">
+            <span class="w-3 h-3 bg-punkGreen rounded-none animate-ping"></span>
+            <span class="font-bold tracking-tight text-punkGreen uppercase font-mono">REBEL_SYNTH_AUDIO v1.8: ONLINE</span>
+        </div>
+        
+        <div class="flex flex-wrap items-center gap-2 my-1">
+            <!-- Vandal Paint Controller Toggle -->
+            <button onclick="toggleVandalMode()" id="vandalBtn" class="bg-punkGray border-2 border-punkCyan px-2.5 py-1 text-punkCyan hover:bg-punkCyan hover:text-black transition-all font-heavy flex items-center gap-1.5 uppercase">
+                <span class="w-2 h-2 bg-punkCyan inline-block animate-pulse"></span>
+                🖌️ Toggle Graffiti Paint [OFF]
+            </button>
+            <button onclick="clearVandalCanvas()" class="bg-punkGray border border-zinc-700 px-2.5 py-1 text-zinc-400 hover:bg-white hover:text-black transition-all">
+                🗑️ Clear Paint
+            </button>
+            <!-- Audio trigger tools -->
+            <button onclick="playSynth(95, 'sawtooth', 0.6)" class="bg-punkGray border border-punkPink px-2.5 py-1 text-punkPink hover:bg-punkPink hover:text-white transition-all font-bold">
+                🎸 FEEDBACK GROWL
+            </button>
+            <button onclick="playSynth(520, 'square', 0.15)" class="bg-punkGray border border-punkYellow px-2.5 py-1 text-punkYellow hover:bg-punkYellow hover:text-black transition-all font-bold">
+                ⚡ SIGNAL CLICK
+            </button>
+            <!-- Layout toggle -->
+            <button onclick="toggleCleanMode()" id="cleanBtn" class="bg-punkPink text-white px-3 py-1 font-bold rounded-none hover:bg-white hover:text-black transition-all uppercase">
+                ⚠️ BORING SANITIZED MODE
+            </button>
+        </div>
+    </div>
+
+    <!-- DRAGGABLE STICKERS (INTERACTIVE DESIGN COMPONENT) -->
+    <div id="badge-years" class="draggable absolute z-50 bg-punkYellow text-black px-4 py-2 font-heavy text-[11px] uppercase tracking-tighter border-2 border-black shadow-[3px_3px_0px_#ff007f] cursor-grab active:cursor-grabbing" style="top: 140px; left: 20px; transform: rotate(-6deg);">
+        ☠️ 15+ YRS CORE DEV
+    </div>
+    
+    <div id="badge-loc" class="draggable absolute z-50 bg-punkGreen text-black px-3 py-2 font-punk text-xs border-2 border-black shadow-[4px_4px_0px_#000] cursor-grab active:cursor-grabbing" style="top: 480px; right: 30px; transform: rotate(10deg);">
+        ⚓ HQ: MANADO, IDN
+    </div>
+
+    <div id="badge-stack" class="draggable absolute z-50 bg-black text-punkPink px-3 py-2 font-mono text-[10px] border-2 border-punkPink cursor-grab active:cursor-grabbing" style="bottom: 140px; left: 50px; transform: rotate(-12deg);">
+        🦾 AI_ACCELERATED_WORKFLOW
+    </div>
+
+    <div id="badge-rebel" class="draggable absolute z-50 bg-punkCyan text-black px-3 py-2 font-heavy text-[10px] border-2 border-black shadow-[3px_3px_0px_#0a0a0a] cursor-grab active:cursor-grabbing" style="top: 320px; left: 45%; transform: rotate(4deg);">
+        🔥 RULES INVENTOR
+    </div>
+
+    <!-- HERO / LANDING DECK -->
+    <header class="relative min-h-screen flex flex-col justify-between p-6 lg:p-12 border-b-8 border-punkPink overflow-hidden">
+        
+        <!-- Interactive Moving Headline Marquee (Tops Page Header) -->
+        <div class="absolute top-[80px] left-0 w-full bg-punkYellow text-black py-1.5 overflow-hidden transform -rotate-1 z-0 select-none border-y-4 border-black">
+            <div class="whitespace-nowrap flex font-heavy text-xs tracking-widest uppercase animate-marquee">
+                <span class="mx-4">⚡ MULTIMEDIA POWERHOUSE //</span>
+                <span class="mx-4">15+ YEARS BREAKING TRADITIONAL INTERFACES //</span>
+                <span class="mx-4">VOXLUMEDIA USA //</span>
+                <span class="mx-4">MANADO POST APP CREATOR //</span>
+                <span class="mx-4">WARDEKA 3D MAP ARCHITECT //</span>
+                <span class="mx-4">ADOBE FIREFLY & VEO 3 DEPLOYED //</span>
+                <span class="mx-4">ESTABLISHED IN MANADO, INDONESIA //</span>
+            </div>
+        </div>
+
+        <!-- Top Navigation -->
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 z-10 pt-10">
+            <div class="border-4 border-white p-3 bg-punkBlack shadow-[8px_8px_0px_#ff007f] transform -rotate-1">
+                <h1 class="font-heavy text-xl md:text-2xl text-punkYellow tracking-tight uppercase leading-none">
+                    ANDREUW V. LENGKONG
+                </h1>
+                <p class="text-[10px] font-bold tracking-widest text-punkGreen mt-1">// FULL-STACK CREATIVE SOLDIER</p>
+            </div>
+            
+            <nav class="flex flex-wrap gap-2 text-xs font-heavy uppercase bg-black/40 p-2 border border-zinc-800">
+                <a href="#about" onclick="clickSound()" class="border-2 border-punkPink px-3 py-1.5 bg-punkBlack hover:bg-punkPink hover:text-black hover:-translate-y-0.5 transition-all">01. MANIFESTO</a>
+                <a href="#warfare" onclick="clickSound()" class="border-2 border-punkYellow px-3 py-1.5 bg-punkBlack hover:bg-punkYellow hover:text-black hover:-translate-y-0.5 transition-all">02. EVIDENCE</a>
+                <a href="#vault" onclick="clickSound()" class="border-2 border-punkGreen px-3 py-1.5 bg-punkBlack hover:bg-punkGreen hover:text-black hover:-translate-y-0.5 transition-all">03. REBEL_LAB</a>
+                <a href="#contact" onclick="clickSound()" class="border-2 border-white px-3 py-1.5 bg-punkBlack hover:bg-white hover:text-black hover:-translate-y-0.5 transition-all">04. PLUG_IN</a>
+            </nav>
+        </div>
+
+        <!-- Hero Mid Content Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 my-12 items-center z-10">
+            
+            <!-- Typography block -->
+            <div class="lg:col-span-7 flex flex-col space-y-6">
+                <!-- Distressed tape style badge -->
+                <div class="self-start px-4 py-1 bg-punkCyan text-black font-heavy text-xs uppercase transform rotate-2">
+                    ⚡ MULTIMEDIA DESIGN SYSTEM RECONSTRUCTION
+                </div>
+
+                <div class="space-y-2">
+                    <span class="inline-block bg-punkPink text-white font-heavy text-4xl md:text-7xl px-4 py-1 transform -rotate-1 shadow-[6px_6px_0px_#fff200]">
+                        CREATIVE
+                    </span><br>
+                    <span class="inline-block bg-white text-black font-heavy text-4xl md:text-7xl px-4 py-1 transform rotate-1 shadow-[6px_6px_0px_#0a0a0a]">
+                        MULTIMEDIA
+                    </span><br>
+                    <span class="inline-block bg-punkYellow text-black font-heavy text-4xl md:text-7xl px-4 py-1 transform -rotate-2 border-4 border-black">
+                        DESIGNER.
+                    </span>
+                </div>
+
+                <div class="p-5 bg-punkGray border-l-8 border-punkGreen max-w-xl relative">
+                    <!-- Torn paper styling mock -->
+                    <div class="absolute -top-3 left-10 duct-tape text-[9px] text-zinc-300 font-bold px-4 py-0.5 uppercase tracking-tighter">
+                        TACTICAL MANIFEST_SEC.04
+                    </div>
+                    <p class="font-punk text-sm md:text-base leading-relaxed text-zinc-300 pt-1">
+                        "Design is not cosmetic decoration. Design is a high-impact tactical weapon deployed to disrupt user attention, break interface limits, and drive absolute business value."
+                    </p>
+                </div>
+
+                <div class="flex flex-wrap gap-3">
+                    <button onclick="triggerGlitchSystem()" class="bg-punkPink text-white font-heavy px-6 py-4 border-4 border-black shadow-[6px_6px_0px_#fff200] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all text-xs md:text-sm tracking-widest uppercase">
+                        ⚡ DETONATE INTERFACE GRID ⚡
+                    </button>
+                    <a href="#contact" class="bg-black text-punkGreen border-4 border-punkGreen px-6 py-4 font-heavy text-xs md:text-sm uppercase tracking-wider hover:bg-punkGreen hover:text-black transition-all">
+                        // INITIALIZE COMS PIPELINE
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right Column - Halftone Portrait Sandbox -->
+            <div class="lg:col-span-5 flex justify-center">
+                <div class="relative w-full max-w-sm border-8 border-white bg-punkBlack shadow-[15px_15px_0px_#ff007f] group overflow-hidden">
+                    
+                    <div class="halftone-box aspect-square w-full relative">
+                        <!-- Raw Dither/Halftone simulated image -->
+                        <div id="portrait-frame" class="absolute inset-0 bg-cover bg-center transition-all duration-500 bg-blend-luminosity hover:bg-blend-normal hover:scale-105" 
+                             style="background-image: url('uploaded:image_e39a35.jpg-2aec1de0-85eb-45c6-b858-14339e929dd9');">
+                        </div>
+                        
+                        <!-- Overlay guides -->
+                        <div class="absolute inset-0 border-4 border-dashed border-punkYellow opacity-40 pointer-events-none"></div>
+                        <div class="absolute bottom-4 left-4 bg-black text-punkYellow text-[10px] px-2 py-1 font-mono font-bold uppercase tracking-wider border border-punkYellow">
+                            FEED_SOURCE: HQ_PORTRAIT_2026.RAW
+                        </div>
+                        
+                        <!-- Distressed Sticker taped to the portrait -->
+                        <div class="absolute top-4 right-4 bg-punkPink text-white text-[9px] px-2.5 py-1 font-heavy transform rotate-6 tracking-tight">
+                            PUNK_LUT_ACTIVE
+                        </div>
+                    </div>
+                    
+                    <div class="p-4 border-t-4 border-white bg-punkGray">
+                        <div class="flex justify-between items-center text-[11px]">
+                            <span class="text-punkGreen font-bold tracking-tight">// IDENTITY TARGET: LENGKONG, A.V.</span>
+                            <span class="text-zinc-500 font-bold">1989 / SULAWESI, IDN</span>
+                        </div>
+                        
+                        <!-- Spectrum Soundwave Visualizer Graphic Component -->
+                        <div class="mt-4 border-t border-zinc-800 pt-3 space-y-1.5">
+                            <span class="text-[9px] text-zinc-500 block uppercase font-bold tracking-tight">System Threat Spectrum:</span>
+                            <div class="flex items-end space-x-1 h-8 bg-black p-1.5 border border-zinc-800">
+                                <div class="bg-punkPink w-full h-1/2 animate-pulse"></div>
+                                <div class="bg-punkPink w-full h-4/5 animate-pulse" style="animation-delay: 0.1s;"></div>
+                                <div class="bg-punkPink w-full h-2/3 animate-pulse" style="animation-delay: 0.2s;"></div>
+                                <div class="bg-punkPink w-full h-full animate-pulse" style="animation-delay: 0.3s;"></div>
+                                <div class="bg-punkPink w-full h-1/3 animate-pulse" style="animation-delay: 0.4s;"></div>
+                                <div class="bg-punkPink w-full h-3/4 animate-pulse" style="animation-delay: 0.5s;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Footer Segment -->
+        <div class="mt-auto pt-6 flex flex-wrap justify-between items-center gap-4 border-t border-zinc-900">
+            <p class="text-[10px] text-zinc-500 font-bold uppercase tracking-widest">// SECURE LOCAL CONNECTIONS ENCRYPTED</p>
+            <div class="flex gap-4">
+                <span class="text-punkPink font-bold text-xs animate-pulse">⚡ SCROLL FOR RAW EXPERIMENTAL PROOF</span>
+                <span class="text-punkYellow font-bold text-xs uppercase tracking-tight">[ DESIGN DICTATORSHIP: BYPASSED ]</span>
+            </div>
+        </div>
+
+    </header>
+
+    <!-- SECTION 01: MANIFESTO -->
+    <section id="about" class="p-6 lg:p-12 bg-punkBlack border-b-8 border-punkYellow relative">
+        <div class="absolute right-12 top-4 opacity-5 pointer-events-none select-none text-[15rem] font-heavy tracking-tighter">
+            01
+        </div>
+
+        <div class="max-w-5xl mx-auto space-y-12">
+            
+            <div class="inline-block transform -rotate-1 border-4 border-black bg-punkYellow text-black p-3 font-heavy text-xl uppercase shadow-[8px_8px_0px_#ff007f]">
+                01 // THE SYSTEM MANIFESTO
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+                
+                <div class="md:col-span-8 space-y-6">
+                    <h3 class="font-heavy text-3xl md:text-5xl text-white tracking-tight uppercase leading-none">
+                        ATTACKING THE MARKET WITH <span class="text-punkPink underline decoration-double">TACTICAL VISUAL WARFARE</span>
+                    </h3>
+                    <p class="font-mono text-zinc-300 leading-relaxed text-sm md:text-base text-justify">
+                        For more than fifteen years inside the trenches of creative engineering, I have watched corporations standardise design into sterile, lifeless templates. This portfolio is designed to shatter that mold.
+                    </p>
+                    <p class="font-mono text-zinc-300 leading-relaxed text-sm md:text-base text-justify">
+                        From leading high-scale digital conversion campaigns at <strong>Voxlumedia (USA)</strong> targeting Middle Eastern-American cohorts, spearheading award-winning game intellectual properties at <strong>Nadi Health Tech (Malaysia)</strong> (with our product Manguni Squad ranking as a Top 10 IP in Indonesia by BEKRAF), to engineering the entire mobile and media ecosystem of <strong>Manado Post Group</strong>—my mission remains uncompromised: <strong>Infuse intellectual rebel code into every interface.</strong>
+                    </p>
+                </div>
+
+                <div class="md:col-span-4 space-y-4">
+                    <!-- Simulated warning tape -->
+                    <div class="tape-pink p-3 text-black font-heavy text-center tracking-tight text-xs uppercase">
+                        ⚠️ ESTABLISHED RULES FOR DESTRUCTION
+                    </div>
+                    
+                    <div class="bg-punkGray p-6 border-4 border-punkPink shadow-[6px_6px_0px_#0a0a0a]">
+                        <h4 class="font-heavy text-punkYellow text-xs uppercase mb-3 tracking-wider">// HARD FACT DECREES</h4>
+                        <ul class="space-y-4 text-xs font-mono font-bold text-zinc-300">
+                            <li class="flex items-start">
+                                <span class="text-punkPink mr-2">✦</span> 
+                                User Psychology does not have to look generic or clean.
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-punkPink mr-2">✦</span> 
+                                AI implementation is a production speed multiplier, never a soul substitute.
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-punkPink mr-2">✦</span> 
+                                A flat design that provokes no reaction is a complete waste of corporate capital.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION 02: PORTFOLIO EVIDENCE -->
+    <section id="warfare" class="p-6 lg:p-12 bg-punkBlack border-b-8 border-punkGreen relative">
+        <!-- Ripped paper top divider simulated with CSS polygon -->
+        <div class="absolute top-0 left-0 w-full h-8 bg-punkYellow ripped-edge-top z-10 transform -scale-y-100"></div>
+
+        <div class="max-w-6xl mx-auto space-y-16 pt-8">
+            
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div class="inline-block transform rotate-1 border-4 border-white bg-black text-punkGreen p-3 font-heavy text-2xl uppercase shadow-[8px_8px_0px_#00ff66]">
+                    02 // EXPERIMENTAL PROOF DECK
+                </div>
+                <span class="text-xs text-zinc-500 font-bold uppercase tracking-widest font-mono">// DATABASE STREAM: ARCHIVES_2026.RAW</span>
+            </div>
+
+            <!-- PORTFOLIO CASE STUDY 1: BISON INSULATION -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 border-4 border-punkPink p-6 bg-punkGray shadow-[10px_10px_0px_#0a0a0a] relative">
+                <div class="absolute -top-5 right-6 bg-punkPink text-white font-heavy px-3 py-1.5 text-xs uppercase transform rotate-2 tracking-tight">
+                    REBRANDING PARADIGM
+                </div>
+
+                <!-- Case Info -->
+                <div class="lg:col-span-5 space-y-5 flex flex-col justify-between">
+                    <div class="space-y-2">
+                        <div class="flex items-center space-x-2 text-punkPink">
+                            <span class="inline-block w-2.5 h-2.5 bg-punkPink animate-pulse"></span>
+                            <span class="font-mono text-xs font-bold uppercase tracking-widest">Case 01 / Canada</span>
+                        </div>
+                        <h3 class="font-heavy text-2xl text-white uppercase tracking-tight">BISON INSULATION BRAND ENGINE</h3>
+                        <p class="text-xs text-punkYellow font-bold tracking-widest uppercase">// INDUSTRIAL BRAND RECONSTRUCTION</p>
+                        <p class="text-xs font-mono text-zinc-400 mt-2 leading-relaxed text-justify">
+                            A radical corporate transformation built for a leading Canadian industrial insulation firm. The traditional, cluttered corporate seal was broken down and restructured into an ultra-sharp, pure geometric monogram combining the robust profile of a bison with alpine mountain geometry.
+                        </p>
+                    </div>
+
+                    <!-- Tech stack matrix tags -->
+                    <div class="bg-black p-3.5 border-l-4 border-punkPink">
+                        <span class="text-[10px] text-zinc-500 block font-bold uppercase tracking-tight">// PRODUCTION HARDWARE DEPLOYED</span>
+                        <div class="flex flex-wrap gap-2 mt-2">
+                            <span class="bg-punkGray text-white text-[9px] font-heavy px-2 py-0.5 border border-zinc-800">PHOTOSHOP (Ps)</span>
+                            <span class="bg-punkGray text-white text-[9px] font-heavy px-2 py-0.5 border border-zinc-800">ILLUSTRATOR (Ai)</span>
+                            <span class="bg-punkGray text-punkGreen text-[9px] font-heavy px-2 py-0.5 border border-punkGreen">ADOBE FIREFLY</span>
+                            <span class="bg-punkGray text-punkYellow text-[9px] font-heavy px-2 py-0.5 border border-punkYellow">VEO 3 AI ENGINE</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Case Visual Visualizer (Interactive) -->
+                <div class="lg:col-span-7">
+                    <div class="border-4 border-white aspect-video relative group overflow-hidden bg-zinc-950">
+                        <div class="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-700 filter saturate-150 contrast-125" style="background-image: url('uploaded:image_e3999e.jpg-6c718ed1-2ddf-48bf-8f34-e043b5b1ff1d');"></div>
+                        
+                        <!-- Hover Scanline effect simulated -->
+                        <div class="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-end p-5">
+                            <span class="text-xs font-heavy text-punkGreen tracking-widest uppercase">// GEOMETRIC METRICS</span>
+                            <p class="text-[11px] text-zinc-300 leading-relaxed">Synthesizing raw elemental contours with absolute vector layout standards. Leveraged custom AI synthesis pathways for rapid prototyping drafts and materials visualization.</p>
+                        </div>
+                    </div>
+                    <div class="bg-punkBlack p-2.5 border-x-4 border-b-4 border-white flex justify-between items-center text-[10px] font-bold text-zinc-400">
+                        <span>SOURCE PROTOCOL: BRANDING_CORE_SLIDE3.JPG</span>
+                        <span class="text-punkPink uppercase tracking-tighter">ENGAGEMENT STATUS: ACTIVE</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PORTFOLIO CASE STUDY 2: WARBIASA GOVERNOR LEAGUE 2025 -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 border-4 border-punkGreen p-6 bg-punkGray shadow-[10px_10px_0px_#0a0a0a] relative">
+                <div class="absolute -top-5 right-6 bg-punkGreen text-black font-heavy px-3 py-1.5 text-xs uppercase transform -rotate-2 tracking-tight">
+                    MASS CAMPAIGN INTEL
+                </div>
+
+                <!-- Case Visual Visualizer (Interactive) -->
+                <div class="lg:col-span-7 order-2 lg:order-1">
+                    <div class="border-4 border-white aspect-video relative group overflow-hidden bg-zinc-950">
+                        <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('uploaded:image_e39959.jpg-9c89ec8e-c448-4782-93c9-3735dd28b6d7');"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent opacity-90 flex flex-col justify-end p-5">
+                            <span class="text-punkYellow font-heavy text-xs tracking-widest uppercase">// WARBIASA GOVERNOR LEAGUE ESPORTS</span>
+                            <p class="text-[10px] text-zinc-300 mt-1 max-w-lg leading-relaxed">High-saturation cyberpunk illustrations matched with local traditional motifs of North Sulawesi. Built for extreme local community integration.</p>
+                        </div>
+                    </div>
+                    <div class="bg-punkBlack p-2.5 border-x-4 border-b-4 border-white flex justify-between items-center text-[10px] font-bold text-zinc-400">
+                        <span>SOURCE PROTOCOL: CAMPAIGN_PROD_SLIDE5.JPG</span>
+                        <span class="text-punkGreen uppercase tracking-tighter">STAGE STATUS: LIVE PRODUCTION</span>
+                    </div>
+                </div>
+
+                <!-- Case Info -->
+                <div class="lg:col-span-5 order-1 lg:order-2 space-y-5 flex flex-col justify-between">
+                    <div class="space-y-2">
+                        <div class="flex items-center space-x-2 text-punkGreen">
+                            <span class="inline-block w-2.5 h-2.5 bg-punkGreen animate-ping"></span>
+                            <span class="font-mono text-xs font-bold uppercase tracking-widest">Case 02 / Regional</span>
+                        </div>
+                        <h3 class="font-heavy text-2xl text-white uppercase tracking-tight">WARBIASA GOVERNOR LEAGUE 2025</h3>
+                        <p class="text-xs text-punkGreen font-bold tracking-widest uppercase">// CAMPAIGN DIRECTION & PRODUCTION</p>
+                        <p class="text-xs font-mono text-zinc-400 mt-2 leading-relaxed text-justify">
+                            A high-velocity marketing deployment for a massive multi-sector gaming championship. Combining cosplay communities, street dancers, and esports warriors under one highly aggressive, cohesive visual language.
+                        </p>
+                    </div>
+
+                    <!-- Custom slider interaction controller simulator -->
+                    <div class="border-2 border-zinc-700 p-3 bg-punkBlack">
+                        <span class="text-[10px] text-zinc-400 font-bold block uppercase mb-2 tracking-wider">// LOCAL SYNTH TESTING FREQUENCY</span>
+                        <div class="flex gap-2">
+                            <button onclick="playSynth(700, 'sawtooth', 0.25)" class="w-full bg-punkGray hover:bg-punkGreen text-[9px] font-heavy py-2 border border-zinc-700 hover:text-black transition-all uppercase tracking-wider">
+                                RUN SYNTH_SWEEP_700.EXE
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COMPREHENSIVE BRAND GRID SECTION -->
+            <div class="space-y-6">
+                <div class="tape-yellow p-3 text-black font-heavy text-center tracking-tight text-xs uppercase">
+                    ⚡ MULTI-SECTOR LOGO ARSENAL - ARCHIVE PROOF ⚡
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-punkGray p-6 border-4 border-white shadow-[10px_10px_0px_#0a0a0a]">
+                    <!-- Context Box -->
+                    <div class="lg:col-span-4 space-y-4">
+                        <h4 class="font-heavy text-xl text-white uppercase tracking-tight">BRAND IDENTITY INTEGRITY MATRIX</h4>
+                        <p class="text-xs font-mono text-zinc-400 leading-relaxed text-justify">
+                            Demonstrating total adaptability across vastly differing market niches. The layout represents robust assets constructed for global heavy transport firms (PT. Hakato Artha Industri), local regional initiatives, consumer F&B establishments (Sarabak2), transactional FinTech apps (Rayapay), and pro gaming organisations (Saiyan Esport).
+                        </p>
+                        <div class="bg-black p-3 border-l-4 border-punkPink text-[10px] text-punkPink font-bold">
+                            &gt;&gt; EVERY SINGLE IDENTITY BUILT ON SCALE-PROOF VECTOR FRAMEWORK VIA ADOBE ILLUSTRATOR.
+                        </div>
+                    </div>
+
+                    <!-- Image Display Box -->
+                    <div class="lg:col-span-8">
+                        <div class="border-4 border-zinc-700 relative group overflow-hidden bg-black">
+                            <!-- Raw uploaded image display -->
+                            <img src="uploaded:image_e3997b.png-00ac4bfd-df35-4107-b819-ef035e193759" alt="Comprehensive Logo Grid" class="w-full h-auto grayscale hover:grayscale-0 contrast-125 transition-all duration-500">
+                            <!-- Overlay cyber grid guides -->
+                            <div class="absolute inset-0 border-2 border-punkPink pointer-events-none opacity-40"></div>
+                        </div>
+                        <div class="bg-black p-2.5 border-x-4 border-b-4 border-zinc-700 flex justify-between items-center text-[10px] font-bold text-zinc-500">
+                            <span>GRID MATRIX LOCATION: LOGOS_PROD_SLIDE4.PNG</span>
+                            <span class="text-punkYellow uppercase tracking-widest">100% VECTOR CERTIFIED</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION 03: HARDWARE CORE MATRIX (SKILLS & COMS TARGET) -->
+    <section id="vault" class="p-6 lg:p-12 bg-punkBlack border-b-8 border-white relative overflow-hidden">
+        <!-- Ripped paper bottom boundary -->
+        <div class="absolute bottom-0 left-0 w-full h-8 bg-punkPink ripped-edge-bottom z-10"></div>
+
+        <div class="max-w-6xl mx-auto space-y-12">
+            
+            <div class="flex justify-between items-center border-b-4 border-white pb-4">
+                <div class="inline-block transform -rotate-1 border-4 border-punkPink bg-punkPink text-white p-3 font-heavy text-lg uppercase shadow-[6px_6px_0px_#fff200]">
+                    03 // COGNITIVE WEAPONS & RADIUS INTERFACE
+                </div>
+                <span class="text-xs text-punkYellow font-bold tracking-widest font-mono">// SIGNAL SOURCE: RADAR.NET</span>
+            </div>
+
+            <!-- Skill bars & Sulawesi map locator -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+                
+                <!-- Left Column - Hard Skills matrix (highly structured) -->
+                <div class="lg:col-span-6 bg-punkGray border-4 border-white p-6 flex flex-col justify-between shadow-[8px_8px_0px_#ff007f] relative">
+                    <div class="space-y-6">
+                        <div class="flex items-center space-x-2 text-xs border-b border-zinc-800 pb-2">
+                            <span class="w-3 h-3 bg-punkPink block"></span>
+                            <span class="font-heavy text-white">HARD SKILLS SYSTEMS CONSOLE</span>
+                        </div>
+
+                        <div class="space-y-4">
+                            <!-- Skill Node 1 -->
+                            <div class="border border-zinc-800 p-3 bg-black">
+                                <div class="flex justify-between items-center text-xs mb-1">
+                                    <span class="font-heavy text-white tracking-tight">// ADVANCED IMAGE CRAFTING (15+ YRS)</span>
+                                    <span class="text-punkPink font-bold">100%</span>
+                                </div>
+                                <div class="w-full bg-zinc-900 h-2">
+                                    <div class="bg-punkPink h-full w-[98%]"></div>
+                                </div>
+                                <span class="text-[9px] text-zinc-500 mt-1 block font-mono">Weapon Core: Photoshop (Ps) // Compositing & Digital Matte Painting</span>
+                            </div>
+
+                            <!-- Skill Node 2 -->
+                            <div class="border border-zinc-800 p-3 bg-black">
+                                <div class="flex justify-between items-center text-xs mb-1">
+                                    <span class="font-heavy text-white tracking-tight">// VECTOR SYSTEM & TYPOGRAPHIC SUITE</span>
+                                    <span class="text-punkYellow font-bold">95%</span>
+                                </div>
+                                <div class="w-full bg-zinc-900 h-2">
+                                    <div class="bg-punkYellow h-full w-[95%]"></div>
+                                </div>
+                                <span class="text-[9px] text-zinc-500 mt-1 block font-mono">Weapon Core: Illustrator (Ai) // High-Fidelity Technical Graphics & Monograms</span>
+                            </div>
+
+                            <!-- Skill Node 3 -->
+                            <div class="border border-zinc-800 p-3 bg-black">
+                                <div class="flex justify-between items-center text-xs mb-1">
+                                    <span class="font-heavy text-white tracking-tight">// HUMAN-CENTERED DIGITAL PRODUCT DESIGN</span>
+                                    <span class="text-punkGreen font-bold">90%</span>
+                                </div>
+                                <div class="w-full bg-zinc-900 h-2">
+                                    <div class="bg-punkGreen h-full w-[90%]"></div>
+                                </div>
+                                <span class="text-[9px] text-zinc-500 mt-1 block font-mono">Weapon Core: Figma // Wireframes, Interactive Prototypes & Behavioral Testing</span>
+                            </div>
+
+                            <!-- Skill Node 4 -->
+                            <div class="border border-zinc-800 p-3 bg-black">
+                                <div class="flex justify-between items-center text-xs mb-1">
+                                    <span class="font-heavy text-white tracking-tight">// 3D, MOTION, & VIDEO COMPOSITING</span>
+                                    <span class="text-punkCyan font-bold">88%</span>
+                                </div>
+                                <div class="w-full bg-zinc-900 h-2">
+                                    <div class="bg-punkCyan h-full w-[88%]"></div>
+                                </div>
+                                <span class="text-[9px] text-zinc-500 mt-1 block font-mono">Weapon Core: After Effects / Premiere Pro / Unity 3D / Real-Time Game Engine Aset</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 border-t-2 border-dashed border-zinc-800 pt-4 text-[10px] text-zinc-400 font-mono italic leading-relaxed">
+                        * Production pipelines augmented via generative artificial intelligence tools (Adobe Firefly, Veo 3 engine, and generative diffusion) to skyrocket turnaround times without ever diluting raw artisan focus.
+                    </div>
+                </div>
+
+                <!-- Right Column - Geolocation HUD & Map -->
+                <div class="lg:col-span-6 bg-punkGray border-4 border-white p-6 flex flex-col justify-between shadow-[8px_8px_0px_#00ff66] relative overflow-hidden">
+                    
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center text-xs">
+                            <span class="font-heavy text-punkGreen tracking-tight">// GLOCAL TARGETING SENSORS</span>
+                            <span class="text-zinc-500 font-bold">EPICENTER: SULAWESI, IDN</span>
+                        </div>
+                        <h4 class="font-heavy text-2xl text-white uppercase tracking-tight">MANADO TO THE WORLD COMS MAP</h4>
+                        <p class="text-xs font-mono text-zinc-400 leading-relaxed text-justify">
+                            Though anchored out of Manado, Indonesia, my creative output is completely global. Spanning continent-wide digital marketing deployments for SME brands in the United States with <strong>Voxlumedia (Vienna, VA)</strong>, managing mass promotional assets in the Philippines, and executing senior design workflows remotely for <strong>Nadi Health Tech (Malaysia)</strong>.
+                        </p>
+                    </div>
+
+                    <!-- Interactive Sulawesi Radar locator -->
+                    <div class="border-2 border-zinc-800 bg-black aspect-video relative my-4 flex items-center justify-center overflow-hidden">
+                        <div class="absolute inset-0 bg-cover bg-center opacity-50 contrast-125 saturate-150" style="background-image: url('uploaded:image_e399da.png-38d0a995-c5b2-4689-bffd-57a9be53dc1c');"></div>
+                        
+                        <!-- Pulse sensor targets -->
+                        <div class="absolute top-[28%] right-[19%] w-5 h-5 bg-punkGreen rounded-full animate-ping"></div>
+                        <div class="absolute top-[28%] right-[19%] w-2 h-2 bg-punkGreen rounded-full"></div>
+                        
+                        <!-- Telemetry coordinates overlay -->
+                        <div class="absolute bottom-3 left-3 bg-punkBlack/90 border border-punkGreen p-2 text-[8px] font-mono text-punkGreen uppercase">
+                            COORD TARGET: 1.4748° N // 124.8428° E<br>
+                            HUD SECTOR: MANADO CORE INTERFACE
+                        </div>
+                    </div>
+
+                    <div class="text-[9px] text-zinc-400 text-center uppercase tracking-widest font-heavy">
+                        ⚡ GEOGRAPHICALLY DISTRIBUTED // INTELLECTUALLY INTEGRATED ⚡
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION 04: PLUG IN THE COMMUNICATIONS PORT -->
+    <section id="contact" class="p-6 lg:p-12 bg-black text-white relative">
+        <div class="max-w-4xl mx-auto space-y-8">
+            
+            <div class="text-center space-y-4">
+                <span class="inline-block bg-punkPink text-white font-heavy text-4xl px-4 py-2 transform -rotate-1">
+                    CONNECT SECURE LINK
+                </span>
+                <p class="font-punk text-sm text-zinc-400 max-w-lg mx-auto">
+                    Dispatch your secure briefing signal now. Immediate transmission monitored via tactical WhatsApp secure lines and direct email routes.
+                </p>
+            </div>
+
+            <!-- Brutalist Contacts matrix -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                <!-- Communication direct routes -->
+                <div class="bg-punkGray border-4 border-punkPink p-6 space-y-6 shadow-[6px_6px_0px_#ff007f]">
+                    <h3 class="font-heavy text-lg text-punkPink uppercase tracking-tight">// ENCRYPTED DIRECT HOTLINES</h3>
+                    
+                    <div class="space-y-4 text-xs font-mono">
+                        <div class="border border-zinc-800 p-3 bg-punkBlack flex justify-between items-center">
+                            <div>
+                                <span class="text-zinc-500 block uppercase font-bold text-[9px]">ENCRYPTED MAIL</span>
+                                <span class="text-white font-bold select-all">lengkongandrew@gmail.com</span>
+                            </div>
+                            <button onclick="copyToClipboard('lengkongandrew@gmail.com', 'mail-status')" class="bg-punkPink text-white font-heavy px-3 py-1.5 hover:bg-white hover:text-black transition-all text-[10px]">COPY</button>
+                        </div>
+                        <span id="mail-status" class="text-[9px] text-punkGreen font-bold block h-2"></span>
+
+                        <div class="border border-zinc-800 p-3 bg-punkBlack flex justify-between items-center">
+                            <div>
+                                <span class="text-zinc-500 block uppercase font-bold text-[9px]">WHATSAPP COMS LINE</span>
+                                <span class="text-white font-bold select-all">+62 857 9640 0320</span>
+                            </div>
+                            <button onclick="copyToClipboard('+6285796400320', 'wa-status')" class="bg-punkPink text-white font-heavy px-3 py-1.5 hover:bg-white hover:text-black transition-all text-[10px]">COPY</button>
+                        </div>
+                        <span id="wa-status" class="text-[9px] text-punkGreen font-bold block h-2"></span>
+
+                        <div class="border border-zinc-800 p-3 bg-punkBlack">
+                            <span class="text-zinc-500 block uppercase font-bold text-[9px]">TELEGRAM CHANNEL SECURE</span>
+                            <span class="text-white font-bold">@andrewlengkong</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Portfolio Evidence anchors -->
+                <div class="bg-punkGray border-4 border-punkYellow p-6 space-y-6 shadow-[6px_6px_0px_#fff200]">
+                    <h3 class="font-heavy text-lg text-punkYellow uppercase tracking-tight">// CORE REPOSITORIES</h3>
+                    
+                    <div class="space-y-4 text-xs font-mono">
+                        <a href="https://behance.net/andrewlengkong" target="_blank" class="border border-zinc-800 p-3 bg-punkBlack flex justify-between items-center hover:border-punkYellow transition-all group">
+                            <div>
+                                <span class="text-zinc-500 block uppercase font-bold text-[9px]">BEHANCE VAULT</span>
+                                <span class="text-white font-bold group-hover:text-punkYellow transition-all">behance.net/andrewlengkong</span>
+                            </div>
+                            <span class="text-punkYellow">➜</span>
+                        </a>
+
+                        <a href="https://linkedin.com/in/lengkongandreuw/" target="_blank" class="border border-zinc-800 p-3 bg-punkBlack flex justify-between items-center hover:border-punkYellow transition-all group">
+                            <div>
+                                <span class="text-zinc-500 block uppercase font-bold text-[9px]">LINKEDIN TELEMETRY</span>
+                                <span class="text-white font-bold group-hover:text-punkYellow transition-all">linkedin.com/in/lengkongandreuw/</span>
+                            </div>
+                            <span class="text-punkYellow">➜</span>
+                        </a>
+
+                        <a href="https://instagram.com/lengkongandreuw" target="_blank" class="border border-zinc-800 p-3 bg-punkBlack flex justify-between items-center hover:border-punkYellow transition-all group">
+                            <div>
+                                <span class="text-zinc-500 block uppercase font-bold text-[9px]">INSTAGRAM AUDIT</span>
+                                <span class="text-white font-bold group-hover:text-punkYellow transition-all">@lengkongandreuw</span>
+                            </div>
+                            <span class="text-punkYellow">➜</span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- TERMINATION SIGNATURE FOOTER -->
+            <div class="border-t-4 border-zinc-900 pt-8 mt-12 text-center text-[10px] text-zinc-500 font-mono space-y-3">
+                <p>© 2026 ANDREUW VANDY LENGKONG. BUILT ACCORDING TO LIBERATED INTERFACE SYSTEM RULES.</p>
+                <p class="uppercase">ENGINEERED VIA HIGH-END COMPOSITING, MANUAL ARTISTRY, AND EXTREME PUNK LOGIC SYSTEM SPECIFICATIONS.</p>
+                <div class="flex justify-center flex-wrap gap-4 pt-2 text-[9px]">
+                    <span class="text-punkPink font-bold">TERMINAL: SECURELY ACTIVE</span>
+                    <span class="text-punkYellow font-bold">SULAWESI CORE ESTABLISHED</span>
+                    <span class="text-punkGreen font-bold">COMS PIPELINE DEPLOYED</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SYSTEM BREACH SYSTEM ALERT PANEL (STYLIZED POPUP MODAL) -->
+    <div id="rebelPopup" class="fixed inset-0 bg-black/95 z-[200] flex items-center justify-center p-4 hidden">
+        <div class="bg-punkGray border-8 border-punkPink p-8 max-w-md w-full text-center space-y-6 shadow-[20px_20px_0px_#fff200]">
+            <h2 class="font-heavy text-3xl text-punkPink uppercase tracking-tighter animate-bounce">⚠️ SYSTEM VIOLATED ⚠️</h2>
+            <p class="font-mono text-xs text-zinc-300 leading-relaxed">
+                You have just executed the experimental design deconstruct trigger (*Detonate System Channels*). The conventional interface grid layout rules will now collapse.
+            </p>
+            <div class="bg-black p-3 border border-zinc-800 text-[10px] text-punkGreen font-mono">
+                TRIGGER_CODE: ANARCHY_MATRIX_INIT_1989
+            </div>
+            <div class="flex gap-4">
+                <button onclick="executeTotalChaos()" class="w-full bg-punkYellow text-black font-heavy py-2.5 uppercase text-xs border-2 border-black hover:bg-white hover:text-black transition-all">
+                    YES, SHATTER THE GRID
+                </button>
+                <button onclick="closeRebelPopup()" class="w-full bg-black text-white font-heavy py-2.5 uppercase text-xs border-2 border-zinc-700 hover:bg-punkPink transition-all">
+                    CANCEL SIGNAL
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- WEB SCRATCH / SPRAYPAINT AUDIO AND DESIGN ENGINE SCRIPTS -->
+    <script>
+        // WEB AUDIO SYSTEM
+        let audioCtx = null;
+
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+        }
+
+        function playSynth(frequency, type, duration) {
+            initAudio();
+            if (!audioCtx) return;
+
+            const osc = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+
+            osc.type = type || 'sawtooth';
+            osc.frequency.setValueAtTime(frequency || 220, audioCtx.currentTime);
+            
+            // Fast decay curve for tactile clicks
+            gainNode.gain.setValueAtTime(duration || 0.4, audioCtx.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + (duration || 0.4));
+
+            osc.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+
+            osc.start();
+            osc.stop(audioCtx.currentTime + (duration || 0.4));
+        }
+
+        function clickSound() {
+            playSynth(820, 'sine', 0.08);
+        }
+
+        // DRAGGABLE STICKER RIGGING
+        function initDraggables() {
+            const draggables = document.querySelectorAll('.draggable');
+            draggables.forEach(elem => {
+                let currentX, currentY, initialX, initialY;
+                let active = false;
+
+                elem.addEventListener('mousedown', dragStart, false);
+                elem.addEventListener('mousemove', drag, false);
+                elem.addEventListener('mouseup', dragEnd, false);
+                elem.addEventListener('mouseleave', dragEnd, false);
+
+                elem.addEventListener('touchstart', dragStart, {passive: false});
+                elem.addEventListener('touchmove', drag, {passive: false});
+                elem.addEventListener('touchend', dragEnd, false);
+
+                function dragStart(e) {
+                    initAudio();
+                    playSynth(130, 'sawtooth', 0.12);
+                    if (e.type === "touchstart") {
+                        initialX = e.touches[0].clientX - (elem.offsetLeft || 0);
+                        initialY = e.touches[0].clientY - (elem.offsetTop || 0);
+                    } else {
+                        initialX = e.clientX - (elem.offsetLeft || 0);
+                        initialY = e.clientY - (elem.offsetTop || 0);
+                    }
+                    active = true;
+                }
+
+                function drag(e) {
+                    if (!active) return;
+                    e.preventDefault();
+                    if (e.type === "touchmove") {
+                        currentX = e.touches[0].clientX - initialX;
+                        currentY = e.touches[0].clientY - initialY;
+                    } else {
+                        currentX = e.clientX - initialX;
+                        currentY = e.clientY - initialY;
+                    }
+                    elem.style.left = currentX + 'px';
+                    elem.style.top = currentY + 'px';
+                }
+
+                function dragEnd() {
+                    active = false;
+                }
+            });
+        }
+
+        // FULLSCREEN GRAFFITI/VANDAL DRAW CANVAS LOGIC
+        const canvas = document.getElementById('graffiti-canvas');
+        const ctx = canvas.getContext('2d');
+        let isDrawingVandal = false;
+        let paintActive = false;
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            ctx.lineCap = 'round';
+            ctx.lineJoin = 'round';
+        }
+
+        function toggleVandalMode() {
+            initAudio();
+            playSynth(300, 'square', 0.2);
+            paintActive = !paintActive;
+            const vandalBtn = document.getElementById('vandalBtn');
+            
+            if (paintActive) {
+                canvas.style.pointerEvents = 'auto';
+                vandalBtn.innerHTML = '<span class="w-2 h-2 bg-punkPink inline-block animate-ping"></span> 🖌️ Toggle Graffiti Paint [ON]';
+                vandalBtn.className = "bg-punkPink border-2 border-black px-2.5 py-1 text-black hover:bg-white transition-all font-heavy flex items-center gap-1.5 uppercase";
+            } else {
+                canvas.style.pointerEvents = 'none';
+                vandalBtn.innerHTML = '<span class="w-2 h-2 bg-punkCyan inline-block animate-pulse"></span> 🖌️ Toggle Graffiti Paint [OFF]';
+                vandalBtn.className = "bg-punkGray border-2 border-punkCyan px-2.5 py-1 text-punkCyan hover:bg-punkCyan hover:text-black transition-all font-heavy flex items-center gap-1.5 uppercase";
+            }
+        }
+
+        function clearVandalCanvas() {
+            playSynth(150, 'sawtooth', 0.3);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+
+        // Canvas drawing mechanics
+        canvas.addEventListener('mousedown', startPaint, false);
+        canvas.addEventListener('mousemove', drawPaint, false);
+        canvas.addEventListener('mouseup', endPaint, false);
+        canvas.addEventListener('mouseleave', endPaint, false);
+
+        canvas.addEventListener('touchstart', startPaint, {passive: false});
+        canvas.addEventListener('touchmove', drawPaint, {passive: false});
+        canvas.addEventListener('touchend', endPaint, false);
+
+        function startPaint(e) {
+            if (!paintActive) return;
+            isDrawingVandal = true;
+            ctx.beginPath();
+            
+            // Randomly cycle brutal neon paint colors
+            const colors = ['#00ff66', '#ff007f', '#fff200', '#00f0ff'];
+            ctx.strokeStyle = colors[Math.floor(Math.random() * colors.length)];
+            ctx.lineWidth = Math.random() * 8 + 4; // Variable spray paint nozzle width
+            
+            const pos = getPos(e);
+            ctx.moveTo(pos.x, pos.y);
+            
+            playSynth(Math.random() * 300 + 400, 'sawtooth', 0.05);
+        }
+
+        function drawPaint(e) {
+            if (!isDrawingVandal || !paintActive) return;
+            e.preventDefault();
+            const pos = getPos(e);
+            ctx.lineTo(pos.x, pos.y);
+            ctx.stroke();
+            
+            // Retro static hiss audio sound while painting
+            if (Math.random() > 0.8) {
+                playSynth(Math.random() * 200 + 100, 'sawtooth', 0.03);
+            }
+        }
+
+        function endPaint() {
+            isDrawingVandal = false;
+        }
+
+        function getPos(e) {
+            const rect = canvas.getBoundingClientRect();
+            let x, y;
+            if (e.touches && e.touches.length > 0) {
+                x = e.touches[0].clientX - rect.left;
+                y = e.touches[0].clientY - rect.top;
+            } else {
+                x = e.clientX - rect.left;
+                y = e.clientY - rect.top;
+            }
+            return { x, y };
+        }
+
+        // CLIPBOARD INTERACTION SECURITY COPING
+        function copyToClipboard(text, statusId) {
+            playSynth(550, 'triangle', 0.12);
+            
+            const textarea = document.createElement("textarea");
+            textarea.value = text;
+            textarea.style.position = "fixed";
+            document.body.appendChild(textarea);
+            textarea.focus();
+            textarea.select();
+            try {
+                const successful = document.execCommand('copy');
+                const statusElem = document.getElementById(statusId);
+                if (statusElem) {
+                    statusElem.innerText = successful ? ">> COPIED SECURELY TO PORT MATRIX CLIPBOARD!" : ">> TRANSMISSION FAIL";
+                    setTimeout(() => {
+                        statusElem.innerText = "";
+                    }, 3000);
+                }
+            } catch (err) {
+                console.error('Fallback failed', err);
+            }
+            document.body.removeChild(textarea);
+        }
+
+        // TRIGGER RADICAL GLITCH BREACH
+        function triggerGlitchSystem() {
+            playSynth(140, 'sawtooth', 0.7);
+            
+            // Instantly rattle portrait frame visual state
+            const frame = document.getElementById('portrait-frame');
+            frame.classList.add('glitch-text-active');
+            setTimeout(() => {
+                frame.classList.remove('glitch-text-active');
+            }, 1000);
+
+            document.getElementById('rebelPopup').classList.remove('hidden');
+        }
+
+        function closeRebelPopup() {
+            clickSound();
+            document.getElementById('rebelPopup').classList.add('hidden');
+        }
+
+        // LAYOUT SHATTER ENGINE (SHATTER LAWS OF GRID)
+        let totalChaosActive = false;
+        function executeTotalChaos() {
+            totalChaosActive = !totalChaosActive;
+            playSynth(60, 'sawtooth', 1.8);
+            closeRebelPopup();
+            
+            const layers = document.querySelectorAll('.grid > div, section, header, nav');
+            layers.forEach(lyr => {
+                if (totalChaosActive) {
+                    const rotVal = (Math.random() * 14 - 7).toFixed(2);
+                    const transXVal = (Math.random() * 30 - 15).toFixed(0);
+                    lyr.style.transform = `rotate(${rotVal}deg) translate(${transXVal}px)`;
+                    lyr.style.transition = 'all 0.4s cubic-bezier(0.87, 0, 0.13, 1)';
+                    lyr.style.borderColor = '#ff007f';
+                } else {
+                    lyr.style.transform = '';
+                    lyr.style.borderColor = '';
+                }
+            });
+        }
+
+        // CORPORATE LAYOUT CONVERSION
+        let cleanModeActive = false;
+        function toggleCleanMode() {
+            cleanModeActive = !cleanModeActive;
+            playSynth(280, 'sine', 0.25);
+            
+            const cleanBtn = document.getElementById('cleanBtn');
+            const bodies = document.body;
+            
+            if (cleanModeActive) {
+                bodies.style.fontFamily = 'system-ui, -apple-system, sans-serif';
+                bodies.style.backgroundColor = '#ffffff';
+                bodies.style.color = '#0f172a';
+                cleanBtn.innerText = "⚠️ DETONATE SANITIZED LAYOUT";
+                cleanBtn.className = "bg-punkPink text-white px-3 py-1 font-bold rounded-none hover:bg-black hover:text-white transition-all";
+                
+                // Disable visual artifacts
+                document.querySelectorAll('.draggable').forEach(s => s.classList.add('hidden'));
+                canvas.classList.add('hidden');
+            } else {
+                bodies.style.fontFamily = '';
+                bodies.style.backgroundColor = '';
+                bodies.style.color = '';
+                cleanBtn.innerText = "⚠️ BORING SANITIZED MODE";
+                cleanBtn.className = "bg-punkPink text-white px-3 py-1 font-bold rounded-none hover:bg-white hover:text-black transition-all";
+                
+                // Reactivate
+                document.querySelectorAll('.draggable').forEach(s => s.classList.remove('hidden'));
+                canvas.classList.remove('hidden');
+            }
+        }
+
+        // Initialize variables on loaded state
+        window.onload = function() {
+            resizeCanvas();
+            initDraggables();
+            
+            window.addEventListener('resize', resizeCanvas);
+        }
+    </script>
+</body>
+</html>
