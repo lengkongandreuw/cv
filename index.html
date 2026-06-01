@@ -27,6 +27,12 @@
                         punkYellow: '#fff200',
                         punkGreen: '#00ff66',
                         punkCyan: '#00f0ff',
+                        // New British Punk Palette
+                        britDarkGray: '#1a1a1a',
+                        britRed: '#e60000',
+                        britBlue: '#0033cc',
+                        britMagenta: '#ff00ff',
+                        britTeal: '#00ffff',
                     }
                 }
             }
@@ -165,6 +171,16 @@
             touch-action: none;
             user-select: none;
         }
+
+        /* Responsive Scroll & Interaction Animations */
+        .reveal { opacity: 0; transform: translateY(40px) skewY(1deg); transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0) skewY(0); }
+        
+        .skill-bar-fill { width: 0; transition: width 1.5s cubic-bezier(0.19, 1, 0.22, 1) 0.4s; }
+        
+        .brutal-interactive { transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1); }
+        .brutal-interactive:hover { transform: translate(-6px, -6px); }
+        .brutal-interactive:active { transform: translate(4px, 4px); box-shadow: 0 0 0 #000 !important; }
     </style>
 </head>
 <body class="font-mono text-white selection:bg-punkYellow selection:text-black antialiased">
@@ -203,56 +219,63 @@
             <button onclick="toggleCleanMode()" id="cleanBtn" class="bg-punkPink text-white px-3 py-1 font-bold rounded-none hover:bg-white hover:text-black transition-all uppercase">
                 ⚠️ BORING SANITIZED MODE
             </button>
+            
+            <!-- Language Switcher -->
+            <div class="flex border-2 border-britRed ml-2 bg-black">
+                <button onclick="setLang('en')" id="lang-en" class="bg-britRed text-white px-2 py-1 font-heavy text-[10px] hover:bg-white hover:text-black transition-colors">EN</button>
+                <button onclick="setLang('id')" id="lang-id" class="bg-punkGray text-zinc-400 px-2 py-1 font-heavy text-[10px] hover:bg-white hover:text-black transition-colors border-l border-zinc-700">ID</button>
+                <button onclick="setLang('zh')" id="lang-zh" class="bg-punkGray text-zinc-400 px-2 py-1 font-heavy text-[10px] hover:bg-white hover:text-black transition-colors border-l border-zinc-700">ZH</button>
+            </div>
         </div>
     </div>
 
     <!-- DRAGGABLE STICKERS (INTERACTIVE DESIGN COMPONENT) -->
-    <div id="badge-years" class="draggable absolute z-50 bg-punkYellow text-black px-4 py-2 font-heavy text-[11px] uppercase tracking-tighter border-2 border-black shadow-[3px_3px_0px_#ff007f] cursor-grab active:cursor-grabbing" style="top: 140px; left: 20px; transform: rotate(-6deg);">
+    <div id="badge-years" class="draggable absolute z-50 bg-punkYellow text-black px-4 py-2 font-heavy text-[11px] uppercase tracking-tighter border-2 border-black shadow-[3px_3px_0px_#ff007f] cursor-grab active:cursor-grabbing hidden md:block hover:scale-110 transition-transform" style="top: 140px; left: 20px; transform: rotate(-6deg);">
         ☠️ 15+ YRS CORE DEV
     </div>
     
-    <div id="badge-loc" class="draggable absolute z-50 bg-punkGreen text-black px-3 py-2 font-punk text-xs border-2 border-black shadow-[4px_4px_0px_#000] cursor-grab active:cursor-grabbing" style="top: 480px; right: 30px; transform: rotate(10deg);">
+    <div id="badge-loc" class="draggable absolute z-50 bg-punkGreen text-black px-3 py-2 font-punk text-xs border-2 border-black shadow-[4px_4px_0px_#000] cursor-grab active:cursor-grabbing hidden sm:block hover:scale-110 transition-transform" style="top: 480px; right: 30px; transform: rotate(10deg);">
         ⚓ HQ: MANADO, IDN
     </div>
 
-    <div id="badge-stack" class="draggable absolute z-50 bg-black text-punkPink px-3 py-2 font-mono text-[10px] border-2 border-punkPink cursor-grab active:cursor-grabbing" style="bottom: 140px; left: 50px; transform: rotate(-12deg);">
+    <div id="badge-stack" class="draggable absolute z-50 bg-black text-punkPink px-3 py-2 font-mono text-[10px] border-2 border-punkPink cursor-grab active:cursor-grabbing hidden lg:block hover:scale-110 transition-transform" style="bottom: 140px; left: 50px; transform: rotate(-12deg);">
         🦾 AI_ACCELERATED_WORKFLOW
     </div>
 
-    <div id="badge-rebel" class="draggable absolute z-50 bg-punkCyan text-black px-3 py-2 font-heavy text-[10px] border-2 border-black shadow-[3px_3px_0px_#0a0a0a] cursor-grab active:cursor-grabbing" style="top: 320px; left: 45%; transform: rotate(4deg);">
+    <div id="badge-rebel" class="draggable absolute z-50 bg-punkCyan text-black px-3 py-2 font-heavy text-[10px] border-2 border-black shadow-[3px_3px_0px_#0a0a0a] cursor-grab active:cursor-grabbing hover:scale-110 transition-transform" style="top: 320px; left: 45%; transform: rotate(4deg);">
         🔥 RULES INVENTOR
     </div>
 
-    <!-- HERO / LANDING DECK -->
-    <header class="relative min-h-screen flex flex-col justify-between p-6 lg:p-12 border-b-8 border-punkPink overflow-hidden">
+    <!-- HERO / LANDING DECK (UPGRADED BRITISH PUNK LAYOUT) -->
+    <header class="relative min-h-screen flex flex-col justify-between p-6 lg:p-12 border-b-8 border-britRed bg-britDarkGray overflow-hidden">
         
         <!-- Interactive Moving Headline Marquee (Tops Page Header) -->
-        <div class="absolute top-[80px] left-0 w-full bg-punkYellow text-black py-1.5 overflow-hidden transform -rotate-1 z-0 select-none border-y-4 border-black">
+        <div class="absolute top-[80px] left-0 w-full bg-britBlue text-white py-1.5 overflow-hidden transform -rotate-2 z-0 select-none border-y-4 border-white shadow-[0_5px_0_#e60000]">
             <div class="whitespace-nowrap flex font-heavy text-xs tracking-widest uppercase animate-marquee">
-                <span class="mx-4">⚡ MULTIMEDIA POWERHOUSE //</span>
-                <span class="mx-4">15+ YEARS BREAKING TRADITIONAL INTERFACES //</span>
+                <span class="mx-4" data-i18n="marquee1">⚡ MULTIMEDIA POWERHOUSE //</span>
+                <span class="mx-4" data-i18n="marquee2">15+ YEARS BREAKING TRADITIONAL INTERFACES //</span>
                 <span class="mx-4">VOXLUMEDIA USA //</span>
                 <span class="mx-4">MANADO POST APP CREATOR //</span>
                 <span class="mx-4">WARDEKA 3D MAP ARCHITECT //</span>
                 <span class="mx-4">ADOBE FIREFLY & VEO 3 DEPLOYED //</span>
-                <span class="mx-4">ESTABLISHED IN MANADO, INDONESIA //</span>
+                <span class="mx-4" data-i18n="marquee3">ESTABLISHED IN MANADO, INDONESIA //</span>
             </div>
         </div>
 
         <!-- Top Navigation -->
         <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 z-10 pt-10">
-            <div class="border-4 border-white p-3 bg-punkBlack shadow-[8px_8px_0px_#ff007f] transform -rotate-1">
-                <h1 class="font-heavy text-xl md:text-2xl text-punkYellow tracking-tight uppercase leading-none">
+            <div class="border-4 border-britRed p-3 bg-punkBlack shadow-[8px_8px_0px_#00ffff] transform rotate-1 hover:-rotate-1 transition-transform">
+                <h1 class="font-heavy text-xl md:text-2xl text-white tracking-tight uppercase leading-none">
                     ANDREUW V. LENGKONG
                 </h1>
-                <p class="text-[10px] font-bold tracking-widest text-punkGreen mt-1">// FULL-STACK CREATIVE SOLDIER</p>
+                <p class="text-[10px] font-bold tracking-widest text-britMagenta mt-1" data-i18n="subtitle">// FULL-STACK CREATIVE SOLDIER</p>
             </div>
             
-            <nav class="flex flex-wrap gap-2 text-xs font-heavy uppercase bg-black/40 p-2 border border-zinc-800">
-                <a href="#about" onclick="clickSound()" class="border-2 border-punkPink px-3 py-1.5 bg-punkBlack hover:bg-punkPink hover:text-black hover:-translate-y-0.5 transition-all">01. MANIFESTO</a>
-                <a href="#warfare" onclick="clickSound()" class="border-2 border-punkYellow px-3 py-1.5 bg-punkBlack hover:bg-punkYellow hover:text-black hover:-translate-y-0.5 transition-all">02. EVIDENCE</a>
-                <a href="#vault" onclick="clickSound()" class="border-2 border-punkGreen px-3 py-1.5 bg-punkBlack hover:bg-punkGreen hover:text-black hover:-translate-y-0.5 transition-all">03. REBEL_LAB</a>
-                <a href="#contact" onclick="clickSound()" class="border-2 border-white px-3 py-1.5 bg-punkBlack hover:bg-white hover:text-black hover:-translate-y-0.5 transition-all">04. PLUG_IN</a>
+            <nav class="flex flex-wrap gap-2 text-xs font-heavy uppercase bg-black/60 p-2 border border-zinc-800 backdrop-blur-sm">
+                <a href="#about" onclick="clickSound()" class="border-2 border-britRed px-3 py-1.5 bg-punkBlack text-white hover:bg-britRed hover:text-white hover:-translate-y-0.5 transition-all" data-i18n="nav1">01. MANIFESTO</a>
+                <a href="#warfare" onclick="clickSound()" class="border-2 border-britBlue px-3 py-1.5 bg-punkBlack text-white hover:bg-britBlue hover:text-white hover:-translate-y-0.5 transition-all" data-i18n="nav2">02. EVIDENCE</a>
+                <a href="#vault" onclick="clickSound()" class="border-2 border-britTeal px-3 py-1.5 bg-punkBlack text-white hover:bg-britTeal hover:text-black hover:-translate-y-0.5 transition-all" data-i18n="nav3">03. REBEL_LAB</a>
+                <a href="#contact" onclick="clickSound()" class="border-2 border-white px-3 py-1.5 bg-punkBlack text-white hover:bg-white hover:text-black hover:-translate-y-0.5 transition-all" data-i18n="nav4">04. PLUG_IN</a>
             </nav>
         </div>
 
@@ -262,45 +285,47 @@
             <!-- Typography block -->
             <div class="lg:col-span-7 flex flex-col space-y-6">
                 <!-- Distressed tape style badge -->
-                <div class="self-start px-4 py-1 bg-punkCyan text-black font-heavy text-xs uppercase transform rotate-2">
+                <div class="self-start px-4 py-1 bg-britMagenta text-white font-heavy text-xs uppercase transform rotate-2 hover:rotate-0 transition-transform cursor-default border-2 border-white shadow-[4px_4px_0_#00ffff]" data-i18n="heroBadge">
                     ⚡ MULTIMEDIA DESIGN SYSTEM RECONSTRUCTION
                 </div>
 
-                <div class="space-y-2">
-                    <span class="inline-block bg-punkPink text-white font-heavy text-4xl md:text-7xl px-4 py-1 transform -rotate-1 shadow-[6px_6px_0px_#fff200]">
+                <div class="space-y-1 relative">
+                    <span class="inline-block bg-white text-black font-heavy text-4xl sm:text-5xl lg:text-7xl px-4 py-1 sm:py-2 transform -rotate-1 border-4 border-black shadow-[6px_6px_0px_#e60000] hover:skew-x-6 transition-transform cursor-default" data-i18n="heroTitle1">
                         CREATIVE
                     </span><br>
-                    <span class="inline-block bg-white text-black font-heavy text-4xl md:text-7xl px-4 py-1 transform rotate-1 shadow-[6px_6px_0px_#0a0a0a]">
+                    <span class="inline-block bg-britBlue text-white font-heavy text-4xl sm:text-5xl lg:text-7xl px-4 py-1 sm:py-2 transform rotate-1 border-4 border-white shadow-[6px_6px_0px_#000000] hover:-skew-x-6 transition-transform cursor-default z-10 relative" data-i18n="heroTitle2">
                         MULTIMEDIA
                     </span><br>
-                    <span class="inline-block bg-punkYellow text-black font-heavy text-4xl md:text-7xl px-4 py-1 transform -rotate-2 border-4 border-black">
+                    <span class="inline-block bg-britRed text-white font-heavy text-4xl sm:text-5xl lg:text-7xl px-4 py-1 sm:py-2 transform -rotate-2 border-4 border-black hover:skew-x-3 hover:-translate-y-2 transition-transform cursor-default shadow-[6px_6px_0px_#00ffff]" data-i18n="heroTitle3">
                         DESIGNER.
                     </span>
                 </div>
 
-                <div class="p-5 bg-punkGray border-l-8 border-punkGreen max-w-xl relative">
-                    <!-- Torn paper styling mock -->
-                    <div class="absolute -top-3 left-10 duct-tape text-[9px] text-zinc-300 font-bold px-4 py-0.5 uppercase tracking-tighter">
+                <div class="p-5 bg-black border-l-8 border-britTeal max-w-xl relative reveal active shadow-[8px_8px_0_#ff00ff]">
+                    <div class="absolute -top-3 left-10 duct-tape text-[9px] text-zinc-300 font-bold px-4 py-0.5 uppercase tracking-tighter" data-i18n="heroQuoteLabel">
                         TACTICAL MANIFEST_SEC.04
                     </div>
-                    <p class="font-punk text-sm md:text-base leading-relaxed text-zinc-300 pt-1">
+                    <p class="font-punk text-sm md:text-base leading-relaxed text-zinc-300 pt-1" data-i18n="heroQuote">
                         "Design is not cosmetic decoration. Design is a high-impact tactical weapon deployed to disrupt user attention, break interface limits, and drive absolute business value."
                     </p>
                 </div>
 
-                <div class="flex flex-wrap gap-3">
-                    <button onclick="triggerGlitchSystem()" class="bg-punkPink text-white font-heavy px-6 py-4 border-4 border-black shadow-[6px_6px_0px_#fff200] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all text-xs md:text-sm tracking-widest uppercase">
+                <div class="flex flex-wrap gap-3 mt-4">
+                    <button onclick="triggerGlitchSystem()" class="bg-white text-britRed font-heavy px-6 py-4 border-4 border-britRed shadow-[6px_6px_0px_#0033cc] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all text-xs md:text-sm tracking-widest uppercase" data-i18n="btnDetonate">
                         ⚡ DETONATE INTERFACE GRID ⚡
                     </button>
-                    <a href="#contact" class="bg-black text-punkGreen border-4 border-punkGreen px-6 py-4 font-heavy text-xs md:text-sm uppercase tracking-wider hover:bg-punkGreen hover:text-black transition-all">
+                    <a href="#contact" class="bg-black text-britTeal border-4 border-britTeal px-6 py-4 font-heavy text-xs md:text-sm uppercase tracking-wider hover:bg-britTeal hover:text-black transition-all shadow-[6px_6px_0px_#ff00ff]" data-i18n="btnInit">
                         // INITIALIZE COMS PIPELINE
                     </a>
                 </div>
             </div>
 
             <!-- Right Column - Halftone Portrait Sandbox -->
-            <div class="lg:col-span-5 flex justify-center">
-                <div class="relative w-full max-w-sm border-8 border-white bg-punkBlack shadow-[15px_15px_0px_#ff007f] group overflow-hidden">
+            <div class="lg:col-span-5 flex justify-center relative">
+                <!-- British punk background accents behind image -->
+                <div class="absolute inset-0 transform translate-x-4 translate-y-4 border-8 border-britRed bg-britBlue w-full max-w-sm mx-auto opacity-80"></div>
+                
+                <div class="relative w-full max-w-sm border-8 border-white bg-punkBlack shadow-[15px_15px_0px_#ff00ff] group overflow-hidden brutal-interactive">
                     
                     <div class="halftone-box aspect-square w-full relative">
                         <!-- Raw Dither/Halftone simulated image -->
@@ -309,33 +334,35 @@
                         </div>
                         
                         <!-- Overlay guides -->
-                        <div class="absolute inset-0 border-4 border-dashed border-punkYellow opacity-40 pointer-events-none"></div>
-                        <div class="absolute bottom-4 left-4 bg-black text-punkYellow text-[10px] px-2 py-1 font-mono font-bold uppercase tracking-wider border border-punkYellow">
-                            FEED_SOURCE: HQ_PORTRAIT_2026.RAW
-                        </div>
+                        <div class="absolute inset-0 border-4 border-dashed border-britTeal opacity-40 pointer-events-none"></div>
                         
-                        <!-- Distressed Sticker taped to the portrait -->
-                        <div class="absolute top-4 right-4 bg-punkPink text-white text-[9px] px-2.5 py-1 font-heavy transform rotate-6 tracking-tight">
-                            PUNK_LUT_ACTIVE
+                        <!-- Top Left Cyan Badge -->
+                        <div class="absolute top-4 left-4 bg-britTeal text-black text-[10px] px-2 py-1 font-heavy uppercase tracking-wider border-2 border-black transform -rotate-3" data-i18n="photoBadge1">
+                            ID: 1989_AVL
+                        </div>
+
+                        <!-- Bottom Right Info -->
+                        <div class="absolute bottom-4 right-4 bg-britRed text-white text-[10px] px-2 py-1 font-mono font-bold uppercase tracking-wider border-2 border-white shadow-[3px_3px_0_#0033cc]" data-i18n="photoBadge2">
+                            HQ_PORTRAIT.RAW
                         </div>
                     </div>
                     
-                    <div class="p-4 border-t-4 border-white bg-punkGray">
+                    <div class="p-4 border-t-8 border-white bg-britDarkGray">
                         <div class="flex justify-between items-center text-[11px]">
-                            <span class="text-punkGreen font-bold tracking-tight">// IDENTITY TARGET: LENGKONG, A.V.</span>
-                            <span class="text-zinc-500 font-bold">1989 / SULAWESI, IDN</span>
+                            <span class="text-britTeal font-bold tracking-tight uppercase" data-i18n="photoTarget">// TARGET: LENGKONG, A.V.</span>
+                            <span class="text-white font-bold">1989 / SULAWESI, IDN</span>
                         </div>
                         
                         <!-- Spectrum Soundwave Visualizer Graphic Component -->
-                        <div class="mt-4 border-t border-zinc-800 pt-3 space-y-1.5">
-                            <span class="text-[9px] text-zinc-500 block uppercase font-bold tracking-tight">System Threat Spectrum:</span>
-                            <div class="flex items-end space-x-1 h-8 bg-black p-1.5 border border-zinc-800">
-                                <div class="bg-punkPink w-full h-1/2 animate-pulse"></div>
-                                <div class="bg-punkPink w-full h-4/5 animate-pulse" style="animation-delay: 0.1s;"></div>
-                                <div class="bg-punkPink w-full h-2/3 animate-pulse" style="animation-delay: 0.2s;"></div>
-                                <div class="bg-punkPink w-full h-full animate-pulse" style="animation-delay: 0.3s;"></div>
-                                <div class="bg-punkPink w-full h-1/3 animate-pulse" style="animation-delay: 0.4s;"></div>
-                                <div class="bg-punkPink w-full h-3/4 animate-pulse" style="animation-delay: 0.5s;"></div>
+                        <div class="mt-4 border-t-2 border-zinc-700 pt-3 space-y-1.5">
+                            <span class="text-[9px] text-zinc-400 block uppercase font-bold tracking-tight" data-i18n="photoSpectrum">System Threat Spectrum:</span>
+                            <div class="flex items-end space-x-1 h-8 bg-black p-1.5 border-2 border-britRed">
+                                <div class="bg-britMagenta w-full h-1/2 animate-pulse"></div>
+                                <div class="bg-britMagenta w-full h-4/5 animate-pulse" style="animation-delay: 0.1s;"></div>
+                                <div class="bg-britMagenta w-full h-2/3 animate-pulse" style="animation-delay: 0.2s;"></div>
+                                <div class="bg-britTeal w-full h-full animate-pulse" style="animation-delay: 0.3s;"></div>
+                                <div class="bg-britTeal w-full h-1/3 animate-pulse" style="animation-delay: 0.4s;"></div>
+                                <div class="bg-britTeal w-full h-3/4 animate-pulse" style="animation-delay: 0.5s;"></div>
                             </div>
                         </div>
                     </div>
@@ -345,11 +372,11 @@
         </div>
 
         <!-- Footer Segment -->
-        <div class="mt-auto pt-6 flex flex-wrap justify-between items-center gap-4 border-t border-zinc-900">
-            <p class="text-[10px] text-zinc-500 font-bold uppercase tracking-widest">// SECURE LOCAL CONNECTIONS ENCRYPTED</p>
+        <div class="mt-auto pt-6 flex flex-wrap justify-between items-center gap-4 border-t-4 border-britBlue">
+            <p class="text-[10px] text-white font-bold uppercase tracking-widest bg-britRed px-2 py-1" data-i18n="heroFooter1">// SECURE LOCAL CONNECTIONS ENCRYPTED</p>
             <div class="flex gap-4">
-                <span class="text-punkPink font-bold text-xs animate-pulse">⚡ SCROLL FOR RAW EXPERIMENTAL PROOF</span>
-                <span class="text-punkYellow font-bold text-xs uppercase tracking-tight">[ DESIGN DICTATORSHIP: BYPASSED ]</span>
+                <span class="text-britTeal font-bold text-xs animate-pulse bg-black px-2 py-1 border border-britTeal" data-i18n="heroFooter2">⚡ SCROLL FOR RAW EXPERIMENTAL PROOF</span>
+                <span class="text-white font-bold text-xs uppercase tracking-tight bg-britMagenta px-2 py-1 border border-white" data-i18n="heroFooter3">[ DESIGN DICTATORSHIP: BYPASSED ]</span>
             </div>
         </div>
 
@@ -363,11 +390,11 @@
 
         <div class="max-w-5xl mx-auto space-y-12">
             
-            <div class="inline-block transform -rotate-1 border-4 border-black bg-punkYellow text-black p-3 font-heavy text-xl uppercase shadow-[8px_8px_0px_#ff007f]">
+            <div class="inline-block transform -rotate-1 border-4 border-black bg-punkYellow text-black p-3 font-heavy text-xl uppercase shadow-[8px_8px_0px_#ff007f] reveal">
                 01 // THE SYSTEM MANIFESTO
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start reveal">
                 
                 <div class="md:col-span-8 space-y-6">
                     <h3 class="font-heavy text-3xl md:text-5xl text-white tracking-tight uppercase leading-none">
@@ -426,8 +453,8 @@
             </div>
 
             <!-- PORTFOLIO CASE STUDY 1: BISON INSULATION -->
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 border-4 border-punkPink p-6 bg-punkGray shadow-[10px_10px_0px_#0a0a0a] relative">
-                <div class="absolute -top-5 right-6 bg-punkPink text-white font-heavy px-3 py-1.5 text-xs uppercase transform rotate-2 tracking-tight">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 border-4 border-punkPink p-6 bg-punkGray shadow-[10px_10px_0px_#0a0a0a] relative brutal-interactive reveal hover:shadow-[16px_16px_0px_#ff007f] hover:z-20 group">
+                <div class="absolute -top-5 right-6 bg-punkPink text-white font-heavy px-3 py-1.5 text-xs uppercase transform rotate-2 tracking-tight group-hover:-translate-y-2 group-hover:-rotate-2 transition-transform">
                     REBRANDING PARADIGM
                 </div>
 
@@ -476,8 +503,8 @@
             </div>
 
             <!-- PORTFOLIO CASE STUDY 2: WARBIASA GOVERNOR LEAGUE 2025 -->
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 border-4 border-punkGreen p-6 bg-punkGray shadow-[10px_10px_0px_#0a0a0a] relative">
-                <div class="absolute -top-5 right-6 bg-punkGreen text-black font-heavy px-3 py-1.5 text-xs uppercase transform -rotate-2 tracking-tight">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 border-4 border-punkGreen p-6 bg-punkGray shadow-[10px_10px_0px_#0a0a0a] relative brutal-interactive reveal hover:shadow-[16px_16px_0px_#00ff66] hover:z-20 group">
+                <div class="absolute -top-5 right-6 bg-punkGreen text-black font-heavy px-3 py-1.5 text-xs uppercase transform -rotate-2 tracking-tight group-hover:-translate-y-2 group-hover:rotate-2 transition-transform">
                     MASS CAMPAIGN INTEL
                 </div>
 
@@ -523,12 +550,12 @@
             </div>
 
             <!-- COMPREHENSIVE BRAND GRID SECTION -->
-            <div class="space-y-6">
+            <div class="space-y-6 reveal">
                 <div class="tape-yellow p-3 text-black font-heavy text-center tracking-tight text-xs uppercase">
                     ⚡ MULTI-SECTOR LOGO ARSENAL - ARCHIVE PROOF ⚡
                 </div>
 
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-punkGray p-6 border-4 border-white shadow-[10px_10px_0px_#0a0a0a]">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-punkGray p-6 border-4 border-white shadow-[10px_10px_0px_#0a0a0a] brutal-interactive hover:shadow-[16px_16px_0px_#fff200]">
                     <!-- Context Box -->
                     <div class="lg:col-span-4 space-y-4">
                         <h4 class="font-heavy text-xl text-white uppercase tracking-tight">BRAND IDENTITY INTEGRITY MATRIX</h4>
@@ -574,10 +601,10 @@
             </div>
 
             <!-- Skill bars & Sulawesi map locator -->
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch reveal">
                 
                 <!-- Left Column - Hard Skills matrix (highly structured) -->
-                <div class="lg:col-span-6 bg-punkGray border-4 border-white p-6 flex flex-col justify-between shadow-[8px_8px_0px_#ff007f] relative">
+                <div class="lg:col-span-6 bg-punkGray border-4 border-white p-6 flex flex-col justify-between shadow-[8px_8px_0px_#ff007f] relative brutal-interactive hover:shadow-[16px_16px_0px_#ff007f] hover:z-10">
                     <div class="space-y-6">
                         <div class="flex items-center space-x-2 text-xs border-b border-zinc-800 pb-2">
                             <span class="w-3 h-3 bg-punkPink block"></span>
@@ -586,49 +613,49 @@
 
                         <div class="space-y-4">
                             <!-- Skill Node 1 -->
-                            <div class="border border-zinc-800 p-3 bg-black">
+                            <div class="border border-zinc-800 p-3 bg-black hover:border-punkPink transition-colors">
                                 <div class="flex justify-between items-center text-xs mb-1">
                                     <span class="font-heavy text-white tracking-tight">// ADVANCED IMAGE CRAFTING (15+ YRS)</span>
                                     <span class="text-punkPink font-bold">100%</span>
                                 </div>
-                                <div class="w-full bg-zinc-900 h-2">
-                                    <div class="bg-punkPink h-full w-[98%]"></div>
+                                <div class="w-full bg-zinc-900 h-2 overflow-hidden">
+                                    <div class="bg-punkPink h-full skill-bar-fill" data-width="100%"></div>
                                 </div>
                                 <span class="text-[9px] text-zinc-500 mt-1 block font-mono">Weapon Core: Photoshop (Ps) // Compositing & Digital Matte Painting</span>
                             </div>
 
                             <!-- Skill Node 2 -->
-                            <div class="border border-zinc-800 p-3 bg-black">
+                            <div class="border border-zinc-800 p-3 bg-black hover:border-punkYellow transition-colors">
                                 <div class="flex justify-between items-center text-xs mb-1">
                                     <span class="font-heavy text-white tracking-tight">// VECTOR SYSTEM & TYPOGRAPHIC SUITE</span>
                                     <span class="text-punkYellow font-bold">95%</span>
                                 </div>
-                                <div class="w-full bg-zinc-900 h-2">
-                                    <div class="bg-punkYellow h-full w-[95%]"></div>
+                                <div class="w-full bg-zinc-900 h-2 overflow-hidden">
+                                    <div class="bg-punkYellow h-full skill-bar-fill" data-width="95%"></div>
                                 </div>
                                 <span class="text-[9px] text-zinc-500 mt-1 block font-mono">Weapon Core: Illustrator (Ai) // High-Fidelity Technical Graphics & Monograms</span>
                             </div>
 
                             <!-- Skill Node 3 -->
-                            <div class="border border-zinc-800 p-3 bg-black">
+                            <div class="border border-zinc-800 p-3 bg-black hover:border-punkGreen transition-colors">
                                 <div class="flex justify-between items-center text-xs mb-1">
                                     <span class="font-heavy text-white tracking-tight">// HUMAN-CENTERED DIGITAL PRODUCT DESIGN</span>
                                     <span class="text-punkGreen font-bold">90%</span>
                                 </div>
-                                <div class="w-full bg-zinc-900 h-2">
-                                    <div class="bg-punkGreen h-full w-[90%]"></div>
+                                <div class="w-full bg-zinc-900 h-2 overflow-hidden">
+                                    <div class="bg-punkGreen h-full skill-bar-fill" data-width="90%"></div>
                                 </div>
                                 <span class="text-[9px] text-zinc-500 mt-1 block font-mono">Weapon Core: Figma // Wireframes, Interactive Prototypes & Behavioral Testing</span>
                             </div>
 
                             <!-- Skill Node 4 -->
-                            <div class="border border-zinc-800 p-3 bg-black">
+                            <div class="border border-zinc-800 p-3 bg-black hover:border-punkCyan transition-colors">
                                 <div class="flex justify-between items-center text-xs mb-1">
                                     <span class="font-heavy text-white tracking-tight">// 3D, MOTION, & VIDEO COMPOSITING</span>
                                     <span class="text-punkCyan font-bold">88%</span>
                                 </div>
-                                <div class="w-full bg-zinc-900 h-2">
-                                    <div class="bg-punkCyan h-full w-[88%]"></div>
+                                <div class="w-full bg-zinc-900 h-2 overflow-hidden">
+                                    <div class="bg-punkCyan h-full skill-bar-fill" data-width="88%"></div>
                                 </div>
                                 <span class="text-[9px] text-zinc-500 mt-1 block font-mono">Weapon Core: After Effects / Premiere Pro / Unity 3D / Real-Time Game Engine Aset</span>
                             </div>
@@ -641,7 +668,7 @@
                 </div>
 
                 <!-- Right Column - Geolocation HUD & Map -->
-                <div class="lg:col-span-6 bg-punkGray border-4 border-white p-6 flex flex-col justify-between shadow-[8px_8px_0px_#00ff66] relative overflow-hidden">
+                <div class="lg:col-span-6 bg-punkGray border-4 border-white p-6 flex flex-col justify-between shadow-[8px_8px_0px_#00ff66] relative overflow-hidden brutal-interactive hover:shadow-[16px_16px_0px_#00ff66] hover:z-10">
                     
                     <div class="space-y-4">
                         <div class="flex justify-between items-center text-xs">
@@ -694,10 +721,10 @@
             </div>
 
             <!-- Brutalist Contacts matrix -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 reveal">
                 
                 <!-- Communication direct routes -->
-                <div class="bg-punkGray border-4 border-punkPink p-6 space-y-6 shadow-[6px_6px_0px_#ff007f]">
+                <div class="bg-punkGray border-4 border-punkPink p-6 space-y-6 shadow-[6px_6px_0px_#ff007f] brutal-interactive hover:shadow-[12px_12px_0px_#ff007f]">
                     <h3 class="font-heavy text-lg text-punkPink uppercase tracking-tight">// ENCRYPTED DIRECT HOTLINES</h3>
                     
                     <div class="space-y-4 text-xs font-mono">
@@ -727,7 +754,7 @@
                 </div>
 
                 <!-- Portfolio Evidence anchors -->
-                <div class="bg-punkGray border-4 border-punkYellow p-6 space-y-6 shadow-[6px_6px_0px_#fff200]">
+                <div class="bg-punkGray border-4 border-punkYellow p-6 space-y-6 shadow-[6px_6px_0px_#fff200] brutal-interactive hover:shadow-[12px_12px_0px_#fff200]">
                     <h3 class="font-heavy text-lg text-punkYellow uppercase tracking-tight">// CORE REPOSITORIES</h3>
                     
                     <div class="space-y-4 text-xs font-mono">
@@ -1074,6 +1101,125 @@
             initDraggables();
             
             window.addEventListener('resize', resizeCanvas);
+            
+            // Intersection Observer for scroll animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        // Trigger skill bars if present
+                        const bars = entry.target.querySelectorAll('.skill-bar-fill');
+                        bars.forEach(bar => {
+                            bar.style.width = bar.getAttribute('data-width');
+                        });
+                    }
+                });
+            }, { threshold: 0.15 });
+
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        }
+
+        // --- I18N LANGUAGE SWITCHER LOGIC ---
+        const translations = {
+            'en': {
+                'marquee1': '⚡ MULTIMEDIA POWERHOUSE //',
+                'marquee2': '15+ YEARS BREAKING TRADITIONAL INTERFACES //',
+                'marquee3': 'ESTABLISHED IN MANADO, INDONESIA //',
+                'subtitle': '// FULL-STACK CREATIVE SOLDIER',
+                'nav1': '01. MANIFESTO',
+                'nav2': '02. EVIDENCE',
+                'nav3': '03. REBEL_LAB',
+                'nav4': '04. PLUG_IN',
+                'heroBadge': '⚡ MULTIMEDIA DESIGN SYSTEM RECONSTRUCTION',
+                'heroTitle1': 'CREATIVE',
+                'heroTitle2': 'MULTIMEDIA',
+                'heroTitle3': 'DESIGNER.',
+                'heroQuoteLabel': 'TACTICAL MANIFEST_SEC.04',
+                'heroQuote': '"Design is not cosmetic decoration. Design is a high-impact tactical weapon deployed to disrupt user attention, break interface limits, and drive absolute business value."',
+                'btnDetonate': '⚡ DETONATE INTERFACE GRID ⚡',
+                'btnInit': '// INITIALIZE COMS PIPELINE',
+                'photoBadge1': 'ID: 1989_AVL',
+                'photoBadge2': 'HQ_PORTRAIT.RAW',
+                'photoTarget': '// TARGET: LENGKONG, A.V.',
+                'photoSpectrum': 'System Threat Spectrum:',
+                'heroFooter1': '// SECURE LOCAL CONNECTIONS ENCRYPTED',
+                'heroFooter2': '⚡ SCROLL FOR RAW EXPERIMENTAL PROOF',
+                'heroFooter3': '[ DESIGN DICTATORSHIP: BYPASSED ]'
+            },
+            'id': {
+                'marquee1': '⚡ KEKUATAN MULTIMEDIA //',
+                'marquee2': '15+ TAHUN MENDOBRAK ANTARMUKA TRADISIONAL //',
+                'marquee3': 'BERBASIS DI MANADO, INDONESIA //',
+                'subtitle': '// PRAJURIT KREATIF FULL-STACK',
+                'nav1': '01. MANIFESTO',
+                'nav2': '02. BUKTI_NYATA',
+                'nav3': '03. LAB_PEMBERONTAK',
+                'nav4': '04. KONEKSI',
+                'heroBadge': '⚡ REKONSTRUKSI SISTEM DESAIN MULTIMEDIA',
+                'heroTitle1': 'DESAINER',
+                'heroTitle2': 'MULTIMEDIA',
+                'heroTitle3': 'KREATIF.',
+                'heroQuoteLabel': 'MANIFESTO TAKTIS_SEC.04',
+                'heroQuote': '"Desain bukan sekadar dekorasi kosmetik. Desain adalah senjata taktis untuk merebut atensi, mendobrak batasan antarmuka, dan mendorong nilai bisnis absolut."',
+                'btnDetonate': '⚡ HANCURKAN GRID ANTARMUKA ⚡',
+                'btnInit': '// INISIALISASI JALUR KOMUNIKASI',
+                'photoBadge1': 'ID: 1989_AVL',
+                'photoBadge2': 'FOTO_MARKAS.RAW',
+                'photoTarget': '// TARGET: LENGKONG, A.V.',
+                'photoSpectrum': 'Spektrum Ancaman Sistem:',
+                'heroFooter1': '// KONEKSI LOKAL AMAN TERENKRIPSI',
+                'heroFooter2': '⚡ GULIR UNTUK BUKTI EKSPERIMEN MENTAH',
+                'heroFooter3': '[ DIKTATOR DESAIN: DIABAIKAN ]'
+            },
+            'zh': {
+                'marquee1': '⚡ 多媒体巨头 //',
+                'marquee2': '15年以上打破传统界面的经验 //',
+                'marquee3': '成立于印度尼西亚万鸦老 //',
+                'subtitle': '// 全栈创意战士',
+                'nav1': '01. 宣言',
+                'nav2': '02. 证据',
+                'nav3': '03. 叛逆实验室',
+                'nav4': '04. 联系方式',
+                'heroBadge': '⚡ 多媒体设计系统重构',
+                'heroTitle1': '创意',
+                'heroTitle2': '多媒体',
+                'heroTitle3': '设计师.',
+                'heroQuoteLabel': '战术宣言_SEC.04',
+                'heroQuote': '"设计不是表面的装饰。设计是一种高影响力的战术武器，用于吸引用户的注意力，打破界面限制，并推动绝对的商业价值。"',
+                'btnDetonate': '⚡ 引爆界面网格 ⚡',
+                'btnInit': '// 初始化通信管道',
+                'photoBadge1': 'ID: 1989_AVL',
+                'photoBadge2': '总部照片.RAW',
+                'photoTarget': '// 目标: LENGKONG, A.V.',
+                'photoSpectrum': '系统威胁频谱:',
+                'heroFooter1': '// 本地安全连接已加密',
+                'heroFooter2': '⚡ 滚动查看原始实验证据',
+                'heroFooter3': '[ 设计独裁: 已绕过 ]'
+            }
+        };
+
+        function setLang(lang) {
+            playSynth(600, 'square', 0.1);
+            
+            // Update UI buttons
+            const btns = ['lang-en', 'lang-id', 'lang-zh'];
+            btns.forEach(id => {
+                const btn = document.getElementById(id);
+                if(id === `lang-${lang}`) {
+                    btn.className = 'bg-britRed text-white px-2 py-1 font-heavy text-[10px] hover:bg-white hover:text-black transition-colors';
+                } else {
+                    btn.className = 'bg-punkGray text-zinc-400 px-2 py-1 font-heavy text-[10px] hover:bg-white hover:text-black transition-colors border-l border-zinc-700';
+                }
+            });
+
+            // Update texts in DOM based on dictionary
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    el.innerText = translations[lang][key];
+                }
+            });
         }
     </script>
 </body>
