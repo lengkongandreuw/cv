@@ -1,38 +1,41 @@
 <!DOCTYPE html>
-<html lang="en" class="dark scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANDREUW VANDY LENGKONG // DIGITAL ANARCHIST PORTFOLIO</title>
+    <title>Andrew Lengkong | Creative Multimedia Designer Portfolio</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts for Punk Aesthetic -->
-    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Special+Elite&family=Rubik+Mono+One&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
-    
+    <!-- Google Fonts: Syne (bold headings), Space Grotesk (tech/mono hybrid), Playfair Display (editorial italic) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400;1,700&family=Space+Grotesk:wght@300;400;500;700&family=Syne:wght@700;800&family=Zhi+Mang+Xing&family=Noto+Sans+SC:wght@400;700;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- GSAP (GreenSock) for elite animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
-                        mono: ['"Courier Prime"', 'monospace'],
-                        punk: ['"Special Elite"', 'cursive'],
-                        heavy: ['"Rubik Mono One"', 'sans-serif'],
-                        sans: ['"Space Grotesk"', 'sans-serif'],
+                        syne: ['Syne', 'sans-serif'],
+                        space: ['Space Grotesk', 'sans-serif'],
+                        editorial: ['Playfair Display', 'serif'],
+                        chinese: ['Noto Sans SC', 'sans-serif'],
+                        brush: ['Zhi Mang Xing', 'cursive']
                     },
                     colors: {
-                        punkBlack: '#0a0a0a',
-                        punkGray: '#121212',
-                        punkLightGray: '#1e1e1e',
-                        punkPink: '#ff007f',
-                        punkYellow: '#fff200',
-                        punkGreen: '#00ff66',
-                        punkCyan: '#00f0ff',
-                        // New British Punk Palette
-                        britDarkGray: '#1a1a1a',
-                        britRed: '#e60000',
-                        britBlue: '#0033cc',
-                        britMagenta: '#ff00ff',
-                        britTeal: '#00ffff',
+                        grunge: {
+                            black: '#121212',
+                            white: '#F4F3EF', // warm paper white
+                            red: '#D12D2D',
+                            blue: '#1D63B8', // Blue Painter's Tape
+                            gray: '#2C2B2A',
+                            accent: '#F25C05'
+                        }
                     }
                 }
             }
@@ -40,1187 +43,1070 @@
     </script>
 
     <style>
-        /* Custom Immersive Anti-Design Textures */
-        body {
-            background-color: #0a0a0a;
-            overflow-x: hidden;
-            position: relative;
-        }
-
-        /* Animated Grain Overlay */
-        .animated-grain {
-            position: fixed;
-            top: -150%;
-            left: -150%;
-            right: -150%;
-            bottom: -150%;
-            width: 400%;
-            height: 400%;
-            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-            opacity: 0.05;
-            pointer-events: none;
-            z-index: 9999;
-            animation: grainShift 8s steps(10) infinite;
-        }
-
-        @keyframes grainShift {
-            0%, 100% { transform:translate(0, 0) }
-            10% { transform:translate(-2%, -4%) }
-            20% { transform:translate(-6%, 2%) }
-            30% { transform:translate(4%, 6%) }
-            40% { transform:translate(-2%, -8%) }
-            50% { transform:translate(-8%, 4%) }
-            60% { transform:translate(6%, -2%) }
-            70% { transform:translate(2%, 8%) }
-            80% { transform:translate(-4%, -4%) }
-            90% { transform:translate(4%, -6%) }
-        }
-
-        /* Screen Flicker CRT scanlines */
-        .crt-scanlines {
-            position: fixed;
-            inset: 0;
-            background: linear-gradient(
-                rgba(18, 16, 16, 0) 50%, 
-                rgba(0, 0, 0, 0.25) 50%
-            ), linear-gradient(
-                90deg, 
-                rgba(255, 0, 0, 0.06), 
-                rgba(0, 255, 0, 0.02), 
-                rgba(0, 0, 255, 0.06)
-            );
-            background-size: 100% 4px, 6px 100%;
-            pointer-events: none;
-            z-index: 999;
-            opacity: 0.8;
-        }
-
-        /* Glitch text keyframe styling */
-        @keyframes rawGlitch {
-            0% { clip-path: inset(40% 0 61% 0); transform: skew(0.3deg); }
-            20% { clip-path: inset(92% 0 1% 0); transform: skew(-0.5deg); }
-            40% { clip-path: inset(15% 0 80% 0); transform: skew(0.5deg); }
-            60% { clip-path: inset(80% 0 5% 0); transform: skew(-0.3deg); }
-            80% { clip-path: inset(3% 0 92% 0); transform: skew(0.8deg); }
-            100% { clip-path: inset(40% 0 61% 0); transform: skew(0deg); }
-        }
-
-        .glitch-text-active {
-            animation: rawGlitch 1s infinite linear alternate-reverse;
-        }
-
-        /* Distress Paper Ripped Border Simulations */
-        .ripped-edge-top {
-            clip-path: polygon(0% 12%, 4% 0%, 9% 15%, 15% 3%, 22% 18%, 28% 5%, 34% 14%, 41% 2%, 49% 19%, 56% 4%, 64% 15%, 72% 2%, 80% 18%, 88% 6%, 94% 15%, 100% 0%, 100% 100%, 0% 100%);
-        }
-
-        .ripped-edge-bottom {
-            clip-path: polygon(0% 0%, 100% 0%, 100% 88%, 95% 100%, 88% 85%, 81% 97%, 75% 82%, 67% 95%, 59% 84%, 51% 98%, 44% 83%, 38% 95%, 30% 81%, 23% 97%, 15% 84%, 8% 96%, 0% 85%);
-        }
-
-        /* Tape Overlay simulation styles */
-        .duct-tape {
-            background-color: rgba(220, 220, 220, 0.15);
-            backdrop-filter: blur(2px);
-            border-left: 3px dashed rgba(255, 255, 255, 0.4);
-            border-right: 3px dashed rgba(255, 255, 255, 0.4);
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
-        }
-
-        /* Halftone Pattern for Images */
-        .halftone-box {
-            position: relative;
-            background-color: #ff007f;
-        }
-        .halftone-box::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image: radial-gradient(circle, #000 24%, transparent 25%);
-            background-size: 5px 5px;
-            opacity: 0.35;
-            pointer-events: none;
-            mix-blend-mode: multiply;
-        }
-
-        /* Full page Graffiti Overlay Canvas */
-        #graffiti-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            pointer-events: none; /* Controlled dynamically via button */
-            z-index: 100;
-        }
-
         /* Custom Scrollbar */
         ::-webkit-scrollbar {
-            width: 14px;
+            width: 10px;
         }
         ::-webkit-scrollbar-track {
-            background: #0a0a0a;
-            border-left: 3px solid #ff007f;
+            background: #121212;
         }
         ::-webkit-scrollbar-thumb {
-            background: #fff200;
-            border: 3px solid #0a0a0a;
+            background: #D12D2D;
+            border-radius: 2px;
         }
 
-        .draggable {
-            touch-action: none;
-            user-select: none;
+        /* Textured Overlays */
+        .noise-bg {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.05;
+            pointer-events: none;
         }
 
-        /* Responsive Scroll & Interaction Animations */
-        .reveal { opacity: 0; transform: translateY(40px) skewY(1deg); transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1); }
-        .reveal.active { opacity: 1; transform: translateY(0) skewY(0); }
-        
-        .skill-bar-fill { width: 0; transition: width 1.5s cubic-bezier(0.19, 1, 0.22, 1) 0.4s; }
-        
-        .brutal-interactive { transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1); }
-        .brutal-interactive:hover { transform: translate(-6px, -6px); }
-        .brutal-interactive:active { transform: translate(4px, 4px); box-shadow: 0 0 0 #000 !important; }
+        /* Paper tear shadow & texture helper */
+        .tear-shadow {
+            filter: drop-shadow(0px 8px 15px rgba(0,0,0,0.4));
+        }
+
+        /* Custom Cursor styling */
+        .custom-cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #D12D2D;
+            background: rgba(209, 45, 45, 0.2);
+            border-radius: 50%;
+            position: fixed;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 9999;
+            transition: width 0.2s, height 0.2s, background-color 0.2s;
+        }
+
+        .custom-cursor-dot {
+            width: 6px;
+            height: 6px;
+            background: #D12D2D;
+            border-radius: 50%;
+            position: fixed;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* Grid background patterns */
+        .grid-pattern-light {
+            background-size: 30px 30px;
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+        }
+
+        .grid-pattern-dark {
+            background-size: 30px 30px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        }
+
+        /* Halftone Dot pattern */
+        .halftone {
+            background-image: radial-gradient(rgba(0,0,0,0.15) 15%, transparent 16%);
+            background-size: 12px 12px;
+        }
+
+        .halftone-dark {
+            background-image: radial-gradient(rgba(255,255,255,0.08) 15%, transparent 16%);
+            background-size: 12px 12px;
+        }
+
+        /* Tape shapes */
+        .blue-tape {
+            background-color: #1D63B8;
+            opacity: 0.9;
+            transform: rotate(-1.5deg);
+            box-shadow: 2px 3px 5px rgba(0,0,0,0.2);
+            position: relative;
+        }
+        .blue-tape::before {
+            content: '';
+            position: absolute;
+            left: -5px; top: 0; bottom: 0; width: 6px;
+            background: repeating-linear-gradient(-45deg, transparent, transparent 2px, #121212 2px, #121212 4px);
+            background-size: 6px 100%;
+            opacity: 0.3;
+        }
+        .blue-tape::after {
+            content: '';
+            position: absolute;
+            right: -5px; top: 0; bottom: 0; width: 6px;
+            background: repeating-linear-gradient(45deg, transparent, transparent 2px, #121212 2px, #121212 4px);
+            background-size: 6px 100%;
+            opacity: 0.3;
+        }
+
+        /* Lined-paper pattern for About Section */
+        .lined-paper {
+            background-color: #F4F3EF;
+            background-image: linear-gradient(#e5e2d9 1px, transparent 1px);
+            background-size: 100% 2.5rem; /* Matches line-height */
+        }
+
+        /* Glitch text effect on hover */
+        .glitch-hover:hover {
+            text-shadow: 2px -1px 0 #D12D2D, -2px 1px 0 #1D63B8;
+            animation: glitch-anim 0.3s infinite;
+        }
+
+        @keyframes glitch-anim {
+            0% { text-shadow: 2px -1px 0 #D12D2D, -2px 1px 0 #1D63B8; }
+            50% { text-shadow: -1px 2px 0 #D12D2D, 2px -2px 0 #1D63B8; }
+            100% { text-shadow: 1px -1px 0 #D12D2D, -1px 1px 0 #1D63B8; }
+        }
+
+        /* Infinite marquee */
+        @keyframes marquee {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+            animation: marquee 25s linear infinite;
+        }
+        .animate-marquee:hover {
+            animation-play-state: paused;
+        }
     </style>
 </head>
-<body class="font-mono text-white selection:bg-punkYellow selection:text-black antialiased">
+<body class="bg-grunge-black text-grunge-white font-space overflow-x-hidden selection:bg-grunge-red selection:text-white">
 
-    <!-- CSS Animated Film Grain and CRT Line Layers -->
-    <div class="animated-grain"></div>
-    <div class="crt-scanlines"></div>
+    <!-- Noise Texture Overlay (Global) -->
+    <div class="fixed inset-0 noise-bg z-[999]"></div>
 
-    <!-- FULLSCREEN INTERACTIVE GRAFFITI CANVAS -->
-    <canvas id="graffiti-canvas"></canvas>
+    <!-- Custom Cursor Nodes -->
+    <div class="custom-cursor hidden md:block" id="customCursor"></div>
+    <div class="custom-cursor-dot hidden md:block" id="customCursorDot"></div>
 
-    <!-- TOP CONTROL & UTILITIES DESK (STYLIZED PUNK PANEL) -->
-    <div class="bg-black border-b-4 border-punkPink p-2 sticky top-0 z-[110] flex flex-wrap justify-between items-center text-xs px-4">
-        <div class="flex items-center space-x-3 my-1">
-            <span class="w-3 h-3 bg-punkGreen rounded-none animate-ping"></span>
-            <span class="font-bold tracking-tight text-punkGreen uppercase font-mono">REBEL_SYNTH_AUDIO v1.8: ONLINE</span>
+    <!-- FLOATING MULTI-LANGUAGE CONTROLLERS & NAV -->
+    <header class="fixed top-0 left-0 w-full z-50 px-6 py-4 flex justify-between items-center mix-blend-difference">
+        <!-- Logo / Identity Badge -->
+        <a href="#hero" class="group flex items-center gap-2">
+            <span class="font-syne text-sm md:text-lg tracking-tighter text-grunge-white group-hover:text-grunge-red transition-colors duration-300">LENGKONGANDREUW PORTFOLIO 2026</span>
+        </a>
+
+        <!-- Floating Control Suite -->
+        <div class="flex items-center gap-4">
+            <!-- Language Selector Switch -->
+            <div class="bg-grunge-black/80 backdrop-blur-md border border-grunge-white/10 px-1 py-1 rounded-full flex items-center relative shadow-xl">
+                <button onclick="toggleLanguage('en')" id="langBtn-en" class="px-3 py-1 text-xs font-bold rounded-full transition-all duration-300 bg-grunge-red text-white">
+                    EN
+                </button>
+                <button onclick="toggleLanguage('zh')" id="langBtn-zh" class="px-3 py-1 text-xs font-bold rounded-full transition-all duration-300 text-grunge-white/60 hover:text-white">
+                    中文
+                </button>
+            </div>
+
+            <!-- Quick Action: Lets Talk -->
+            <a href="mailto:lengkongandrew@gmail.com" class="hidden sm:inline-block px-4 py-1.5 bg-grunge-white text-grunge-black font-bold text-xs uppercase rounded-full hover:bg-grunge-red hover:text-white transition-all duration-300 border border-transparent hover:scale-105 shadow-md">
+                <span data-lang-en="GET IN TOUCH" data-lang-zh="取得联系">GET IN TOUCH</span>
+            </a>
         </div>
+    </header>
+
+    <!-- SECTION 1: HERO / COVER (Splitted Canvas Style) -->
+    <section id="hero" class="relative min-h-screen w-full flex flex-col md:flex-row items-stretch justify-between overflow-hidden pt-16 md:pt-0">
         
-        <div class="flex flex-wrap items-center gap-2 my-1">
-            <!-- Vandal Paint Controller Toggle -->
-            <button onclick="toggleVandalMode()" id="vandalBtn" class="bg-punkGray border-2 border-punkCyan px-2.5 py-1 text-punkCyan hover:bg-punkCyan hover:text-black transition-all font-heavy flex items-center gap-1.5 uppercase">
-                <span class="w-2 h-2 bg-punkCyan inline-block animate-pulse"></span>
-                🖌️ Toggle Graffiti Paint [OFF]
-            </button>
-            <button onclick="clearVandalCanvas()" class="bg-punkGray border border-zinc-700 px-2.5 py-1 text-zinc-400 hover:bg-white hover:text-black transition-all">
-                🗑️ Clear Paint
-            </button>
-            <!-- Audio trigger tools -->
-            <button onclick="playSynth(95, 'sawtooth', 0.6)" class="bg-punkGray border border-punkPink px-2.5 py-1 text-punkPink hover:bg-punkPink hover:text-white transition-all font-bold">
-                🎸 FEEDBACK GROWL
-            </button>
-            <button onclick="playSynth(520, 'square', 0.15)" class="bg-punkGray border border-punkYellow px-2.5 py-1 text-punkYellow hover:bg-punkYellow hover:text-black transition-all font-bold">
-                ⚡ SIGNAL CLICK
-            </button>
-            <!-- Layout toggle -->
-            <button onclick="toggleCleanMode()" id="cleanBtn" class="bg-punkPink text-white px-3 py-1 font-bold rounded-none hover:bg-white hover:text-black transition-all uppercase">
-                ⚠️ BORING SANITIZED MODE
-            </button>
-            
-            <!-- Language Switcher -->
-            <div class="flex border-2 border-britRed ml-2 bg-black">
-                <button onclick="setLang('en')" id="lang-en" class="bg-britRed text-white px-2 py-1 font-heavy text-[10px] hover:bg-white hover:text-black transition-colors">EN</button>
-                <button onclick="setLang('id')" id="lang-id" class="bg-punkGray text-zinc-400 px-2 py-1 font-heavy text-[10px] hover:bg-white hover:text-black transition-colors border-l border-zinc-700">ID</button>
-                <button onclick="setLang('zh')" id="lang-zh" class="bg-punkGray text-zinc-400 px-2 py-1 font-heavy text-[10px] hover:bg-white hover:text-black transition-colors border-l border-zinc-700">ZH</button>
-            </div>
+        <!-- Base portfoliobg.png Image Layer with Dynamic CSS Fallback if missing -->
+        <div class="absolute inset-0 w-full h-full pointer-events-none z-0">
+            <img src="./portfoliobg.png" alt="Portfolio Base Background" id="portfoliobg-img" class="w-full h-full object-cover hidden" onload="this.classList.remove('hidden'); document.getElementById('portfoliobg-fallback').classList.add('hidden');" onerror="this.remove();">
         </div>
-    </div>
 
-    <!-- DRAGGABLE STICKERS (INTERACTIVE DESIGN COMPONENT) -->
-    <div id="badge-years" class="draggable absolute z-50 bg-punkYellow text-black px-4 py-2 font-heavy text-[11px] uppercase tracking-tighter border-2 border-black shadow-[3px_3px_0px_#ff007f] cursor-grab active:cursor-grabbing hidden md:block hover:scale-110 transition-transform" style="top: 140px; left: 20px; transform: rotate(-6deg);">
-        ☠️ 15+ YRS CORE DEV
-    </div>
-    
-    <div id="badge-loc" class="draggable absolute z-50 bg-punkGreen text-black px-3 py-2 font-punk text-xs border-2 border-black shadow-[4px_4px_0px_#000] cursor-grab active:cursor-grabbing hidden sm:block hover:scale-110 transition-transform" style="top: 480px; right: 30px; transform: rotate(10deg);">
-        ⚓ HQ: MANADO, IDN
-    </div>
+        <!-- Background Layer Fallback (Runs if portfoliobg.png is missing) -->
+        <div id="portfoliobg-fallback" class="absolute inset-0 w-full h-full flex flex-col md:flex-row pointer-events-none z-0">
+            <!-- Left Half (Light/White Canvas) -->
+            <div class="w-full md:w-1/2 bg-grunge-white grid-pattern-light relative p-8 flex flex-col justify-between overflow-hidden">
+                <div class="absolute inset-0 halftone opacity-30"></div>
+                <div class="absolute left-4 bottom-1/4 text-grunge-black/5 font-syne text-[12vw] leading-none select-none uppercase font-black">
+                    DESIGNER
+                </div>
+                <div class="absolute bottom-6 left-6 opacity-10 w-48 h-48">
+                    <svg viewBox="0 0 100 100" class="fill-current text-grunge-black">
+                        <path d="M50 5 L90 25 L80 75 L50 95 L20 75 L10 25 Z" fill="none" stroke="currentColor" stroke-width="2"/>
+                        <circle cx="50" cy="50" r="15" fill="none" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                </div>
+            </div>
 
-    <div id="badge-stack" class="draggable absolute z-50 bg-black text-punkPink px-3 py-2 font-mono text-[10px] border-2 border-punkPink cursor-grab active:cursor-grabbing hidden lg:block hover:scale-110 transition-transform" style="bottom: 140px; left: 50px; transform: rotate(-12deg);">
-        🦾 AI_ACCELERATED_WORKFLOW
-    </div>
-
-    <div id="badge-rebel" class="draggable absolute z-50 bg-punkCyan text-black px-3 py-2 font-heavy text-[10px] border-2 border-black shadow-[3px_3px_0px_#0a0a0a] cursor-grab active:cursor-grabbing hover:scale-110 transition-transform" style="top: 320px; left: 45%; transform: rotate(4deg);">
-        🔥 RULES INVENTOR
-    </div>
-
-    <!-- HERO / LANDING DECK (UPGRADED BRITISH PUNK LAYOUT) -->
-    <header class="relative min-h-screen flex flex-col justify-between p-6 lg:p-12 border-b-8 border-britRed bg-britDarkGray overflow-hidden">
-        
-        <!-- Interactive Moving Headline Marquee (Tops Page Header) -->
-        <div class="absolute top-[80px] left-0 w-full bg-britBlue text-white py-1.5 overflow-hidden transform -rotate-2 z-0 select-none border-y-4 border-white shadow-[0_5px_0_#e60000]">
-            <div class="whitespace-nowrap flex font-heavy text-xs tracking-widest uppercase animate-marquee">
-                <span class="mx-4" data-i18n="marquee1">⚡ MULTIMEDIA POWERHOUSE //</span>
-                <span class="mx-4" data-i18n="marquee2">15+ YEARS BREAKING TRADITIONAL INTERFACES //</span>
-                <span class="mx-4">VOXLUMEDIA USA //</span>
-                <span class="mx-4">MANADO POST APP CREATOR //</span>
-                <span class="mx-4">WARDEKA 3D MAP ARCHITECT //</span>
-                <span class="mx-4">ADOBE FIREFLY & VEO 3 DEPLOYED //</span>
-                <span class="mx-4" data-i18n="marquee3">ESTABLISHED IN MANADO, INDONESIA //</span>
+            <!-- Right Half (Dark/Black Canvas) -->
+            <div class="w-full md:w-1/2 bg-grunge-black grid-pattern-dark relative overflow-hidden flex flex-col justify-between p-8">
+                <div class="absolute inset-0 halftone-dark opacity-20"></div>
+                <div class="absolute right-4 top-12 text-grunge-white/[0.02] font-mono text-sm leading-relaxed text-right select-none">
+                    <pre>
+class AndrewLengkong {
+  constructor() {
+    this.role = "Creative Director";
+    this.skills = ["UI/UX", "Social Media", "Esports"];
+  }
+}
+                    </pre>
+                </div>
             </div>
         </div>
 
-        <!-- Top Navigation -->
-        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 z-10 pt-10">
-            <div class="border-4 border-britRed p-3 bg-punkBlack shadow-[8px_8px_0px_#00ffff] transform rotate-1 hover:-rotate-1 transition-transform">
-                <h1 class="font-heavy text-xl md:text-2xl text-white tracking-tight uppercase leading-none">
-                    ANDREUW V. LENGKONG
-                </h1>
-                <p class="text-[10px] font-bold tracking-widest text-britMagenta mt-1" data-i18n="subtitle">// FULL-STACK CREATIVE SOLDIER</p>
+        <!-- HERO MAIN WORKSPACE (Poster Composition Layout) -->
+        <div class="relative w-full flex-grow min-h-screen z-10 overflow-hidden">
+            
+            <!-- RIGHT LAYER: nama.png (Cutout text, goes behind model) -->
+            <div class="absolute top-[15%] md:top-[15%] right-[-5%] md:right-[2%] z-[15] w-[90%] md:w-[50%] pointer-events-none" id="rightHeroColumn">
+                <img src="https://raw.githubusercontent.com/lengkongandreuw/portfolio/main/nama.png" alt="Andrew Lengkong" class="w-full h-auto drop-shadow-2xl">
             </div>
-            
-            <nav class="flex flex-wrap gap-2 text-xs font-heavy uppercase bg-black/60 p-2 border border-zinc-800 backdrop-blur-sm">
-                <a href="#about" onclick="clickSound()" class="border-2 border-britRed px-3 py-1.5 bg-punkBlack text-white hover:bg-britRed hover:text-white hover:-translate-y-0.5 transition-all" data-i18n="nav1">01. MANIFESTO</a>
-                <a href="#warfare" onclick="clickSound()" class="border-2 border-britBlue px-3 py-1.5 bg-punkBlack text-white hover:bg-britBlue hover:text-white hover:-translate-y-0.5 transition-all" data-i18n="nav2">02. EVIDENCE</a>
-                <a href="#vault" onclick="clickSound()" class="border-2 border-britTeal px-3 py-1.5 bg-punkBlack text-white hover:bg-britTeal hover:text-black hover:-translate-y-0.5 transition-all" data-i18n="nav3">03. REBEL_LAB</a>
-                <a href="#contact" onclick="clickSound()" class="border-2 border-white px-3 py-1.5 bg-punkBlack text-white hover:bg-white hover:text-black hover:-translate-y-0.5 transition-all" data-i18n="nav4">04. PLUG_IN</a>
-            </nav>
-        </div>
 
-        <!-- Hero Mid Content Grid -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 my-12 items-center z-10">
-            
-            <!-- Typography block -->
-            <div class="lg:col-span-7 flex flex-col space-y-6">
-                <!-- Distressed tape style badge -->
-                <div class="self-start px-4 py-1 bg-britMagenta text-white font-heavy text-xs uppercase transform rotate-2 hover:rotate-0 transition-transform cursor-default border-2 border-white shadow-[4px_4px_0_#00ffff]" data-i18n="heroBadge">
-                    ⚡ MULTIMEDIA DESIGN SYSTEM RECONSTRUCTION
+            <!-- CENTER LAYER: model1.png (Free-standing cutout) -->
+            <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 z-[25] w-full max-w-[800px] pointer-events-none flex justify-center items-end" id="centerHeroImage">
+                <img src="https://raw.githubusercontent.com/lengkongandreuw/portfolio/main/model1.png" alt="Andrew Lengkong Portrait" class="w-full h-auto object-contain object-bottom drop-shadow-[0_20px_50px_rgba(0,0,0,0.8)] max-h-[85vh]">
+            </div>
+
+            <!-- LEFT LAYER: headlinecover.png -->
+            <div class="absolute top-[20%] md:top-[25%] left-[5%] md:left-[8%] z-[30] w-[85%] md:w-[35%] flex flex-col items-start" id="leftHeroColumn">
+                <!-- Distressed Red Badge -->
+                <div class="inline-block transform -rotate-2 mb-4 px-3 py-1 bg-grunge-red text-white font-mono text-xs font-bold tracking-widest uppercase rounded shadow-lg animate-bounce">
+                    <i class="fa-solid fa-bolt mr-1"></i> PORTFOLIO EDITION 2026
                 </div>
 
-                <div class="space-y-1 relative">
-                    <span class="inline-block bg-white text-black font-heavy text-4xl sm:text-5xl lg:text-7xl px-4 py-1 sm:py-2 transform -rotate-1 border-4 border-black shadow-[6px_6px_0px_#e60000] hover:skew-x-6 transition-transform cursor-default" data-i18n="heroTitle1">
-                        CREATIVE
-                    </span><br>
-                    <span class="inline-block bg-britBlue text-white font-heavy text-4xl sm:text-5xl lg:text-7xl px-4 py-1 sm:py-2 transform rotate-1 border-4 border-white shadow-[6px_6px_0px_#000000] hover:-skew-x-6 transition-transform cursor-default z-10 relative" data-i18n="heroTitle2">
-                        MULTIMEDIA
-                    </span><br>
-                    <span class="inline-block bg-britRed text-white font-heavy text-4xl sm:text-5xl lg:text-7xl px-4 py-1 sm:py-2 transform -rotate-2 border-4 border-black hover:skew-x-3 hover:-translate-y-2 transition-transform cursor-default shadow-[6px_6px_0px_#00ffff]" data-i18n="heroTitle3">
-                        DESIGNER.
-                    </span>
+                <!-- Replaceable Headline Image -->
+                <div class="relative mb-6 w-full">
+                    <img src="./headlinecover.png" alt="Creative Multimedia Designer Headline" id="headlinecover-img" class="max-w-full h-auto hidden drop-shadow-xl" onload="this.classList.remove('hidden'); document.getElementById('headlinecover-fallback').classList.add('hidden');" onerror="this.remove();">
                 </div>
 
-                <div class="p-5 bg-black border-l-8 border-britTeal max-w-xl relative reveal active shadow-[8px_8px_0_#ff00ff]">
-                    <div class="absolute -top-3 left-10 duct-tape text-[9px] text-zinc-300 font-bold px-4 py-0.5 uppercase tracking-tighter" data-i18n="heroQuoteLabel">
-                        TACTICAL MANIFEST_SEC.04
+                <!-- Fallback typography block if headlinecover.png is missing -->
+                <div id="headlinecover-fallback" class="bg-transparent rounded-lg relative mb-6">
+                    <h2 class="font-syne text-4xl lg:text-6xl font-black leading-tight tracking-tighter text-grunge-black uppercase select-none drop-shadow-md">
+                        <span class="block bg-grunge-black text-white px-2 py-1 transform -rotate-1 inline-block mb-1" data-lang-en="CREATIVE" data-lang-zh="极具创意">CREATIVE</span>
+                        <span class="block text-grunge-red bg-white px-2 py-1 transform rotate-1 inline-block border-2 border-grunge-red" data-lang-en="MULTIMEDIA" data-lang-zh="多媒体">MULTIMEDIA</span>
+                        <span class="block bg-grunge-black text-white px-2 py-1 transform -rotate-2 inline-block mt-1" data-lang-en="DESIGNER" data-lang-zh="设计师">DESIGNER</span>
+                    </h2>
+                </div>
+
+                <div class="max-w-sm mb-6 text-sm font-space text-grunge-black bg-white/80 p-3 rounded shadow-md backdrop-blur-sm transform rotate-1">
+                    Designing impactful digital experiences that drive engagement, solve problems, and deliver real business value.
+                </div>
+
+                <!-- Signature -->
+                <p class="font-brush text-4xl text-grunge-red transform -rotate-3 select-none mb-4">
+                    Andrew Lengkong
+                </p>
+
+                <!-- Stylized Black Masking/Duct Tape with scrolling text -->
+                <div class="w-full bg-grunge-black text-grunge-white py-2 px-3 transform -rotate-1 relative overflow-hidden shadow-lg border-y-2 border-grunge-white/20 select-none max-w-sm">
+                    <div class="flex overflow-hidden whitespace-nowrap">
+                        <div class="inline-block animate-marquee uppercase font-mono text-xs tracking-widest">
+                            <span class="mx-4 text-grunge-red">★</span> <span data-lang-en="BASED IN MANADO, INDONESIA" data-lang-zh="驻于印度尼西亚万鸦老">BASED IN MANADO, INDONESIA</span>
+                            <span class="mx-4 text-grunge-red">★</span> <span data-lang-en="ESTABLISHED 1989" data-lang-zh="始于1989年">ESTABLISHED 1989</span>
+                            <span class="mx-4 text-grunge-red">★</span> <span data-lang-en="CODE IS DESIGN" data-lang-zh="代码即是设计">CODE IS DESIGN</span>
+                        </div>
+                        <div class="inline-block animate-marquee uppercase font-mono text-xs tracking-widest">
+                            <span class="mx-4 text-grunge-red">★</span> <span data-lang-en="BASED IN MANADO, INDONESIA" data-lang-zh="驻于印度尼西亚万鸦老">BASED IN MANADO, INDONESIA</span>
+                            <span class="mx-4 text-grunge-red">★</span> <span data-lang-en="ESTABLISHED 1989" data-lang-zh="始于1989年">ESTABLISHED 1989</span>
+                            <span class="mx-4 text-grunge-red">★</span> <span data-lang-en="CODE IS DESIGN" data-lang-zh="代码即es设计">CODE IS DESIGN</span>
+                        </div>
                     </div>
-                    <p class="font-punk text-sm md:text-base leading-relaxed text-zinc-300 pt-1" data-i18n="heroQuote">
-                        "Design is not cosmetic decoration. Design is a high-impact tactical weapon deployed to disrupt user attention, break interface limits, and drive absolute business value."
-                    </p>
                 </div>
+            </div>
+        </div>
 
-                <div class="flex flex-wrap gap-3 mt-4">
-                    <button onclick="triggerGlitchSystem()" class="bg-white text-britRed font-heavy px-6 py-4 border-4 border-britRed shadow-[6px_6px_0px_#0033cc] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all text-xs md:text-sm tracking-widest uppercase" data-i18n="btnDetonate">
-                        ⚡ DETONATE INTERFACE GRID ⚡
-                    </button>
-                    <a href="#contact" class="bg-black text-britTeal border-4 border-britTeal px-6 py-4 font-heavy text-xs md:text-sm uppercase tracking-wider hover:bg-britTeal hover:text-black transition-all shadow-[6px_6px_0px_#ff00ff]" data-i18n="btnInit">
-                        // INITIALIZE COMS PIPELINE
+        <!-- FLOATING NAVIGATION DOCK: footerkiri.png / Custom UI Dock Fallback -->
+        <div class="absolute bottom-0 left-0 w-full z-30 px-6 py-6 flex justify-center pointer-events-auto">
+            <div class="w-full max-w-5xl bg-grunge-black/95 backdrop-blur-md border-t-4 border-grunge-red p-4 rounded-t-lg shadow-2xl flex flex-wrap gap-4 items-center justify-between" id="navigationDock">
+                <!-- Replaceable Footer Left Image -->
+                <div class="flex items-center gap-3">
+                    <img src="./footerkiri.png" alt="Capabilities Dock Badge" id="footerkiri-img" class="h-10 w-auto hidden" onload="this.classList.remove('hidden'); document.getElementById('footerkiri-fallback').classList.add('hidden');" onerror="this.remove();">
+                    
+                    <!-- Fallback badge if footerkiri.png is missing -->
+                    <div id="footerkiri-fallback" class="flex items-center gap-2">
+                        <span class="w-3 h-3 bg-grunge-red rounded-full animate-ping"></span>
+                        <span class="font-mono text-xs uppercase tracking-wider text-stone-300" data-lang-en="EXPLORE CAPABILITIES" data-lang-zh="探索核心能力">EXPLORE CAPABILITIES</span>
+                    </div>
+                </div>
+                
+                <!-- Navigation Anchor Targets -->
+                <div class="flex flex-wrap items-center gap-6">
+                    <a href="#about" class="text-xs font-mono uppercase text-stone-300 hover:text-grunge-red transition-all duration-300 flex items-center gap-1.5 group">
+                        <i class="fa-solid fa-user-ninja text-grunge-red group-hover:rotate-12 transition-transform"></i>
+                        <span data-lang-en="About Andrew" data-lang-zh="关于安德鲁">About Andrew</span>
+                    </a>
+                    <a href="#services" class="text-xs font-mono uppercase text-stone-300 hover:text-grunge-red transition-all duration-300 flex items-center gap-1.5 group">
+                        <i class="fa-solid fa-cubes text-grunge-red group-hover:rotate-12 transition-transform"></i>
+                        <span data-lang-en="What I Design" data-lang-zh="我的设计门类">What I Design</span>
+                    </a>
+                    <a href="#contact" class="text-xs font-mono uppercase text-stone-300 hover:text-grunge-red transition-all duration-300 flex items-center gap-1.5 group">
+                        <i class="fa-solid fa-address-book text-grunge-red group-hover:rotate-12 transition-transform"></i>
+                        <span data-lang-en="Direct Link" data-lang-zh="直连通道">Direct Link</span>
                     </a>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <!-- Right Column - Halftone Portrait Sandbox -->
-            <div class="lg:col-span-5 flex justify-center relative">
-                <!-- British punk background accents behind image -->
-                <div class="absolute inset-0 transform translate-x-4 translate-y-4 border-8 border-britRed bg-britBlue w-full max-w-sm mx-auto opacity-80"></div>
-                
-                <div class="relative w-full max-w-sm border-8 border-white bg-punkBlack shadow-[15px_15px_0px_#ff00ff] group overflow-hidden brutal-interactive">
-                    
-                    <div class="halftone-box aspect-square w-full relative">
-                        <!-- Raw Dither/Halftone simulated image -->
-                        <div id="portrait-frame" class="absolute inset-0 bg-cover bg-center transition-all duration-500 bg-blend-luminosity hover:bg-blend-normal hover:scale-105" 
-                             style="background-image: url('uploaded:image_e39a35.jpg-2aec1de0-85eb-45c6-b858-14339e929dd9');">
-                        </div>
-                        
-                        <!-- Overlay guides -->
-                        <div class="absolute inset-0 border-4 border-dashed border-britTeal opacity-40 pointer-events-none"></div>
-                        
-                        <!-- Top Left Cyan Badge -->
-                        <div class="absolute top-4 left-4 bg-britTeal text-black text-[10px] px-2 py-1 font-heavy uppercase tracking-wider border-2 border-black transform -rotate-3" data-i18n="photoBadge1">
-                            ID: 1989_AVL
-                        </div>
-
-                        <!-- Bottom Right Info -->
-                        <div class="absolute bottom-4 right-4 bg-britRed text-white text-[10px] px-2 py-1 font-mono font-bold uppercase tracking-wider border-2 border-white shadow-[3px_3px_0_#0033cc]" data-i18n="photoBadge2">
-                            HQ_PORTRAIT.RAW
-                        </div>
-                    </div>
-                    
-                    <div class="p-4 border-t-8 border-white bg-britDarkGray">
-                        <div class="flex justify-between items-center text-[11px]">
-                            <span class="text-britTeal font-bold tracking-tight uppercase" data-i18n="photoTarget">// TARGET: LENGKONG, A.V.</span>
-                            <span class="text-white font-bold">1989 / SULAWESI, IDN</span>
-                        </div>
-                        
-                        <!-- Spectrum Soundwave Visualizer Graphic Component -->
-                        <div class="mt-4 border-t-2 border-zinc-700 pt-3 space-y-1.5">
-                            <span class="text-[9px] text-zinc-400 block uppercase font-bold tracking-tight" data-i18n="photoSpectrum">System Threat Spectrum:</span>
-                            <div class="flex items-end space-x-1 h-8 bg-black p-1.5 border-2 border-britRed">
-                                <div class="bg-britMagenta w-full h-1/2 animate-pulse"></div>
-                                <div class="bg-britMagenta w-full h-4/5 animate-pulse" style="animation-delay: 0.1s;"></div>
-                                <div class="bg-britMagenta w-full h-2/3 animate-pulse" style="animation-delay: 0.2s;"></div>
-                                <div class="bg-britTeal w-full h-full animate-pulse" style="animation-delay: 0.3s;"></div>
-                                <div class="bg-britTeal w-full h-1/3 animate-pulse" style="animation-delay: 0.4s;"></div>
-                                <div class="bg-britTeal w-full h-3/4 animate-pulse" style="animation-delay: 0.5s;"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+    <!-- SECTION 2: ABOUT ME (Dark Grunge / Chalkboard Layout) -->
+    <section id="about" class="relative min-h-screen w-full bg-grunge-black py-24 px-6 md:px-12 lg:px-20 flex flex-col justify-center overflow-hidden">
+        
+        <!-- Base Section 2 Background Image -->
+        <div class="absolute inset-0 w-full h-full pointer-events-none z-0">
+            <img src="https://raw.githubusercontent.com/lengkongandreuw/portfolio/main/section2bg.png" alt="About Me Background" class="w-full h-full object-cover opacity-95">
         </div>
 
-        <!-- Footer Segment -->
-        <div class="mt-auto pt-6 flex flex-wrap justify-between items-center gap-4 border-t-4 border-britBlue">
-            <p class="text-[10px] text-white font-bold uppercase tracking-widest bg-britRed px-2 py-1" data-i18n="heroFooter1">// SECURE LOCAL CONNECTIONS ENCRYPTED</p>
-            <div class="flex gap-4">
-                <span class="text-britTeal font-bold text-xs animate-pulse bg-black px-2 py-1 border border-britTeal" data-i18n="heroFooter2">⚡ SCROLL FOR RAW EXPERIMENTAL PROOF</span>
-                <span class="text-white font-bold text-xs uppercase tracking-tight bg-britMagenta px-2 py-1 border border-white" data-i18n="heroFooter3">[ DESIGN DICTATORSHIP: BYPASSED ]</span>
-            </div>
-        </div>
-
-    </header>
-
-    <!-- SECTION 01: MANIFESTO -->
-    <section id="about" class="p-6 lg:p-12 bg-punkBlack border-b-8 border-punkYellow relative">
-        <div class="absolute right-12 top-4 opacity-5 pointer-events-none select-none text-[15rem] font-heavy tracking-tighter">
-            01
-        </div>
-
-        <div class="max-w-5xl mx-auto space-y-12">
+        <div class="max-w-7xl mx-auto w-full relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
-            <div class="inline-block transform -rotate-1 border-4 border-black bg-punkYellow text-black p-3 font-heavy text-xl uppercase shadow-[8px_8px_0px_#ff007f] reveal">
-                01 // THE SYSTEM MANIFESTO
+            <!-- LEFT COLUMN: About Me Header & Info List -->
+            <div class="lg:col-span-5 flex flex-col justify-center" id="about-left">
+                
+                <!-- Stylized Text Header matching image_8dc9bf.jpg -->
+                <div class="mb-10 transform -rotate-3 select-none">
+                    <h2 class="font-syne text-6xl md:text-7xl font-black uppercase tracking-tighter flex items-center gap-3">
+                        <span class="text-white drop-shadow-md">ABOUT</span> 
+                        <span class="text-grunge-red drop-shadow-md">ME</span>
+                    </h2>
+                    <!-- Red underline stroke -->
+                    <div class="w-64 h-1.5 bg-grunge-red mt-2 rounded opacity-90 box-shadow-lg"></div>
+                    <!-- Thin secondary underline -->
+                    <div class="w-72 h-[1px] bg-grunge-red mt-1 rounded opacity-50"></div>
+                </div>
+
+                <!-- Lined List Info (White text on dark bg) -->
+                <ul class="space-y-4 font-mono text-sm pr-4">
+                    <!-- Profession -->
+                    <li class="flex items-center gap-4 border-b border-stone-500/50 pb-3 group">
+                        <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-user text-xs"></i>
+                        </div>
+                        <span class="text-stone-200 font-bold tracking-wide" data-lang-en="Experienced Full Stack Graphic Designer" data-lang-zh="资深全栈平面视觉设计师">Experienced Full Stack Graphic Designer</span>
+                    </li>
+                    <!-- Year Born -->
+                    <li class="flex items-center gap-4 border-b border-stone-500/50 pb-3 group">
+                        <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform">
+                            <i class="fa-regular fa-calendar text-xs"></i>
+                        </div>
+                        <span class="text-stone-200 tracking-wide">born in 1989</span>
+                    </li>
+                    <!-- Location -->
+                    <li class="flex items-center gap-4 border-b border-stone-500/50 pb-3 group">
+                        <div class="w-8 h-8 rounded-full bg-red-600 flex items-center justify-center text-white flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-location-dot text-xs"></i>
+                        </div>
+                        <span class="text-stone-200 tracking-wide">live in Manado, Indonesia</span>
+                    </li>
+                    <!-- Email -->
+                    <li class="flex items-center gap-4 border-b border-stone-500/50 pb-3 group">
+                        <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-envelope text-xs"></i>
+                        </div>
+                        <a href="mailto:lengkongandrew@gmail.com" class="text-stone-200 tracking-wide hover:text-white transition-colors">lengkongandrew@gmail.com</a>
+                    </li>
+                    <!-- WhatsApp -->
+                    <li class="flex items-center gap-4 border-b border-stone-500/50 pb-3 group">
+                        <div class="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center text-white flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform">
+                            <i class="fa-brands fa-whatsapp text-sm"></i>
+                        </div>
+                        <span class="text-stone-200 tracking-wide flex gap-2">
+                            <span class="text-stone-400">fast response via whatsapp</span>
+                            <a href="https://wa.me/6285796400320" target="_blank" class="hover:text-white transition-colors">+62 857 9640 0320</a>
+                        </span>
+                    </li>
+                    <!-- Behance -->
+                    <li class="flex items-center gap-4 border-b border-stone-500/50 pb-3 group">
+                        <div class="w-8 h-8 rounded bg-blue-600 flex items-center justify-center text-white flex-shrink-0 shadow-lg font-bold font-syne text-sm group-hover:scale-110 transition-transform">
+                            Bē
+                        </div>
+                        <a href="https://behance.net/andrewlengkong" target="_blank" class="text-blue-400 underline tracking-wide hover:text-blue-300 transition-colors">behance.net/andrewlengkong</a>
+                    </li>
+                    <!-- LinkedIn -->
+                    <li class="flex items-center gap-4 border-b border-stone-500/50 pb-3 group">
+                        <div class="w-8 h-8 rounded bg-blue-600 flex items-center justify-center text-white flex-shrink-0 shadow-lg font-bold font-syne text-sm group-hover:scale-110 transition-transform">
+                            in
+                        </div>
+                        <a href="https://linkedin.com/in/lengkongandrew/" target="_blank" class="text-blue-400 underline tracking-wide hover:text-blue-300 transition-colors">linkedin.com/in/lengkongandrew/</a>
+                    </li>
+                </ul>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start reveal">
+            <!-- RIGHT COLUMN: Distressed Chalk Summary Box -->
+            <div class="lg:col-span-7 flex flex-col justify-center relative mt-12 lg:mt-0" id="about-right">
                 
-                <div class="md:col-span-8 space-y-6">
-                    <h3 class="font-heavy text-3xl md:text-5xl text-white tracking-tight uppercase leading-none">
-                        ATTACKING THE MARKET WITH <span class="text-punkPink underline decoration-double">TACTICAL VISUAL WARFARE</span>
-                    </h3>
-                    <p class="font-mono text-zinc-300 leading-relaxed text-sm md:text-base text-justify">
-                        For more than fifteen years inside the trenches of creative engineering, I have watched corporations standardise design into sterile, lifeless templates. This portfolio is designed to shatter that mold.
-                    </p>
-                    <p class="font-mono text-zinc-300 leading-relaxed text-sm md:text-base text-justify">
-                        From leading high-scale digital conversion campaigns at <strong>Voxlumedia (USA)</strong> targeting Middle Eastern-American cohorts, spearheading award-winning game intellectual properties at <strong>Nadi Health Tech (Malaysia)</strong> (with our product Manguni Squad ranking as a Top 10 IP in Indonesia by BEKRAF), to engineering the entire mobile and media ecosystem of <strong>Manado Post Group</strong>—my mission remains uncompromised: <strong>Infuse intellectual rebel code into every interface.</strong>
-                    </p>
+                <div class="relative w-full">
+                    <!-- Floating Paperclip Decoration -->
+                    <div class="absolute -top-12 left-1/4 transform rotate-45 text-stone-300/60 select-none z-0">
+                        <i class="fa-solid fa-paperclip text-4xl"></i>
+                    </div>
+
+                    <!-- Blue Painter's Tape Title -->
+                    <div class="absolute -top-6 left-12 blue-tape px-6 py-2.5 text-white font-syne font-black text-xl lg:text-3xl tracking-widest uppercase z-20 transform -rotate-2 select-none shadow-lg border border-blue-400/20">
+                        <span data-lang-en="SUMMARY" data-lang-zh="个人自述">SUMMARY</span>
+                    </div>
+
+                    <!-- Binder Clip Hardware -->
+                    <div class="absolute -top-8 right-8 z-30 transform rotate-12 select-none drop-shadow-xl">
+                        <svg width="50" height="50" viewBox="0 0 100 100" fill="none">
+                            <rect x="35" y="40" width="30" height="35" rx="2" fill="#111" stroke="#fff" stroke-width="2"/>
+                            <path d="M50 10 C65 10, 70 25, 65 40 M50 10 C35 10, 30 25, 35 40" fill="none" stroke="#ddd" stroke-width="5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+
+                    <!-- Main Summary Chalk-Box Container -->
+                    <div class="border-[3px] border-white/80 p-8 md:p-12 relative z-10 bg-black/20 backdrop-blur-[2px] shadow-2xl">
+                        
+                        <!-- Pseudo double border effect -->
+                        <div class="absolute inset-2 border border-white/30 transform rotate-1 pointer-events-none"></div>
+
+                        <div class="space-y-6 text-stone-200 text-base md:text-lg leading-relaxed font-space z-10 relative mt-6">
+                            <p data-lang-en="Designer with 15+ years of experience in UI/UX, visual design, and digital products. I design mobile apps, games, and marketing visuals." data-lang-zh="拥有超过 15 年行业经验的资深设计师，专注于 UI/UX、视觉设计 and 数字产品。我设计移动应用程序、游戏和营销视觉效果。">
+                                Designer with 15+ years of experience in UI/UX, visual design, and digital products. I design mobile apps, games, and marketing visuals.
+                            </p>
+                            <p data-lang-en="Strong in turning ideas into clear and engaging designs. Experienced in leading projects and working with cross-functional teams." data-lang-zh="善于将创意转化为清晰且引人入胜的设计。在领导项目以及与跨职能团队合作方面经验丰富。">
+                                Strong in turning ideas into clear and engaging designs. Experienced in leading projects and working with cross-functional teams.
+                            </p>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="md:col-span-4 space-y-4">
-                    <!-- Simulated warning tape -->
-                    <div class="tape-pink p-3 text-black font-heavy text-center tracking-tight text-xs uppercase">
-                        ⚠️ ESTABLISHED RULES FOR DESTRUCTION
-                    </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: WHAT I DESIGN (Hardcoded Bento Box Grid with Direct Modal Overlays) -->
+    <section id="services" class="relative min-h-screen w-full bg-grunge-black py-24 px-6 md:px-12 lg:px-20 overflow-hidden">
+        
+        <!-- Base Section 3 Background Image -->
+        <div class="absolute inset-0 w-full h-full pointer-events-none z-0">
+            <img src="https://raw.githubusercontent.com/lengkongandreuw/portfolio/main/section3bg.png" alt="What I Design Background" class="w-full h-full object-cover opacity-90">
+            <!-- Overlay gradient untuk memastikan teks tetap terbaca -->
+            <div class="absolute inset-0 bg-gradient-to-b from-grunge-black/60 via-transparent to-grunge-black"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto relative z-10">
+            
+            <!-- THE HARDCODED BENTO BOX GRID LAYOUT -->
+            <!-- Layout logic: 4 columns setup to mimic the masonry/bento reference image -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 auto-rows-[250px] md:auto-rows-[300px]">
+
+                <!-- Title Header Box -->
+                <div class="col-span-1 md:col-span-2 lg:col-span-2 row-span-1 flex flex-col justify-center p-4 lg:p-10 bg-transparent border-none bento-item">
+                    <span class="font-mono text-grunge-red uppercase tracking-widest text-sm font-bold block mb-2">// CAPABILITIES INDEX</span>
+                    <h2 class="font-syne text-5xl lg:text-7xl font-black text-white uppercase select-none leading-none mb-4">
+                        <span data-lang-en="WHAT I" data-lang-zh="设计">WHAT I</span><br>
+                        <span class="text-grunge-red bg-grunge-white text-grunge-black px-4 transform rotate-1 inline-block" data-lang-en="DESIGN" data-lang-zh="范畴">DESIGN</span>
+                    </h2>
+                </div>
+
+                <!-- 01: Branding & Logo Design -->
+                <button onclick="openBentoModal('branding')" class="bento-item col-span-1 md:col-span-2 lg:col-span-2 row-span-1 group relative overflow-hidden rounded-xl shadow-2xl border border-white/10 bg-stone-900 block text-left w-full h-full">
+                    <!-- GitHub Raw Background with texture overlay -->
+                    <img src="https://raw.githubusercontent.com/lengkongandreuw/portfolio/main/logo.png" alt="Branding Background" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 group-hover:scale-105 transition-all duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
                     
-                    <div class="bg-punkGray p-6 border-4 border-punkPink shadow-[6px_6px_0px_#0a0a0a]">
-                        <h4 class="font-heavy text-punkYellow text-xs uppercase mb-3 tracking-wider">// HARD FACT DECREES</h4>
-                        <ul class="space-y-4 text-xs font-mono font-bold text-zinc-300">
-                            <li class="flex items-start">
-                                <span class="text-punkPink mr-2">✦</span> 
-                                User Psychology does not have to look generic or clean.
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-punkPink mr-2">✦</span> 
-                                AI implementation is a production speed multiplier, never a soul substitute.
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-punkPink mr-2">✦</span> 
-                                A flat design that provokes no reaction is a complete waste of corporate capital.
-                            </li>
-                        </ul>
+                    <div class="absolute bottom-6 left-6 right-6 flex justify-between items-end z-10">
+                        <div>
+                            <span class="font-mono text-grunge-red font-bold text-lg block mb-1">01</span>
+                            <h3 class="font-syne text-2xl lg:text-3xl font-black text-white uppercase tracking-tight group-hover:text-grunge-red transition-colors" data-lang-en="BRANDING & LOGO DESIGN" data-lang-zh="品牌与标志设计">BRANDING & LOGO DESIGN</h3>
+                        </div>
+                        <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white backdrop-blur group-hover:bg-grunge-red transition-colors flex-shrink-0">
+                            <i class="fa-solid fa-arrow-right transform -rotate-45 group-hover:rotate-0 transition-transform duration-300"></i>
+                        </div>
                     </div>
-                </div>
+                </button>
 
+                <!-- 02: UI/UX App & Web Design (Tall Box) -->
+                <button onclick="openBentoModal('uiux')" class="bento-item col-span-1 md:col-span-1 lg:col-span-1 row-span-2 group relative overflow-hidden rounded-xl shadow-2xl border border-white/10 bg-stone-900 block text-left w-full h-full flex flex-col justify-between">
+                    <img src="https://raw.githubusercontent.com/lengkongandreuw/portfolio/main/uiux.png" alt="UI/UX Background" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 group-hover:scale-105 transition-all duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                    
+                    <div class="relative z-10 p-6 flex flex-col h-full w-full">
+                        <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white backdrop-blur group-hover:bg-grunge-red transition-colors self-end mb-auto">
+                            <i class="fa-solid fa-arrow-right transform -rotate-45 group-hover:rotate-0 transition-transform duration-300"></i>
+                        </div>
+                        <div class="mt-auto">
+                            <span class="font-mono text-grunge-red font-bold text-lg block mb-1">02</span>
+                            <h3 class="font-syne text-2xl font-black text-white uppercase tracking-tight group-hover:text-grunge-red transition-colors" data-lang-en="UI/UX APP & WEB DESIGN" data-lang-zh="UI/UX 应用程序与网页设计">UI/UX APP & WEB DESIGN</h3>
+                        </div>
+                    </div>
+                </button>
+
+                <!-- 03: Digital Imaging & Retouch -->
+                <button onclick="openBentoModal('digital')" class="bento-item col-span-1 md:col-span-1 lg:col-span-2 row-span-1 group relative overflow-hidden rounded-xl shadow-2xl border border-white/10 bg-stone-900 block text-left w-full h-full">
+                    <img src="https://raw.githubusercontent.com/lengkongandreuw/portfolio/main/imagedig.png" alt="Digital Imaging Background" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 group-hover:scale-105 transition-all duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+                    
+                    <div class="absolute bottom-6 left-6 right-6 flex justify-between items-end z-10">
+                        <div>
+                            <span class="font-mono text-grunge-red font-bold text-lg block mb-1">03</span>
+                            <h3 class="font-syne text-xl lg:text-2xl font-black text-white uppercase tracking-tight group-hover:text-grunge-red transition-colors" data-lang-en="DIGITAL IMAGING & RETOUCH" data-lang-zh="数字成像与修饰">DIGITAL IMAGING & RETOUCH</h3>
+                        </div>
+                        <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white backdrop-blur group-hover:bg-grunge-red transition-colors flex-shrink-0 hidden sm:flex">
+                            <i class="fa-solid fa-arrow-right transform -rotate-45 group-hover:rotate-0 transition-transform duration-300"></i>
+                        </div>
+                    </div>
+                </button>
+
+                <!-- 04: Social Media & Pub (Tall Box) -->
+                <button onclick="openBentoModal('social')" class="bento-item col-span-1 md:col-span-1 lg:col-span-1 row-span-2 group relative overflow-hidden rounded-xl shadow-2xl border border-white/10 bg-stone-900 block text-left w-full h-full flex flex-col justify-between">
+                    <img src="https://raw.githubusercontent.com/lengkongandreuw/portfolio/main/socialmedia.png" alt="Social Media Background" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 group-hover:scale-105 transition-all duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                    
+                    <div class="relative z-10 p-6 flex flex-col h-full w-full">
+                        <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white backdrop-blur group-hover:bg-grunge-red transition-colors self-end mb-auto">
+                            <i class="fa-solid fa-arrow-right transform -rotate-45 group-hover:rotate-0 transition-transform duration-300"></i>
+                        </div>
+                        <div class="mt-auto">
+                            <span class="font-mono text-grunge-red font-bold text-lg block mb-1">04</span>
+                            <h3 class="font-syne text-2xl font-black text-white uppercase tracking-tight group-hover:text-grunge-red transition-colors" data-lang-en="SOCIAL MEDIA & PUB" data-lang-zh="社交媒体与出版">SOCIAL MEDIA & PUB</h3>
+                        </div>
+                    </div>
+                </button>
+
+                <!-- 05: Esport Design & Brand -->
+                <button onclick="openBentoModal('esports')" class="bento-item col-span-1 md:col-span-1 lg:col-span-2 row-span-1 group relative overflow-hidden rounded-xl shadow-2xl border border-white/10 bg-stone-900 block text-left w-full h-full">
+                    <img src="https://raw.githubusercontent.com/lengkongandreuw/portfolio/main/sports.png" alt="Esport Design Background" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 group-hover:scale-105 transition-all duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+                    
+                    <div class="absolute bottom-6 left-6 right-6 flex justify-between items-end z-10">
+                        <div>
+                            <span class="font-mono text-grunge-red font-bold text-lg block mb-1">05</span>
+                            <h3 class="font-syne text-xl lg:text-2xl font-black text-white uppercase tracking-tight group-hover:text-grunge-red transition-colors" data-lang-en="ESPORT DESIGN & BRAND" data-lang-zh="电竞设计与品牌">ESPORT DESIGN & BRAND</h3>
+                        </div>
+                        <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white backdrop-blur group-hover:bg-grunge-red transition-colors flex-shrink-0 hidden sm:flex">
+                            <i class="fa-solid fa-arrow-right transform -rotate-45 group-hover:rotate-0 transition-transform duration-300"></i>
+                        </div>
+                    </div>
+                </button>
+
+                <!-- 06: Merch and Fashion -->
+                <button onclick="openBentoModal('merch')" class="bento-item col-span-1 md:col-span-1 lg:col-span-1 row-span-1 group relative overflow-hidden rounded-xl shadow-2xl border border-white/10 bg-stone-900 block text-left w-full h-full flex flex-col justify-between">
+                    <img src="https://raw.githubusercontent.com/lengkongandreuw/portfolio/main/Screenshot%202026-06-02%20183144.png" alt="Merch and Fashion Background" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 group-hover:scale-105 transition-all duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                    
+                    <div class="relative z-10 p-6 flex flex-col h-full justify-end">
+                        <span class="font-mono text-grunge-red font-bold text-lg block mb-1">06</span>
+                        <h3 class="font-syne text-xl font-black text-white uppercase tracking-tight group-hover:text-grunge-red transition-colors leading-tight" data-lang-en="MERCH & FASHION" data-lang-zh="周边商品与时尚设计">MERCH & FASHION</h3>
+                    </div>
+                </button>
+
+                <!-- 07: Game Design Related -->
+                <button onclick="openBentoModal('game')" class="bento-item col-span-1 md:col-span-2 lg:col-span-3 row-span-1 group relative overflow-hidden rounded-xl shadow-2xl border border-white/10 bg-stone-900 block text-left w-full h-full">
+                    <img src="https://raw.githubusercontent.com/lengkongandreuw/portfolio/main/ganedesign.png" alt="Game Design Background" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 group-hover:scale-105 transition-all duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                    
+                    <div class="absolute bottom-6 left-6 right-6 flex justify-between items-end z-10">
+                        <div>
+                            <span class="font-mono text-grunge-red font-bold text-lg block mb-1">07</span>
+                            <h3 class="font-syne text-2xl font-black text-white uppercase tracking-tight group-hover:text-grunge-red transition-colors" data-lang-en="GAME DESIGN RELATED" data-lang-zh="游戏设计相关">GAME DESIGN RELATED</h3>
+                        </div>
+                        <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white backdrop-blur group-hover:bg-grunge-red transition-colors flex-shrink-0">
+                            <i class="fa-solid fa-arrow-right transform -rotate-45 group-hover:rotate-0 transition-transform duration-300"></i>
+                        </div>
+                    </div>
+                </button>
+
+            </div>
+
+            <!-- TOOLS & SYSTEMS SECTION -->
+            <div class="mt-20 pt-16 border-t border-white/10 relative z-10 bento-item">
+                <div class="flex flex-col lg:flex-row items-stretch gap-12">
+                    
+                    <div class="w-full lg:w-1/3 flex flex-col justify-between">
+                        <div>
+                            <span class="font-mono text-grunge-red text-xs uppercase tracking-widest block mb-2">// TECHNICAL PIPELINE</span>
+                            <h3 class="font-syne text-3xl font-black text-white uppercase mb-4" data-lang-en="TOOLS & OPERATIONS" data-lang-zh="技术底座与运营工具">TOOLS & OPERATIONS</h3>
+                        </div>
+                        <div class="bg-white p-3 rounded max-w-[200px] mt-6 flex flex-col items-center select-none">
+                            <div class="w-full h-8 flex items-stretch">
+                                <span class="bg-black flex-grow mr-0.5"></span>
+                                <span class="bg-black w-[1px] mr-0.5"></span>
+                                <span class="bg-black w-2 mr-0.5"></span>
+                                <span class="bg-black w-1 mr-0.5"></span>
+                                <span class="bg-black flex-grow mr-0.5"></span>
+                            </div>
+                            <span class="font-mono text-[8px] text-grunge-black font-bold tracking-widest mt-1">BUILT_IN_INDONESIA_2026</span>
+                        </div>
+                    </div>
+
+                    <div class="w-full lg:w-2/3 grid grid-cols-2 sm:grid-cols-4 gap-4">
+                        <div class="bg-stone-900/40 border border-stone-800 p-4 rounded flex items-center gap-3 hover:border-grunge-red transition-all group">
+                            <i class="fa-brands fa-figma text-2xl text-purple-500 group-hover:scale-110 transition-transform"></i>
+                            <div><h4 class="font-bold text-sm text-white">Figma</h4><p class="text-[10px] text-stone-500">Interface Arch</p></div>
+                        </div>
+                        <div class="bg-stone-900/40 border border-stone-800 p-4 rounded flex items-center gap-3 hover:border-grunge-red transition-all group">
+                            <i class="fa-solid fa-palette text-2xl text-blue-400 group-hover:scale-110 transition-transform"></i>
+                            <div><h4 class="font-bold text-sm text-white">Photoshop</h4><p class="text-[10px] text-stone-500">Raster Masterwork</p></div>
+                        </div>
+                        <div class="bg-stone-900/40 border border-stone-800 p-4 rounded flex items-center gap-3 hover:border-grunge-red transition-all group">
+                            <i class="fa-solid fa-pen-nib text-2xl text-orange-400 group-hover:scale-110 transition-transform"></i>
+                            <div><h4 class="font-bold text-sm text-white">Illustrator</h4><p class="text-[10px] text-stone-500">Scalable Vector</p></div>
+                        </div>
+                        <div class="bg-stone-900/40 border border-stone-800 p-4 rounded flex items-center gap-3 hover:border-grunge-red transition-all group">
+                            <i class="fa-solid fa-film text-2xl text-indigo-400 group-hover:scale-110 transition-transform"></i>
+                            <div><h4 class="font-bold text-sm text-white">After Effects</h4><p class="text-[10px] text-stone-500">Motion Engine</p></div>
+                        </div>
+                        <div class="bg-stone-900/40 border border-stone-800 p-4 rounded flex items-center gap-3 hover:border-grunge-red transition-all group">
+                            <i class="fa-solid fa-cubes-split text-2xl text-amber-500 group-hover:scale-110 transition-transform"></i>
+                            <div><h4 class="font-bold text-sm text-white">Blender</h4><p class="text-[10px] text-stone-500">3D Asset Modeler</p></div>
+                        </div>
+                        <div class="bg-stone-900/40 border border-stone-800 p-4 rounded flex items-center gap-3 hover:border-grunge-red transition-all group">
+                            <i class="fa-solid fa-note-sticky text-2xl text-stone-300 group-hover:scale-110 transition-transform"></i>
+                            <div><h4 class="font-bold text-sm text-white">Notion</h4><p class="text-[10px] text-stone-500">Project Operations</p></div>
+                        </div>
+                        <div class="bg-stone-900/40 border border-stone-800 p-4 rounded flex items-center gap-3 hover:border-grunge-red transition-all group">
+                            <i class="fa-solid fa-clapperboard text-2xl text-cyan-400 group-hover:scale-110 transition-transform"></i>
+                            <div><h4 class="font-bold text-sm text-white">CapCut & Pro</h4><p class="text-[10px] text-stone-500">Media Editing</p></div>
+                        </div>
+                        <div class="bg-stone-900/40 border border-stone-800 p-4 rounded flex items-center gap-3 hover:border-grunge-red transition-all group">
+                            <i class="fa-solid fa-network-wired text-2xl text-green-400 group-hover:scale-110 transition-transform"></i>
+                            <div><h4 class="font-bold text-sm text-white">Collaboration</h4><p class="text-[10px] text-stone-500">Agile Workflow</p></div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
 
         </div>
     </section>
 
-    <!-- SECTION 02: PORTFOLIO EVIDENCE -->
-    <section id="warfare" class="p-6 lg:p-12 bg-punkBlack border-b-8 border-punkGreen relative">
-        <!-- Ripped paper top divider simulated with CSS polygon -->
-        <div class="absolute top-0 left-0 w-full h-8 bg-punkYellow ripped-edge-top z-10 transform -scale-y-100"></div>
-
-        <div class="max-w-6xl mx-auto space-y-16 pt-8">
-            
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-                <div class="inline-block transform rotate-1 border-4 border-white bg-black text-punkGreen p-3 font-heavy text-2xl uppercase shadow-[8px_8px_0px_#00ff66]">
-                    02 // EXPERIMENTAL PROOF DECK
-                </div>
-                <span class="text-xs text-zinc-500 font-bold uppercase tracking-widest font-mono">// DATABASE STREAM: ARCHIVES_2026.RAW</span>
-            </div>
-
-            <!-- PORTFOLIO CASE STUDY 1: BISON INSULATION -->
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 border-4 border-punkPink p-6 bg-punkGray shadow-[10px_10px_0px_#0a0a0a] relative brutal-interactive reveal hover:shadow-[16px_16px_0px_#ff007f] hover:z-20 group">
-                <div class="absolute -top-5 right-6 bg-punkPink text-white font-heavy px-3 py-1.5 text-xs uppercase transform rotate-2 tracking-tight group-hover:-translate-y-2 group-hover:-rotate-2 transition-transform">
-                    REBRANDING PARADIGM
-                </div>
-
-                <!-- Case Info -->
-                <div class="lg:col-span-5 space-y-5 flex flex-col justify-between">
-                    <div class="space-y-2">
-                        <div class="flex items-center space-x-2 text-punkPink">
-                            <span class="inline-block w-2.5 h-2.5 bg-punkPink animate-pulse"></span>
-                            <span class="font-mono text-xs font-bold uppercase tracking-widest">Case 01 / Canada</span>
-                        </div>
-                        <h3 class="font-heavy text-2xl text-white uppercase tracking-tight">BISON INSULATION BRAND ENGINE</h3>
-                        <p class="text-xs text-punkYellow font-bold tracking-widest uppercase">// INDUSTRIAL BRAND RECONSTRUCTION</p>
-                        <p class="text-xs font-mono text-zinc-400 mt-2 leading-relaxed text-justify">
-                            A radical corporate transformation built for a leading Canadian industrial insulation firm. The traditional, cluttered corporate seal was broken down and restructured into an ultra-sharp, pure geometric monogram combining the robust profile of a bison with alpine mountain geometry.
-                        </p>
-                    </div>
-
-                    <!-- Tech stack matrix tags -->
-                    <div class="bg-black p-3.5 border-l-4 border-punkPink">
-                        <span class="text-[10px] text-zinc-500 block font-bold uppercase tracking-tight">// PRODUCTION HARDWARE DEPLOYED</span>
-                        <div class="flex flex-wrap gap-2 mt-2">
-                            <span class="bg-punkGray text-white text-[9px] font-heavy px-2 py-0.5 border border-zinc-800">PHOTOSHOP (Ps)</span>
-                            <span class="bg-punkGray text-white text-[9px] font-heavy px-2 py-0.5 border border-zinc-800">ILLUSTRATOR (Ai)</span>
-                            <span class="bg-punkGray text-punkGreen text-[9px] font-heavy px-2 py-0.5 border border-punkGreen">ADOBE FIREFLY</span>
-                            <span class="bg-punkGray text-punkYellow text-[9px] font-heavy px-2 py-0.5 border border-punkYellow">VEO 3 AI ENGINE</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Case Visual Visualizer (Interactive) -->
-                <div class="lg:col-span-7">
-                    <div class="border-4 border-white aspect-video relative group overflow-hidden bg-zinc-950">
-                        <div class="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-700 filter saturate-150 contrast-125" style="background-image: url('uploaded:image_e3999e.jpg-6c718ed1-2ddf-48bf-8f34-e043b5b1ff1d');"></div>
-                        
-                        <!-- Hover Scanline effect simulated -->
-                        <div class="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-end p-5">
-                            <span class="text-xs font-heavy text-punkGreen tracking-widest uppercase">// GEOMETRIC METRICS</span>
-                            <p class="text-[11px] text-zinc-300 leading-relaxed">Synthesizing raw elemental contours with absolute vector layout standards. Leveraged custom AI synthesis pathways for rapid prototyping drafts and materials visualization.</p>
-                        </div>
-                    </div>
-                    <div class="bg-punkBlack p-2.5 border-x-4 border-b-4 border-white flex justify-between items-center text-[10px] font-bold text-zinc-400">
-                        <span>SOURCE PROTOCOL: BRANDING_CORE_SLIDE3.JPG</span>
-                        <span class="text-punkPink uppercase tracking-tighter">ENGAGEMENT STATUS: ACTIVE</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- PORTFOLIO CASE STUDY 2: WARBIASA GOVERNOR LEAGUE 2025 -->
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 border-4 border-punkGreen p-6 bg-punkGray shadow-[10px_10px_0px_#0a0a0a] relative brutal-interactive reveal hover:shadow-[16px_16px_0px_#00ff66] hover:z-20 group">
-                <div class="absolute -top-5 right-6 bg-punkGreen text-black font-heavy px-3 py-1.5 text-xs uppercase transform -rotate-2 tracking-tight group-hover:-translate-y-2 group-hover:rotate-2 transition-transform">
-                    MASS CAMPAIGN INTEL
-                </div>
-
-                <!-- Case Visual Visualizer (Interactive) -->
-                <div class="lg:col-span-7 order-2 lg:order-1">
-                    <div class="border-4 border-white aspect-video relative group overflow-hidden bg-zinc-950">
-                        <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('uploaded:image_e39959.jpg-9c89ec8e-c448-4782-93c9-3735dd28b6d7');"></div>
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent opacity-90 flex flex-col justify-end p-5">
-                            <span class="text-punkYellow font-heavy text-xs tracking-widest uppercase">// WARBIASA GOVERNOR LEAGUE ESPORTS</span>
-                            <p class="text-[10px] text-zinc-300 mt-1 max-w-lg leading-relaxed">High-saturation cyberpunk illustrations matched with local traditional motifs of North Sulawesi. Built for extreme local community integration.</p>
-                        </div>
-                    </div>
-                    <div class="bg-punkBlack p-2.5 border-x-4 border-b-4 border-white flex justify-between items-center text-[10px] font-bold text-zinc-400">
-                        <span>SOURCE PROTOCOL: CAMPAIGN_PROD_SLIDE5.JPG</span>
-                        <span class="text-punkGreen uppercase tracking-tighter">STAGE STATUS: LIVE PRODUCTION</span>
-                    </div>
-                </div>
-
-                <!-- Case Info -->
-                <div class="lg:col-span-5 order-1 lg:order-2 space-y-5 flex flex-col justify-between">
-                    <div class="space-y-2">
-                        <div class="flex items-center space-x-2 text-punkGreen">
-                            <span class="inline-block w-2.5 h-2.5 bg-punkGreen animate-ping"></span>
-                            <span class="font-mono text-xs font-bold uppercase tracking-widest">Case 02 / Regional</span>
-                        </div>
-                        <h3 class="font-heavy text-2xl text-white uppercase tracking-tight">WARBIASA GOVERNOR LEAGUE 2025</h3>
-                        <p class="text-xs text-punkGreen font-bold tracking-widest uppercase">// CAMPAIGN DIRECTION & PRODUCTION</p>
-                        <p class="text-xs font-mono text-zinc-400 mt-2 leading-relaxed text-justify">
-                            A high-velocity marketing deployment for a massive multi-sector gaming championship. Combining cosplay communities, street dancers, and esports warriors under one highly aggressive, cohesive visual language.
-                        </p>
-                    </div>
-
-                    <!-- Custom slider interaction controller simulator -->
-                    <div class="border-2 border-zinc-700 p-3 bg-punkBlack">
-                        <span class="text-[10px] text-zinc-400 font-bold block uppercase mb-2 tracking-wider">// LOCAL SYNTH TESTING FREQUENCY</span>
-                        <div class="flex gap-2">
-                            <button onclick="playSynth(700, 'sawtooth', 0.25)" class="w-full bg-punkGray hover:bg-punkGreen text-[9px] font-heavy py-2 border border-zinc-700 hover:text-black transition-all uppercase tracking-wider">
-                                RUN SYNTH_SWEEP_700.EXE
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- COMPREHENSIVE BRAND GRID SECTION -->
-            <div class="space-y-6 reveal">
-                <div class="tape-yellow p-3 text-black font-heavy text-center tracking-tight text-xs uppercase">
-                    ⚡ MULTI-SECTOR LOGO ARSENAL - ARCHIVE PROOF ⚡
-                </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-punkGray p-6 border-4 border-white shadow-[10px_10px_0px_#0a0a0a] brutal-interactive hover:shadow-[16px_16px_0px_#fff200]">
-                    <!-- Context Box -->
-                    <div class="lg:col-span-4 space-y-4">
-                        <h4 class="font-heavy text-xl text-white uppercase tracking-tight">BRAND IDENTITY INTEGRITY MATRIX</h4>
-                        <p class="text-xs font-mono text-zinc-400 leading-relaxed text-justify">
-                            Demonstrating total adaptability across vastly differing market niches. The layout represents robust assets constructed for global heavy transport firms (PT. Hakato Artha Industri), local regional initiatives, consumer F&B establishments (Sarabak2), transactional FinTech apps (Rayapay), and pro gaming organisations (Saiyan Esport).
-                        </p>
-                        <div class="bg-black p-3 border-l-4 border-punkPink text-[10px] text-punkPink font-bold">
-                            &gt;&gt; EVERY SINGLE IDENTITY BUILT ON SCALE-PROOF VECTOR FRAMEWORK VIA ADOBE ILLUSTRATOR.
-                        </div>
-                    </div>
-
-                    <!-- Image Display Box -->
-                    <div class="lg:col-span-8">
-                        <div class="border-4 border-zinc-700 relative group overflow-hidden bg-black">
-                            <!-- Raw uploaded image display -->
-                            <img src="uploaded:image_e3997b.png-00ac4bfd-df35-4107-b819-ef035e193759" alt="Comprehensive Logo Grid" class="w-full h-auto grayscale hover:grayscale-0 contrast-125 transition-all duration-500">
-                            <!-- Overlay cyber grid guides -->
-                            <div class="absolute inset-0 border-2 border-punkPink pointer-events-none opacity-40"></div>
-                        </div>
-                        <div class="bg-black p-2.5 border-x-4 border-b-4 border-zinc-700 flex justify-between items-center text-[10px] font-bold text-zinc-500">
-                            <span>GRID MATRIX LOCATION: LOGOS_PROD_SLIDE4.PNG</span>
-                            <span class="text-punkYellow uppercase tracking-widest">100% VECTOR CERTIFIED</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+    <!-- SECTION 4: DIRECT CONNECTS / FOOTER -->
+    <section id="contact" class="relative bg-grunge-white text-grunge-black py-20 px-6 md:px-12 lg:px-20 border-t-8 border-grunge-red overflow-hidden">
+        <div class="absolute left-0 bottom-0 opacity-[0.03] select-none pointer-events-none">
+            <h1 class="font-syne text-[24vw] uppercase font-black text-grunge-black leading-none">CONTACT</h1>
         </div>
-    </section>
 
-    <!-- SECTION 03: HARDWARE CORE MATRIX (SKILLS & COMS TARGET) -->
-    <section id="vault" class="p-6 lg:p-12 bg-punkBlack border-b-8 border-white relative overflow-hidden">
-        <!-- Ripped paper bottom boundary -->
-        <div class="absolute bottom-0 left-0 w-full h-8 bg-punkPink ripped-edge-bottom z-10"></div>
-
-        <div class="max-w-6xl mx-auto space-y-12">
-            
-            <div class="flex justify-between items-center border-b-4 border-white pb-4">
-                <div class="inline-block transform -rotate-1 border-4 border-punkPink bg-punkPink text-white p-3 font-heavy text-lg uppercase shadow-[6px_6px_0px_#fff200]">
-                    03 // COGNITIVE WEAPONS & RADIUS INTERFACE
-                </div>
-                <span class="text-xs text-punkYellow font-bold tracking-widest font-mono">// SIGNAL SOURCE: RADAR.NET</span>
-            </div>
-
-            <!-- Skill bars & Sulawesi map locator -->
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch reveal">
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch">
                 
-                <!-- Left Column - Hard Skills matrix (highly structured) -->
-                <div class="lg:col-span-6 bg-punkGray border-4 border-white p-6 flex flex-col justify-between shadow-[8px_8px_0px_#ff007f] relative brutal-interactive hover:shadow-[16px_16px_0px_#ff007f] hover:z-10">
-                    <div class="space-y-6">
-                        <div class="flex items-center space-x-2 text-xs border-b border-zinc-800 pb-2">
-                            <span class="w-3 h-3 bg-punkPink block"></span>
-                            <span class="font-heavy text-white">HARD SKILLS SYSTEMS CONSOLE</span>
-                        </div>
-
-                        <div class="space-y-4">
-                            <!-- Skill Node 1 -->
-                            <div class="border border-zinc-800 p-3 bg-black hover:border-punkPink transition-colors">
-                                <div class="flex justify-between items-center text-xs mb-1">
-                                    <span class="font-heavy text-white tracking-tight">// ADVANCED IMAGE CRAFTING (15+ YRS)</span>
-                                    <span class="text-punkPink font-bold">100%</span>
-                                </div>
-                                <div class="w-full bg-zinc-900 h-2 overflow-hidden">
-                                    <div class="bg-punkPink h-full skill-bar-fill" data-width="100%"></div>
-                                </div>
-                                <span class="text-[9px] text-zinc-500 mt-1 block font-mono">Weapon Core: Photoshop (Ps) // Compositing & Digital Matte Painting</span>
-                            </div>
-
-                            <!-- Skill Node 2 -->
-                            <div class="border border-zinc-800 p-3 bg-black hover:border-punkYellow transition-colors">
-                                <div class="flex justify-between items-center text-xs mb-1">
-                                    <span class="font-heavy text-white tracking-tight">// VECTOR SYSTEM & TYPOGRAPHIC SUITE</span>
-                                    <span class="text-punkYellow font-bold">95%</span>
-                                </div>
-                                <div class="w-full bg-zinc-900 h-2 overflow-hidden">
-                                    <div class="bg-punkYellow h-full skill-bar-fill" data-width="95%"></div>
-                                </div>
-                                <span class="text-[9px] text-zinc-500 mt-1 block font-mono">Weapon Core: Illustrator (Ai) // High-Fidelity Technical Graphics & Monograms</span>
-                            </div>
-
-                            <!-- Skill Node 3 -->
-                            <div class="border border-zinc-800 p-3 bg-black hover:border-punkGreen transition-colors">
-                                <div class="flex justify-between items-center text-xs mb-1">
-                                    <span class="font-heavy text-white tracking-tight">// HUMAN-CENTERED DIGITAL PRODUCT DESIGN</span>
-                                    <span class="text-punkGreen font-bold">90%</span>
-                                </div>
-                                <div class="w-full bg-zinc-900 h-2 overflow-hidden">
-                                    <div class="bg-punkGreen h-full skill-bar-fill" data-width="90%"></div>
-                                </div>
-                                <span class="text-[9px] text-zinc-500 mt-1 block font-mono">Weapon Core: Figma // Wireframes, Interactive Prototypes & Behavioral Testing</span>
-                            </div>
-
-                            <!-- Skill Node 4 -->
-                            <div class="border border-zinc-800 p-3 bg-black hover:border-punkCyan transition-colors">
-                                <div class="flex justify-between items-center text-xs mb-1">
-                                    <span class="font-heavy text-white tracking-tight">// 3D, MOTION, & VIDEO COMPOSITING</span>
-                                    <span class="text-punkCyan font-bold">88%</span>
-                                </div>
-                                <div class="w-full bg-zinc-900 h-2 overflow-hidden">
-                                    <div class="bg-punkCyan h-full skill-bar-fill" data-width="88%"></div>
-                                </div>
-                                <span class="text-[9px] text-zinc-500 mt-1 block font-mono">Weapon Core: After Effects / Premiere Pro / Unity 3D / Real-Time Game Engine Aset</span>
-                            </div>
-                        </div>
+                <div class="lg:col-span-5 flex flex-col justify-between">
+                    <div>
+                        <span class="font-mono text-grunge-red text-sm font-bold block mb-2 uppercase">// COMMENCE SYNERGY</span>
+                        <h2 class="font-syne text-4xl lg:text-6xl font-black uppercase text-grunge-black tracking-tight leading-none mb-6">
+                            <span data-lang-en="LET'S FORGE" data-lang-zh="共同打造">LET'S FORGE</span><br>
+                            <span class="text-grunge-blue" data-lang-en="GREATNESS." data-lang-zh="非凡杰作。">GREATNESS.</span>
+                        </h2>
+                        <p class="text-stone-600 font-mono text-sm leading-relaxed mb-6" data-lang-en="Seeking high-performance design pipelines, custom digital architectures, or strategic brand counseling? Shoot an dispatch below." data-lang-zh="正在寻找高性能的设计流程、定制的数字架构还是战略品牌咨询？请在下方发送邮件。">
+                            Seeking high-performance design pipelines, custom digital architectures, or strategic brand counseling? Shoot an dispatch below.
+                        </p>
                     </div>
 
-                    <div class="mt-6 border-t-2 border-dashed border-zinc-800 pt-4 text-[10px] text-zinc-400 font-mono italic leading-relaxed">
-                        * Production pipelines augmented via generative artificial intelligence tools (Adobe Firefly, Veo 3 engine, and generative diffusion) to skyrocket turnaround times without ever diluting raw artisan focus.
-                    </div>
-                </div>
-
-                <!-- Right Column - Geolocation HUD & Map -->
-                <div class="lg:col-span-6 bg-punkGray border-4 border-white p-6 flex flex-col justify-between shadow-[8px_8px_0px_#00ff66] relative overflow-hidden brutal-interactive hover:shadow-[16px_16px_0px_#00ff66] hover:z-10">
-                    
                     <div class="space-y-4">
-                        <div class="flex justify-between items-center text-xs">
-                            <span class="font-heavy text-punkGreen tracking-tight">// GLOCAL TARGETING SENSORS</span>
-                            <span class="text-zinc-500 font-bold">EPICENTER: SULAWESI, IDN</span>
+                        <a href="mailto:lengkongandrew@gmail.com" class="flex items-center gap-3 bg-grunge-black text-grunge-white p-4 rounded hover:bg-grunge-red transition-colors duration-300 shadow-lg">
+                            <i class="fa-solid fa-envelope text-xl"></i>
+                            <div>
+                                <p class="text-[10px] text-stone-400 font-mono uppercase">Official Email Dispatch</p>
+                                <p class="font-bold text-sm">lengkongandrew@gmail.com</p>
+                            </div>
+                        </a>
+                        <a href="https://wa.me/6285796400320" target="_blank" class="flex items-center gap-3 bg-emerald-800 text-white p-4 rounded hover:bg-emerald-700 transition-colors duration-300 shadow-lg">
+                            <i class="fa-brands fa-whatsapp text-xl"></i>
+                            <div>
+                                <p class="text-[10px] text-emerald-300 font-mono uppercase">WhatsApp Rapid Response</p>
+                                <p class="font-bold text-sm">+62 857 9640 0320</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 bg-white border-4 border-grunge-black p-8 shadow-2xl relative">
+                    <div class="absolute -top-3 -right-3 bg-grunge-red text-white font-mono text-[9px] px-2 py-1 transform rotate-6 font-bold uppercase tracking-widest shadow">
+                        ID_GATEWAY
+                    </div>
+
+                    <h3 class="font-syne text-xl font-black text-grunge-black uppercase mb-6 pb-2 border-b border-stone-200" data-lang-en="TRANSMIT MESSAGE IN REALTIME" data-lang-zh="实时发送咨询讯息">TRANSMIT MESSAGE IN REALTIME</h3>
+                    
+                    <form onsubmit="handleQuerySubmit(event)" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block font-mono text-xs uppercase text-stone-500 mb-1" data-lang-en="Your Name" data-lang-zh="您的姓名">Your Name</label>
+                                <input type="text" required id="queryName" class="w-full bg-stone-50 border-2 border-grunge-black p-3 text-sm font-space focus:outline-none focus:ring-2 focus:ring-grunge-red">
+                            </div>
+                            <div>
+                                <label class="block font-mono text-xs uppercase text-stone-500 mb-1" data-lang-en="Your Email" data-lang-zh="电子邮箱">Your Email</label>
+                                <input type="email" required id="queryEmail" class="w-full bg-stone-50 border-2 border-grunge-black p-3 text-sm font-space focus:outline-none focus:ring-2 focus:ring-grunge-red">
+                            </div>
                         </div>
-                        <h4 class="font-heavy text-2xl text-white uppercase tracking-tight">MANADO TO THE WORLD COMS MAP</h4>
-                        <p class="text-xs font-mono text-zinc-400 leading-relaxed text-justify">
-                            Though anchored out of Manado, Indonesia, my creative output is completely global. Spanning continent-wide digital marketing deployments for SME brands in the United States with <strong>Voxlumedia (Vienna, VA)</strong>, managing mass promotional assets in the Philippines, and executing senior design workflows remotely for <strong>Nadi Health Tech (Malaysia)</strong>.
-                        </p>
-                    </div>
 
-                    <!-- Interactive Sulawesi Radar locator -->
-                    <div class="border-2 border-zinc-800 bg-black aspect-video relative my-4 flex items-center justify-center overflow-hidden">
-                        <div class="absolute inset-0 bg-cover bg-center opacity-50 contrast-125 saturate-150" style="background-image: url('uploaded:image_e399da.png-38d0a995-c5b2-4689-bffd-57a9be53dc1c');"></div>
-                        
-                        <!-- Pulse sensor targets -->
-                        <div class="absolute top-[28%] right-[19%] w-5 h-5 bg-punkGreen rounded-full animate-ping"></div>
-                        <div class="absolute top-[28%] right-[19%] w-2 h-2 bg-punkGreen rounded-full"></div>
-                        
-                        <!-- Telemetry coordinates overlay -->
-                        <div class="absolute bottom-3 left-3 bg-punkBlack/90 border border-punkGreen p-2 text-[8px] font-mono text-punkGreen uppercase">
-                            COORD TARGET: 1.4748° N // 124.8428° E<br>
-                            HUD SECTOR: MANADO CORE INTERFACE
+                        <div>
+                            <label class="block font-mono text-xs uppercase text-stone-500 mb-1" data-lang-en="Project Scope Inquiry" data-lang-zh="您的咨询内容">Project Scope Inquiry</label>
+                            <textarea required id="queryMessage" rows="4" class="w-full bg-stone-50 border-2 border-grunge-black p-3 text-sm font-space focus:outline-none focus:ring-2 focus:ring-grunge-red"></textarea>
                         </div>
-                    </div>
 
-                    <div class="text-[9px] text-zinc-400 text-center uppercase tracking-widest font-heavy">
-                        ⚡ GEOGRAPHICALLY DISTRIBUTED // INTELLECTUALLY INTEGRATED ⚡
-                    </div>
+                        <button type="submit" class="w-full bg-grunge-black text-grunge-white font-syne font-black uppercase text-sm p-4 hover:bg-grunge-red hover:text-white transition-colors flex items-center justify-center gap-2 shadow-lg">
+                            <span data-lang-en="TRANSMIT SECURE DATA" data-lang-zh="发送安全数据">TRANSMIT SECURE DATA</span>
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+                    </form>
 
+                    <div id="querySuccessMessage" class="hidden absolute inset-0 bg-white/95 backdrop-blur-sm z-30 flex flex-col justify-center items-center text-center p-8 transition-opacity duration-300">
+                        <i class="fa-solid fa-circle-check text-6xl text-emerald-600 mb-4 animate-bounce"></i>
+                        <h4 class="font-syne text-2xl font-black text-grunge-black uppercase mb-2" data-lang-en="TRANSMISSION SECURED" data-lang-zh="讯息发送成功">TRANSMISSION SECURED</h4>
+                        <p class="text-sm font-mono text-stone-500 max-w-md" data-lang-en="Andrew has received your message pipeline. Expect dispatch back within 12 business hours." data-lang-zh="安德鲁已收到您的系统联络信息。请在 12 工作小时内期待答复邮件。">Andrew has received your message pipeline. Expect dispatch back within 12 business hours.</p>
+                        <button onclick="resetInquiryForm()" class="mt-6 px-4 py-2 bg-grunge-black text-white text-xs font-mono uppercase tracking-widest hover:bg-grunge-red transition-colors">
+                            <span data-lang-en="SEND ANOTHER INQUIRY" data-lang-zh="重新撰写发送">SEND ANOTHER INQUIRY</span>
+                        </button>
+                    </div>
                 </div>
 
             </div>
 
+            <div class="mt-20 pt-10 border-t border-stone-200 flex flex-col md:flex-row justify-between items-center gap-6">
+                <div>
+                    <p class="font-syne text-lg font-black text-grunge-black uppercase tracking-tighter">ANDREUW LENGKONG</p>
+                    <p class="text-xs font-mono text-stone-500" data-lang-en="© 2026 by Andreuw Lengkong" data-lang-zh="© 2026 by Andreuw Lengkong">© 2026 by Andreuw Lengkong</p>
+                </div>
+                <div class="flex items-center gap-6 text-xl text-grunge-black">
+                    <a href="https://behance.net/andrewlengkong" target="_blank" class="hover:text-grunge-red transition-colors"><i class="fa-brands fa-behance"></i></a>
+                    <a href="https://linkedin.com/in/lengkongandrew/" target="_blank" class="hover:text-grunge-red transition-colors"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="https://wa.me/6285796400320" target="_blank" class="hover:text-grunge-red transition-colors"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- SECTION 04: PLUG IN THE COMMUNICATIONS PORT -->
-    <section id="contact" class="p-6 lg:p-12 bg-black text-white relative">
-        <div class="max-w-4xl mx-auto space-y-8">
+    <!-- INTERACTIVE PORTFOLIO MODAL OVERLAY -->
+    <div id="bento-modal" class="fixed inset-0 z-[1000] hidden items-center justify-center p-4 bg-black/90 backdrop-blur-md">
+        <!-- Modal Frame with Grunge styling -->
+        <div class="bg-stone-900 border-4 border-grunge-red max-w-2xl w-full rounded-lg shadow-2xl relative overflow-hidden transform scale-95 opacity-0 transition-all duration-300 flex flex-col" id="modal-content-container">
             
-            <div class="text-center space-y-4">
-                <span class="inline-block bg-punkPink text-white font-heavy text-4xl px-4 py-2 transform -rotate-1">
-                    CONNECT SECURE LINK
-                </span>
-                <p class="font-punk text-sm text-zinc-400 max-w-lg mx-auto">
-                    Dispatch your secure briefing signal now. Immediate transmission monitored via tactical WhatsApp secure lines and direct email routes.
-                </p>
+            <!-- Tape visual on top of modal -->
+            <div class="blue-tape absolute -top-2 left-6 px-4 py-1 text-[10px] text-white font-mono uppercase z-50 tracking-widest select-none">
+                <span data-lang-en="PORTFOLIO DISPATCH" data-lang-zh="项目派遣系统">PORTFOLIO DISPATCH</span>
             </div>
 
-            <!-- Brutalist Contacts matrix -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 reveal">
-                
-                <!-- Communication direct routes -->
-                <div class="bg-punkGray border-4 border-punkPink p-6 space-y-6 shadow-[6px_6px_0px_#ff007f] brutal-interactive hover:shadow-[12px_12px_0px_#ff007f]">
-                    <h3 class="font-heavy text-lg text-punkPink uppercase tracking-tight">// ENCRYPTED DIRECT HOTLINES</h3>
-                    
-                    <div class="space-y-4 text-xs font-mono">
-                        <div class="border border-zinc-800 p-3 bg-punkBlack flex justify-between items-center">
-                            <div>
-                                <span class="text-zinc-500 block uppercase font-bold text-[9px]">ENCRYPTED MAIL</span>
-                                <span class="text-white font-bold select-all">lengkongandrew@gmail.com</span>
-                            </div>
-                            <button onclick="copyToClipboard('lengkongandrew@gmail.com', 'mail-status')" class="bg-punkPink text-white font-heavy px-3 py-1.5 hover:bg-white hover:text-black transition-all text-[10px]">COPY</button>
-                        </div>
-                        <span id="mail-status" class="text-[9px] text-punkGreen font-bold block h-2"></span>
-
-                        <div class="border border-zinc-800 p-3 bg-punkBlack flex justify-between items-center">
-                            <div>
-                                <span class="text-zinc-500 block uppercase font-bold text-[9px]">WHATSAPP COMS LINE</span>
-                                <span class="text-white font-bold select-all">+62 857 9640 0320</span>
-                            </div>
-                            <button onclick="copyToClipboard('+6285796400320', 'wa-status')" class="bg-punkPink text-white font-heavy px-3 py-1.5 hover:bg-white hover:text-black transition-all text-[10px]">COPY</button>
-                        </div>
-                        <span id="wa-status" class="text-[9px] text-punkGreen font-bold block h-2"></span>
-
-                        <div class="border border-zinc-800 p-3 bg-punkBlack">
-                            <span class="text-zinc-500 block uppercase font-bold text-[9px]">TELEGRAM CHANNEL SECURE</span>
-                            <span class="text-white font-bold">@andrewlengkong</span>
-                        </div>
-                    </div>
+            <!-- Header with close button -->
+            <div class="p-6 border-b border-white/10 flex justify-between items-center bg-black/40 pt-10">
+                <div>
+                    <span id="modal-card-num" class="font-mono text-grunge-red font-bold text-sm block">// CARD 01</span>
+                    <h3 id="modal-card-title" class="font-syne text-2xl font-black text-white uppercase tracking-tight">BRANDING & LOGO DESIGN</h3>
                 </div>
-
-                <!-- Portfolio Evidence anchors -->
-                <div class="bg-punkGray border-4 border-punkYellow p-6 space-y-6 shadow-[6px_6px_0px_#fff200] brutal-interactive hover:shadow-[12px_12px_0px_#fff200]">
-                    <h3 class="font-heavy text-lg text-punkYellow uppercase tracking-tight">// CORE REPOSITORIES</h3>
-                    
-                    <div class="space-y-4 text-xs font-mono">
-                        <a href="https://behance.net/andrewlengkong" target="_blank" class="border border-zinc-800 p-3 bg-punkBlack flex justify-between items-center hover:border-punkYellow transition-all group">
-                            <div>
-                                <span class="text-zinc-500 block uppercase font-bold text-[9px]">BEHANCE VAULT</span>
-                                <span class="text-white font-bold group-hover:text-punkYellow transition-all">behance.net/andrewlengkong</span>
-                            </div>
-                            <span class="text-punkYellow">➜</span>
-                        </a>
-
-                        <a href="https://linkedin.com/in/lengkongandreuw/" target="_blank" class="border border-zinc-800 p-3 bg-punkBlack flex justify-between items-center hover:border-punkYellow transition-all group">
-                            <div>
-                                <span class="text-zinc-500 block uppercase font-bold text-[9px]">LINKEDIN TELEMETRY</span>
-                                <span class="text-white font-bold group-hover:text-punkYellow transition-all">linkedin.com/in/lengkongandreuw/</span>
-                            </div>
-                            <span class="text-punkYellow">➜</span>
-                        </a>
-
-                        <a href="https://instagram.com/lengkongandreuw" target="_blank" class="border border-zinc-800 p-3 bg-punkBlack flex justify-between items-center hover:border-punkYellow transition-all group">
-                            <div>
-                                <span class="text-zinc-500 block uppercase font-bold text-[9px]">INSTAGRAM AUDIT</span>
-                                <span class="text-white font-bold group-hover:text-punkYellow transition-all">@lengkongandreuw</span>
-                            </div>
-                            <span class="text-punkYellow">➜</span>
-                        </a>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- TERMINATION SIGNATURE FOOTER -->
-            <div class="border-t-4 border-zinc-900 pt-8 mt-12 text-center text-[10px] text-zinc-500 font-mono space-y-3">
-                <p>© 2026 ANDREUW VANDY LENGKONG. BUILT ACCORDING TO LIBERATED INTERFACE SYSTEM RULES.</p>
-                <p class="uppercase">ENGINEERED VIA HIGH-END COMPOSITING, MANUAL ARTISTRY, AND EXTREME PUNK LOGIC SYSTEM SPECIFICATIONS.</p>
-                <div class="flex justify-center flex-wrap gap-4 pt-2 text-[9px]">
-                    <span class="text-punkPink font-bold">TERMINAL: SECURELY ACTIVE</span>
-                    <span class="text-punkYellow font-bold">SULAWESI CORE ESTABLISHED</span>
-                    <span class="text-punkGreen font-bold">COMS PIPELINE DEPLOYED</span>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- SYSTEM BREACH SYSTEM ALERT PANEL (STYLIZED POPUP MODAL) -->
-    <div id="rebelPopup" class="fixed inset-0 bg-black/95 z-[200] flex items-center justify-center p-4 hidden">
-        <div class="bg-punkGray border-8 border-punkPink p-8 max-w-md w-full text-center space-y-6 shadow-[20px_20px_0px_#fff200]">
-            <h2 class="font-heavy text-3xl text-punkPink uppercase tracking-tighter animate-bounce">⚠️ SYSTEM VIOLATED ⚠️</h2>
-            <p class="font-mono text-xs text-zinc-300 leading-relaxed">
-                You have just executed the experimental design deconstruct trigger (*Detonate System Channels*). The conventional interface grid layout rules will now collapse.
-            </p>
-            <div class="bg-black p-3 border border-zinc-800 text-[10px] text-punkGreen font-mono">
-                TRIGGER_CODE: ANARCHY_MATRIX_INIT_1989
-            </div>
-            <div class="flex gap-4">
-                <button onclick="executeTotalChaos()" class="w-full bg-punkYellow text-black font-heavy py-2.5 uppercase text-xs border-2 border-black hover:bg-white hover:text-black transition-all">
-                    YES, SHATTER THE GRID
+                <button onclick="closeBentoModal()" class="w-10 h-10 rounded-full border border-white/20 hover:border-grunge-red text-white hover:text-grunge-red flex items-center justify-center transition-colors">
+                    <i class="fa-solid fa-xmark text-lg"></i>
                 </button>
-                <button onclick="closeRebelPopup()" class="w-full bg-black text-white font-heavy py-2.5 uppercase text-xs border-2 border-zinc-700 hover:bg-punkPink transition-all">
-                    CANCEL SIGNAL
-                </button>
+            </div>
+
+            <!-- Project Links List Container -->
+            <div class="p-6 overflow-y-auto max-h-[60vh] space-y-3" id="modal-links-container">
+                <!-- Dynamically populated by JS -->
+            </div>
+
+            <!-- Footer Badge -->
+            <div class="p-4 bg-black/60 border-t border-white/10 text-center select-none">
+                <span class="font-mono text-[9px] text-stone-500 uppercase tracking-widest">ANDREW LENGKONG STUDIO NETWORK © 2026</span>
             </div>
         </div>
     </div>
 
-    <!-- WEB SCRATCH / SPRAYPAINT AUDIO AND DESIGN ENGINE SCRIPTS -->
+    <!-- JS INTERACTIONS & ANIMATION CODE -->
     <script>
-        // WEB AUDIO SYSTEM
-        let audioCtx = null;
-
-        function initAudio() {
-            if (!audioCtx) {
-                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            }
-        }
-
-        function playSynth(frequency, type, duration) {
-            initAudio();
-            if (!audioCtx) return;
-
-            const osc = audioCtx.createOscillator();
-            const gainNode = audioCtx.createGain();
-
-            osc.type = type || 'sawtooth';
-            osc.frequency.setValueAtTime(frequency || 220, audioCtx.currentTime);
-            
-            // Fast decay curve for tactile clicks
-            gainNode.gain.setValueAtTime(duration || 0.4, audioCtx.currentTime);
-            gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + (duration || 0.4));
-
-            osc.connect(gainNode);
-            gainNode.connect(audioCtx.destination);
-
-            osc.start();
-            osc.stop(audioCtx.currentTime + (duration || 0.4));
-        }
-
-        function clickSound() {
-            playSynth(820, 'sine', 0.08);
-        }
-
-        // DRAGGABLE STICKER RIGGING
-        function initDraggables() {
-            const draggables = document.querySelectorAll('.draggable');
-            draggables.forEach(elem => {
-                let currentX, currentY, initialX, initialY;
-                let active = false;
-
-                elem.addEventListener('mousedown', dragStart, false);
-                elem.addEventListener('mousemove', drag, false);
-                elem.addEventListener('mouseup', dragEnd, false);
-                elem.addEventListener('mouseleave', dragEnd, false);
-
-                elem.addEventListener('touchstart', dragStart, {passive: false});
-                elem.addEventListener('touchmove', drag, {passive: false});
-                elem.addEventListener('touchend', dragEnd, false);
-
-                function dragStart(e) {
-                    initAudio();
-                    playSynth(130, 'sawtooth', 0.12);
-                    if (e.type === "touchstart") {
-                        initialX = e.touches[0].clientX - (elem.offsetLeft || 0);
-                        initialY = e.touches[0].clientY - (elem.offsetTop || 0);
-                    } else {
-                        initialX = e.clientX - (elem.offsetLeft || 0);
-                        initialY = e.clientY - (elem.offsetTop || 0);
-                    }
-                    active = true;
-                }
-
-                function drag(e) {
-                    if (!active) return;
-                    e.preventDefault();
-                    if (e.type === "touchmove") {
-                        currentX = e.touches[0].clientX - initialX;
-                        currentY = e.touches[0].clientY - initialY;
-                    } else {
-                        currentX = e.clientX - initialX;
-                        currentY = e.clientY - initialY;
-                    }
-                    elem.style.left = currentX + 'px';
-                    elem.style.top = currentY + 'px';
-                }
-
-                function dragEnd() {
-                    active = false;
-                }
-            });
-        }
-
-        // FULLSCREEN GRAFFITI/VANDAL DRAW CANVAS LOGIC
-        const canvas = document.getElementById('graffiti-canvas');
-        const ctx = canvas.getContext('2d');
-        let isDrawingVandal = false;
-        let paintActive = false;
-
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            ctx.lineCap = 'round';
-            ctx.lineJoin = 'round';
-        }
-
-        function toggleVandalMode() {
-            initAudio();
-            playSynth(300, 'square', 0.2);
-            paintActive = !paintActive;
-            const vandalBtn = document.getElementById('vandalBtn');
-            
-            if (paintActive) {
-                canvas.style.pointerEvents = 'auto';
-                vandalBtn.innerHTML = '<span class="w-2 h-2 bg-punkPink inline-block animate-ping"></span> 🖌️ Toggle Graffiti Paint [ON]';
-                vandalBtn.className = "bg-punkPink border-2 border-black px-2.5 py-1 text-black hover:bg-white transition-all font-heavy flex items-center gap-1.5 uppercase";
-            } else {
-                canvas.style.pointerEvents = 'none';
-                vandalBtn.innerHTML = '<span class="w-2 h-2 bg-punkCyan inline-block animate-pulse"></span> 🖌️ Toggle Graffiti Paint [OFF]';
-                vandalBtn.className = "bg-punkGray border-2 border-punkCyan px-2.5 py-1 text-punkCyan hover:bg-punkCyan hover:text-black transition-all font-heavy flex items-center gap-1.5 uppercase";
-            }
-        }
-
-        function clearVandalCanvas() {
-            playSynth(150, 'sawtooth', 0.3);
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-        }
-
-        // Canvas drawing mechanics
-        canvas.addEventListener('mousedown', startPaint, false);
-        canvas.addEventListener('mousemove', drawPaint, false);
-        canvas.addEventListener('mouseup', endPaint, false);
-        canvas.addEventListener('mouseleave', endPaint, false);
-
-        canvas.addEventListener('touchstart', startPaint, {passive: false});
-        canvas.addEventListener('touchmove', drawPaint, {passive: false});
-        canvas.addEventListener('touchend', endPaint, false);
-
-        function startPaint(e) {
-            if (!paintActive) return;
-            isDrawingVandal = true;
-            ctx.beginPath();
-            
-            // Randomly cycle brutal neon paint colors
-            const colors = ['#00ff66', '#ff007f', '#fff200', '#00f0ff'];
-            ctx.strokeStyle = colors[Math.floor(Math.random() * colors.length)];
-            ctx.lineWidth = Math.random() * 8 + 4; // Variable spray paint nozzle width
-            
-            const pos = getPos(e);
-            ctx.moveTo(pos.x, pos.y);
-            
-            playSynth(Math.random() * 300 + 400, 'sawtooth', 0.05);
-        }
-
-        function drawPaint(e) {
-            if (!isDrawingVandal || !paintActive) return;
-            e.preventDefault();
-            const pos = getPos(e);
-            ctx.lineTo(pos.x, pos.y);
-            ctx.stroke();
-            
-            // Retro static hiss audio sound while painting
-            if (Math.random() > 0.8) {
-                playSynth(Math.random() * 200 + 100, 'sawtooth', 0.03);
-            }
-        }
-
-        function endPaint() {
-            isDrawingVandal = false;
-        }
-
-        function getPos(e) {
-            const rect = canvas.getBoundingClientRect();
-            let x, y;
-            if (e.touches && e.touches.length > 0) {
-                x = e.touches[0].clientX - rect.left;
-                y = e.touches[0].clientY - rect.top;
-            } else {
-                x = e.clientX - rect.left;
-                y = e.clientY - rect.top;
-            }
-            return { x, y };
-        }
-
-        // CLIPBOARD INTERACTION SECURITY COPING
-        function copyToClipboard(text, statusId) {
-            playSynth(550, 'triangle', 0.12);
-            
-            const textarea = document.createElement("textarea");
-            textarea.value = text;
-            textarea.style.position = "fixed";
-            document.body.appendChild(textarea);
-            textarea.focus();
-            textarea.select();
-            try {
-                const successful = document.execCommand('copy');
-                const statusElem = document.getElementById(statusId);
-                if (statusElem) {
-                    statusElem.innerText = successful ? ">> COPIED SECURELY TO PORT MATRIX CLIPBOARD!" : ">> TRANSMISSION FAIL";
-                    setTimeout(() => {
-                        statusElem.innerText = "";
-                    }, 3000);
-                }
-            } catch (err) {
-                console.error('Fallback failed', err);
-            }
-            document.body.removeChild(textarea);
-        }
-
-        // TRIGGER RADICAL GLITCH BREACH
-        function triggerGlitchSystem() {
-            playSynth(140, 'sawtooth', 0.7);
-            
-            // Instantly rattle portrait frame visual state
-            const frame = document.getElementById('portrait-frame');
-            frame.classList.add('glitch-text-active');
-            setTimeout(() => {
-                frame.classList.remove('glitch-text-active');
-            }, 1000);
-
-            document.getElementById('rebelPopup').classList.remove('hidden');
-        }
-
-        function closeRebelPopup() {
-            clickSound();
-            document.getElementById('rebelPopup').classList.add('hidden');
-        }
-
-        // LAYOUT SHATTER ENGINE (SHATTER LAWS OF GRID)
-        let totalChaosActive = false;
-        function executeTotalChaos() {
-            totalChaosActive = !totalChaosActive;
-            playSynth(60, 'sawtooth', 1.8);
-            closeRebelPopup();
-            
-            const layers = document.querySelectorAll('.grid > div, section, header, nav');
-            layers.forEach(lyr => {
-                if (totalChaosActive) {
-                    const rotVal = (Math.random() * 14 - 7).toFixed(2);
-                    const transXVal = (Math.random() * 30 - 15).toFixed(0);
-                    lyr.style.transform = `rotate(${rotVal}deg) translate(${transXVal}px)`;
-                    lyr.style.transition = 'all 0.4s cubic-bezier(0.87, 0, 0.13, 1)';
-                    lyr.style.borderColor = '#ff007f';
-                } else {
-                    lyr.style.transform = '';
-                    lyr.style.borderColor = '';
-                }
-            });
-        }
-
-        // CORPORATE LAYOUT CONVERSION
-        let cleanModeActive = false;
-        function toggleCleanMode() {
-            cleanModeActive = !cleanModeActive;
-            playSynth(280, 'sine', 0.25);
-            
-            const cleanBtn = document.getElementById('cleanBtn');
-            const bodies = document.body;
-            
-            if (cleanModeActive) {
-                bodies.style.fontFamily = 'system-ui, -apple-system, sans-serif';
-                bodies.style.backgroundColor = '#ffffff';
-                bodies.style.color = '#0f172a';
-                cleanBtn.innerText = "⚠️ DETONATE SANITIZED LAYOUT";
-                cleanBtn.className = "bg-punkPink text-white px-3 py-1 font-bold rounded-none hover:bg-black hover:text-white transition-all";
-                
-                // Disable visual artifacts
-                document.querySelectorAll('.draggable').forEach(s => s.classList.add('hidden'));
-                canvas.classList.add('hidden');
-            } else {
-                bodies.style.fontFamily = '';
-                bodies.style.backgroundColor = '';
-                bodies.style.color = '';
-                cleanBtn.innerText = "⚠️ BORING SANITIZED MODE";
-                cleanBtn.className = "bg-punkPink text-white px-3 py-1 font-bold rounded-none hover:bg-white hover:text-black transition-all";
-                
-                // Reactivate
-                document.querySelectorAll('.draggable').forEach(s => s.classList.remove('hidden'));
-                canvas.classList.remove('hidden');
-            }
-        }
-
-        // Initialize variables on loaded state
-        window.onload = function() {
-            resizeCanvas();
-            initDraggables();
-            
-            window.addEventListener('resize', resizeCanvas);
-            
-            // Intersection Observer for scroll animations
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('active');
-                        // Trigger skill bars if present
-                        const bars = entry.target.querySelectorAll('.skill-bar-fill');
-                        bars.forEach(bar => {
-                            bar.style.width = bar.getAttribute('data-width');
-                        });
-                    }
-                });
-            }, { threshold: 0.15 });
-
-            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-        }
-
-        // --- I18N LANGUAGE SWITCHER LOGIC ---
-        const translations = {
-            'en': {
-                'marquee1': '⚡ MULTIMEDIA POWERHOUSE //',
-                'marquee2': '15+ YEARS BREAKING TRADITIONAL INTERFACES //',
-                'marquee3': 'ESTABLISHED IN MANADO, INDONESIA //',
-                'subtitle': '// FULL-STACK CREATIVE SOLDIER',
-                'nav1': '01. MANIFESTO',
-                'nav2': '02. EVIDENCE',
-                'nav3': '03. REBEL_LAB',
-                'nav4': '04. PLUG_IN',
-                'heroBadge': '⚡ MULTIMEDIA DESIGN SYSTEM RECONSTRUCTION',
-                'heroTitle1': 'CREATIVE',
-                'heroTitle2': 'MULTIMEDIA',
-                'heroTitle3': 'DESIGNER.',
-                'heroQuoteLabel': 'TACTICAL MANIFEST_SEC.04',
-                'heroQuote': '"Design is not cosmetic decoration. Design is a high-impact tactical weapon deployed to disrupt user attention, break interface limits, and drive absolute business value."',
-                'btnDetonate': '⚡ DETONATE INTERFACE GRID ⚡',
-                'btnInit': '// INITIALIZE COMS PIPELINE',
-                'photoBadge1': 'ID: 1989_AVL',
-                'photoBadge2': 'HQ_PORTRAIT.RAW',
-                'photoTarget': '// TARGET: LENGKONG, A.V.',
-                'photoSpectrum': 'System Threat Spectrum:',
-                'heroFooter1': '// SECURE LOCAL CONNECTIONS ENCRYPTED',
-                'heroFooter2': '⚡ SCROLL FOR RAW EXPERIMENTAL PROOF',
-                'heroFooter3': '[ DESIGN DICTATORSHIP: BYPASSED ]'
+        // CAPABILITIES MULTI-LINK CONFIG DATA
+        const bentoProjects = {
+            branding: {
+                num: "01",
+                title_en: "BRANDING & LOGO DESIGN",
+                title_zh: "品牌与标志设计",
+                links: [
+                    { name: "Bison Insulation Rebranding Project", url: "https://www.behance.net/gallery/240372477/Bison-Insulation-Rebranding-Project" },
+                    { name: "Synthetix IT Brand Identity Design", url: "https://www.behance.net/gallery/237636239/Synthetix-IT-Brand-Identity-Design" },
+                    { name: "Tomohon City Branding Project", url: "https://www.behance.net/gallery/187744867/Tomohon-City-Branding-Project" },
+                    { name: "Airmadidi City Branding", url: "https://www.behance.net/gallery/187422859/Airmadidi-City-Branding" },
+                    { name: "Karskay Logo", url: "https://www.behance.net/gallery/101907351/Karskay-Logo" },
+                    { name: "Kasumasa Branding", url: "https://www.behance.net/gallery/101907451/Kasumasa-Branding" }
+                ]
             },
-            'id': {
-                'marquee1': '⚡ KEKUATAN MULTIMEDIA //',
-                'marquee2': '15+ TAHUN MENDOBRAK ANTARMUKA TRADISIONAL //',
-                'marquee3': 'BERBASIS DI MANADO, INDONESIA //',
-                'subtitle': '// PRAJURIT KREATIF FULL-STACK',
-                'nav1': '01. MANIFESTO',
-                'nav2': '02. BUKTI_NYATA',
-                'nav3': '03. LAB_PEMBERONTAK',
-                'nav4': '04. KONEKSI',
-                'heroBadge': '⚡ REKONSTRUKSI SISTEM DESAIN MULTIMEDIA',
-                'heroTitle1': 'DESAINER',
-                'heroTitle2': 'MULTIMEDIA',
-                'heroTitle3': 'KREATIF.',
-                'heroQuoteLabel': 'MANIFESTO TAKTIS_SEC.04',
-                'heroQuote': '"Desain bukan sekadar dekorasi kosmetik. Desain adalah senjata taktis untuk merebut atensi, mendobrak batasan antarmuka, dan mendorong nilai bisnis absolut."',
-                'btnDetonate': '⚡ HANCURKAN GRID ANTARMUKA ⚡',
-                'btnInit': '// INISIALISASI JALUR KOMUNIKASI',
-                'photoBadge1': 'ID: 1989_AVL',
-                'photoBadge2': 'FOTO_MARKAS.RAW',
-                'photoTarget': '// TARGET: LENGKONG, A.V.',
-                'photoSpectrum': 'Spektrum Ancaman Sistem:',
-                'heroFooter1': '// KONEKSI LOKAL AMAN TERENKRIPSI',
-                'heroFooter2': '⚡ GULIR UNTUK BUKTI EKSPERIMEN MENTAH',
-                'heroFooter3': '[ DIKTATOR DESAIN: DIABAIKAN ]'
+            uiux: {
+                num: "02",
+                title_en: "UI/UX APP & WEB DESIGN",
+                title_zh: "UI/UX 应用程序与网页设计",
+                links: [
+                    { name: "Vimigo Company Leave Application", url: "https://www.behance.net/gallery/186315043/Vimigo-Company-Leave-Application" },
+                    { name: "Manadopost Mobile App Revamp Case Study", url: "https://www.behance.net/gallery/186336023/Manadopost-Mobile-App-Revamp-Case-Study" },
+                    { name: "Pasiar Tourism Reservation App Case Study", url: "https://www.behance.net/gallery/187683203/Pasiar-Tourism-Reservation-app-a-case-study" }
+                ]
             },
-            'zh': {
-                'marquee1': '⚡ 多媒体巨头 //',
-                'marquee2': '15年以上打破传统界面的经验 //',
-                'marquee3': '成立于印度尼西亚万鸦老 //',
-                'subtitle': '// 全栈创意战士',
-                'nav1': '01. 宣言',
-                'nav2': '02. 证据',
-                'nav3': '03. 叛逆实验室',
-                'nav4': '04. 联系方式',
-                'heroBadge': '⚡ 多媒体设计系统重构',
-                'heroTitle1': '创意',
-                'heroTitle2': '多媒体',
-                'heroTitle3': '设计师.',
-                'heroQuoteLabel': '战术宣言_SEC.04',
-                'heroQuote': '"设计不是表面的装饰。设计是一种高影响力的战术武器，用于吸引用户的注意力，打破界面限制，并推动绝对的商业价值。"',
-                'btnDetonate': '⚡ 引爆界面网格 ⚡',
-                'btnInit': '// 初始化通信管道',
-                'photoBadge1': 'ID: 1989_AVL',
-                'photoBadge2': '总部照片.RAW',
-                'photoTarget': '// 目标: LENGKONG, A.V.',
-                'photoSpectrum': '系统威胁频谱:',
-                'heroFooter1': '// 本地安全连接已加密',
-                'heroFooter2': '⚡ 滚动查看原始实验证据',
-                'heroFooter3': '[ 设计独裁: 已绕过 ]'
+            digital: {
+                num: "03",
+                title_en: "DIGITAL IMAGING & RETOUCH",
+                title_zh: "数字成像与修饰",
+                links: [
+                    { name: "Football Legends Artworks", url: "https://www.behance.net/gallery/67813915/Football-Legends" },
+                    { name: "Stiven & Cindy Wedding Album Layout", url: "https://www.behance.net/gallery/2932791/StivenCindy-Wedding-Album" },
+                    { name: "Tomohon International Flower Festival (TIFF) 2019", url: "https://www.behance.net/gallery/76796273/TIFF-2019" }
+                ]
+            },
+            social: {
+                num: "04",
+                title_en: "SOCIAL MEDIA & PUB",
+                title_zh: "社交媒体与出版",
+                links: [
+                    { name: "Global Marketing Dubai Layouts", url: "https://www.behance.net/gallery/250100125/Global-Marketing-Dubai" },
+                    { name: "Global Bistro Mediterranean Cuisine Publication", url: "https://www.behance.net/gallery/249977605/Global-Bistro-Mediterraniian-Cuisine-Publication" },
+                    { name: "VisionHomes Real Estate Social Media Branding", url: "https://www.behance.net/gallery/188263279/VisionHomes-Real-Estate-Social-Media-Branding" },
+                    { name: "Nadi Health Tech Social Media Post Set", url: "https://www.behance.net/gallery/188289013/Nadi-Health-Tech-Social-media-Post" },
+                    { name: "Mall Social Media Rebranding Case", url: "https://www.behance.net/gallery/227970645/MALL-SOCIAL-MEDIA-REBRANDING" }
+                ]
+            },
+            esports: {
+                num: "05",
+                title_en: "ESPORT DESIGN & BRAND",
+                title_zh: "电竞设计与品牌",
+                links: [
+                    { name: "Warbiasa Esport Tournament Publication Design", url: "https://www.behance.net/gallery/249763725/Warbiasa-Esport-Tournament-Publication-Design" },
+                    { name: "World Cup 2026 Artwork Commission", url: "https://www.behance.net/gallery/249968611/World-Cup-2026-Artwork-(Commision)" },
+                    { name: "Sport Betting Publication Design", url: "https://www.behance.net/gallery/248667443/Sport-Beting-Publication-Design" },
+                    { name: "Liga 1 Indonesia Matchday Poster Layouts", url: "https://www.behance.net/gallery/213822885/Liga-1-Indonesia-Matchday-Poster" }
+                ]
+            },
+            merch: {
+                num: "06",
+                title_en: "MERCH & FASHION",
+                title_zh: "周边商品与时尚设计",
+                links: [
+                    { name: "Centvrion Clothing Merch Layouts", url: "https://www.behance.net/gallery/153660233/CENTVRION-MERCH" },
+                    { name: "Minahasa Utara Nimau Kering Merchandise", url: "https://www.behance.net/gallery/114421547/Minut-Nimau-Kering-Merchandise" }
+                ]
+            },
+            game: {
+                num: "07",
+                title_en: "GAME DESIGN RELATED",
+                title_zh: "游戏设计相关",
+                links: [
+                    { name: "Intuitive AR-Based Guide to Historic Burial Site", url: "https://www.behance.net/gallery/187603607/Intuitive-AR-based-guide-to-historic-burial-site" },
+                    { name: "Wardeka Mobile Shooting Game Project Assets", url: "https://www.behance.net/gallery/153824559/Wardeka-Mobile-Shooting-Game" }
+                ]
             }
         };
 
-        function setLang(lang) {
-            playSynth(600, 'square', 0.1);
+        // OPEN PORTFOLIO OVERLAY MODAL
+        function openBentoModal(cardId) {
+            const data = bentoProjects[cardId];
+            if (!data) return;
+
+            const modal = document.getElementById('bento-modal');
+            const container = document.getElementById('modal-content-container');
+            const linksContainer = document.getElementById('modal-links-container');
             
-            // Update UI buttons
-            const btns = ['lang-en', 'lang-id', 'lang-zh'];
-            btns.forEach(id => {
-                const btn = document.getElementById(id);
-                if(id === `lang-${lang}`) {
-                    btn.className = 'bg-britRed text-white px-2 py-1 font-heavy text-[10px] hover:bg-white hover:text-black transition-colors';
-                } else {
-                    btn.className = 'bg-punkGray text-zinc-400 px-2 py-1 font-heavy text-[10px] hover:bg-white hover:text-black transition-colors border-l border-zinc-700';
-                }
+            // Set Titles & Numbers
+            document.getElementById('modal-card-num').textContent = `// CARD ${data.num}`;
+            document.getElementById('modal-card-title').textContent = currentLanguage === 'en' ? data.title_en : data.title_zh;
+
+            // Generate HTML link elements
+            linksContainer.innerHTML = '';
+            data.links.forEach(link => {
+                const linkCard = document.createElement('a');
+                linkCard.href = link.url;
+                linkCard.target = "_blank";
+                linkCard.className = "flex justify-between items-center bg-black/60 border border-white/5 p-4 rounded hover:border-grunge-red hover:bg-stone-800/80 transition-all group duration-300 shadow-md";
+                linkCard.innerHTML = `
+                    <div class="flex items-center gap-3">
+                        <span class="w-2 h-2 rounded-full bg-grunge-red group-hover:scale-125 transition-transform"></span>
+                        <span class="font-space text-sm font-bold text-stone-200 group-hover:text-white transition-colors">${link.name}</span>
+                    </div>
+                    <span class="font-mono text-xs text-stone-500 group-hover:text-grunge-red flex items-center gap-1">
+                        VIEW PROJECT <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </span>
+                `;
+                linksContainer.appendChild(linkCard);
             });
 
-            // Update texts in DOM based on dictionary
-            const elements = document.querySelectorAll('[data-i18n]');
-            elements.forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (translations[lang] && translations[lang][key]) {
-                    el.innerText = translations[lang][key];
+            // Trigger animations
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            
+            setTimeout(() => {
+                container.classList.remove('scale-95', 'opacity-0');
+                container.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        }
+
+        // CLOSE PORTFOLIO MODAL
+        function closeBentoModal() {
+            const modal = document.getElementById('bento-modal');
+            const container = document.getElementById('modal-content-container');
+            
+            container.classList.remove('scale-100', 'opacity-100');
+            container.classList.add('scale-95', 'opacity-0');
+
+            setTimeout(() => {
+                modal.classList.remove('flex');
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        // Custom Language state management
+        let currentLanguage = 'en';
+
+        function toggleLanguage(lang) {
+            currentLanguage = lang;
+            
+            // Switch Language Buttons Active State
+            const btnEn = document.getElementById('langBtn-en');
+            const btnZh = document.getElementById('langBtn-zh');
+
+            if (lang === 'en') {
+                btnEn.classList.add('bg-grunge-red', 'text-white');
+                btnEn.classList.remove('text-grunge-white/60');
+                btnZh.classList.add('text-grunge-white/60');
+                btnZh.classList.remove('bg-grunge-red', 'text-white');
+            } else {
+                btnZh.classList.add('bg-grunge-red', 'text-white');
+                btnZh.classList.remove('text-grunge-white/60');
+                btnEn.classList.add('text-grunge-white/60');
+                btnEn.classList.remove('bg-grunge-red', 'text-white');
+            }
+
+            // Iterate over all element nodes with translation tags
+            const translationElements = document.querySelectorAll('[data-lang-en]');
+            translationElements.forEach(el => {
+                if (lang === 'en') {
+                    el.innerHTML = el.getAttribute('data-lang-en');
+                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                        el.placeholder = el.getAttribute('data-lang-en');
+                    }
+                } else {
+                    el.innerHTML = el.getAttribute('data-lang-zh');
+                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                        el.placeholder = el.getAttribute('data-lang-zh');
+                    }
                 }
             });
         }
+
+        // Custom Cursor Movement with high-performance RAF
+        const cursor = document.getElementById('customCursor');
+        const cursorDot = document.getElementById('customCursorDot');
+        let mouseX = 0, mouseY = 0;
+        let cursorX = 0, cursorY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            
+            cursorDot.style.left = mouseX + 'px';
+            cursorDot.style.top = mouseY + 'px';
+        });
+
+        function animateCursor() {
+            let dx = mouseX - cursorX;
+            let dy = mouseY - cursorY;
+            
+            cursorX += dx * 0.15;
+            cursorY += dy * 0.15;
+            
+            cursor.style.left = cursorX + 'px';
+            cursor.style.top = cursorY + 'px';
+            
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        // Mouse Hover Expansion for Interactive Anchors
+        const interactiveSelectors = 'a, button, input, textarea, [role="button"]';
+        document.querySelectorAll(interactiveSelectors).forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                cursor.style.width = '35px';
+                cursor.style.height = '35px';
+                cursor.style.backgroundColor = 'rgba(209, 45, 45, 0.4)';
+            });
+            item.addEventListener('mouseleave', () => {
+                cursor.style.width = '20px';
+                cursor.style.height = '20px';
+                cursor.style.backgroundColor = 'rgba(209, 45, 45, 0.2)';
+            });
+        });
+
+        // Query Dispatch Form Actions
+        function handleQuerySubmit(e) {
+            e.preventDefault();
+            const form = e.target;
+            const successOverlay = document.getElementById('querySuccessMessage');
+            
+            successOverlay.classList.remove('hidden');
+            successOverlay.classList.add('flex');
+            form.reset();
+        }
+
+        function resetInquiryForm() {
+            const successOverlay = document.getElementById('querySuccessMessage');
+            successOverlay.classList.add('hidden');
+            successOverlay.classList.remove('flex');
+        }
+
+        // GSAP Elite Scroll & Entrance Animations on Load
+        window.addEventListener('DOMContentLoaded', () => {
+            // Register ScrollTrigger
+            gsap.registerPlugin(ScrollTrigger);
+
+            const entranceTl = gsap.timeline();
+
+            entranceTl.from('header', {
+                y: -50,
+                opacity: 0,
+                duration: 1,
+                ease: 'power3.out'
+            });
+
+            entranceTl.from('#leftHeroColumn', {
+                scale: 1.1,
+                opacity: 0,
+                duration: 0.8,
+                ease: 'power2.out'
+            }, '-=0.5');
+
+            entranceTl.from('#centerHeroImage', {
+                y: 100,
+                opacity: 0,
+                duration: 1.2,
+                ease: 'power3.out'
+            }, '-=0.6');
+
+            entranceTl.from('#rightHeroColumn', {
+                x: 50,
+                opacity: 0,
+                duration: 0.8,
+                ease: 'power2.out'
+            }, '-=0.8');
+
+            entranceTl.from('#navigationDock', {
+                y: 50,
+                opacity: 0,
+                duration: 0.8,
+                ease: 'power2.out'
+            }, '-=0.4');
+
+            // Notebook & Summary Box Scroll trigger (Updated Selectors for Section 2)
+            gsap.from('#about-left', {
+                scrollTrigger: {
+                    trigger: '#about',
+                    start: 'top 80%',
+                    end: 'top 40%',
+                    scrub: true
+                },
+                x: -50,
+                opacity: 0,
+                duration: 1
+            });
+
+            gsap.from('#about-right', {
+                scrollTrigger: {
+                    trigger: '#about',
+                    start: 'top 70%',
+                    end: 'top 30%',
+                    scrub: true
+                },
+                y: 50,
+                opacity: 0,
+                duration: 1
+            });
+
+            // Bento Boxes Reveal Trigger (Updated Selector)
+            gsap.from('#services .bento-item', {
+                scrollTrigger: {
+                    trigger: '#services',
+                    start: 'top 60%',
+                },
+                y: 50,
+                opacity: 0,
+                duration: 0.8,
+                stagger: 0.12,
+                ease: 'power2.out'
+            });
+        });
     </script>
 </body>
 </html>
