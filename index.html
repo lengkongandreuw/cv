@@ -1,41 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Andrew Lengkong | Creative Multimedia Designer Portfolio</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Syne (bold headings), Space Grotesk (tech/mono hybrid), Playfair Display (editorial italic) -->
+    <title>Andreuw - Art Director & Design Enthusiast</title>
+    <meta name="description" content="Portfolio of Andreuw, Art Director, UI/UX Expert, and Design Enthusiast.">
+    
+    <!-- Fonts: Plus Jakarta Sans (Elegant Display) & Inter (Clean Body) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400;1,700&family=Space+Grotesk:wght@300;400;500;700&family=Syne:wght@700;800&family=Zhi+Mang+Xing&family=Noto+Sans+SC:wght@400;700;900&display=swap" rel="stylesheet">
-    <!-- FontAwesome for icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- GSAP (GreenSock) for elite animations -->
+
+    <!-- GSAP & Lenis for Smooth Scrolling & High-End Animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
 
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
-                        syne: ['Syne', 'sans-serif'],
-                        space: ['Space Grotesk', 'sans-serif'],
-                        editorial: ['Playfair Display', 'serif'],
-                        chinese: ['Noto Sans SC', 'sans-serif'],
-                        brush: ['Zhi Mang Xing', 'cursive']
+                        display: ['Plus Jakarta Sans', 'sans-serif'],
+                        body: ['Inter', 'sans-serif'],
                     },
                     colors: {
-                        grunge: {
-                            black: '#121212',
-                            white: '#F4F3EF', // warm paper white
-                            red: '#D12D2D',
-                            blue: '#1D63B8', // Blue Painter's Tape
-                            gray: '#2C2B2A',
-                            accent: '#F25C05'
-                        }
+                        base: '#FCFCFC', // Very clean white
+                        ink: '#0A0A0A',  // Almost black
+                        cGreen: '#00E676', // Vibrant Clashing Green
+                        cOrange: '#FF3D00', // Vibrant Clashing Orange
+                        cPurple: '#651FFF', // Vibrant Clashing Purple
+                        surface: '#F5F5F5' // Light gray for subtle separation
+                    },
+                    transitionTimingFunction: {
+                        'expo': 'cubic-bezier(0.16, 1, 0.3, 1)',
                     }
                 }
             }
@@ -43,1070 +47,495 @@
     </script>
 
     <style>
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #121212;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #D12D2D;
-            border-radius: 2px;
+        /* Base Styling */
+        body {
+            background-color: #FCFCFC;
+            color: #0A0A0A;
+            overflow-x: hidden;
+            cursor: none; /* Hide default cursor for custom interactive cursor */
         }
 
-        /* Textured Overlays */
-        .noise-bg {
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-            opacity: 0.05;
-            pointer-events: none;
-        }
-
-        /* Paper tear shadow & texture helper */
-        .tear-shadow {
-            filter: drop-shadow(0px 8px 15px rgba(0,0,0,0.4));
-        }
-
-        /* Custom Cursor styling */
-        .custom-cursor {
-            width: 20px;
-            height: 20px;
-            border: 2px solid #D12D2D;
-            background: rgba(209, 45, 45, 0.2);
-            border-radius: 50%;
+        /* Custom Interactive Cursor */
+        .cursor-dot,
+        .cursor-outline {
             position: fixed;
+            top: 0;
+            left: 0;
             transform: translate(-50%, -50%);
-            pointer-events: none;
-            z-index: 9999;
-            transition: width 0.2s, height 0.2s, background-color 0.2s;
-        }
-
-        .custom-cursor-dot {
-            width: 6px;
-            height: 6px;
-            background: #D12D2D;
             border-radius: 50%;
-            position: fixed;
-            transform: translate(-50%, -50%);
-            pointer-events: none;
             z-index: 9999;
+            pointer-events: none;
+        }
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #0A0A0A;
+            transition: width 0.3s, height 0.3s, background-color 0.3s;
+        }
+        .cursor-outline {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(10, 10, 10, 0.2);
+            transition: width 0.3s, height 0.3s, border-color 0.3s, background-color 0.3s;
         }
 
-        /* Grid background patterns */
-        .grid-pattern-light {
-            background-size: 30px 30px;
-            background-image: linear-gradient(to right, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
-                              linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
-        }
+        /* Hover States for Cursor */
+        .cursor-hover-green .cursor-outline { background-color: #00E676; border-color: transparent; mix-blend-mode: multiply; transform: translate(-50%, -50%) scale(1.5); }
+        .cursor-hover-orange .cursor-outline { background-color: #FF3D00; border-color: transparent; mix-blend-mode: multiply; transform: translate(-50%, -50%) scale(1.5); }
+        .cursor-hover-purple .cursor-outline { background-color: #651FFF; border-color: transparent; mix-blend-mode: multiply; transform: translate(-50%, -50%) scale(1.5); }
+        .cursor-hover-image .cursor-outline { width: 80px; height: 80px; background-color: rgba(255, 255, 255, 0.8); mix-blend-mode: difference; }
 
-        .grid-pattern-dark {
-            background-size: 30px 30px;
-            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                              linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        /* Elegant Text Reveals & Hovers */
+        .clip-text {
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
         }
-
-        /* Halftone Dot pattern */
-        .halftone {
-            background-image: radial-gradient(rgba(0,0,0,0.15) 15%, transparent 16%);
-            background-size: 12px 12px;
-        }
-
-        .halftone-dark {
-            background-image: radial-gradient(rgba(255,255,255,0.08) 15%, transparent 16%);
-            background-size: 12px 12px;
-        }
-
-        /* Tape shapes */
-        .blue-tape {
-            background-color: #1D63B8;
-            opacity: 0.9;
-            transform: rotate(-1.5deg);
-            box-shadow: 2px 3px 5px rgba(0,0,0,0.2);
+        
+        .hover-color-fill {
             position: relative;
+            display: inline-block;
+            overflow: hidden;
         }
-        .blue-tape::before {
+        .hover-color-fill::after {
             content: '';
             position: absolute;
-            left: -5px; top: 0; bottom: 0; width: 6px;
-            background: repeating-linear-gradient(-45deg, transparent, transparent 2px, #121212 2px, #121212 4px);
-            background-size: 6px 100%;
-            opacity: 0.3;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 0%;
+            z-index: -1;
+            transition: height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .blue-tape::after {
-            content: '';
-            position: absolute;
-            right: -5px; top: 0; bottom: 0; width: 6px;
-            background: repeating-linear-gradient(45deg, transparent, transparent 2px, #121212 2px, #121212 4px);
-            background-size: 6px 100%;
-            opacity: 0.3;
+        .hover-color-fill.green::after { background-color: #00E676; }
+        .hover-color-fill.orange::after { background-color: #FF3D00; }
+        .hover-color-fill.purple::after { background-color: #651FFF; }
+        .hover-color-fill:hover::after { height: 100%; }
+
+        /* Image Parallax Container */
+        .img-reveal {
+            overflow: hidden;
+            border-radius: 16px;
+        }
+        .img-reveal img {
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .img-reveal:hover img {
+            transform: scale(1.05);
         }
 
-        /* Lined-paper pattern for About Section */
-        .lined-paper {
-            background-color: #F4F3EF;
-            background-image: linear-gradient(#e5e2d9 1px, transparent 1px);
-            background-size: 100% 2.5rem; /* Matches line-height */
-        }
+        /* Clean Lines */
+        .hairline-b { border-bottom: 1px solid rgba(10, 10, 10, 0.1); }
+        .hairline-t { border-top: 1px solid rgba(10, 10, 10, 0.1); }
 
-        /* Glitch text effect on hover */
-        .glitch-hover:hover {
-            text-shadow: 2px -1px 0 #D12D2D, -2px 1px 0 #1D63B8;
-            animation: glitch-anim 0.3s infinite;
-        }
-
-        @keyframes glitch-anim {
-            0% { text-shadow: 2px -1px 0 #D12D2D, -2px 1px 0 #1D63B8; }
-            50% { text-shadow: -1px 2px 0 #D12D2D, 2px -2px 0 #1D63B8; }
-            100% { text-shadow: 1px -1px 0 #D12D2D, -1px 1px 0 #1D63B8; }
-        }
-
-        /* Infinite marquee */
-        @keyframes marquee {
-            0% { transform: translateX(0%); }
-            100% { transform: translateX(-50%); }
-        }
-        .animate-marquee {
-            animation: marquee 25s linear infinite;
-        }
-        .animate-marquee:hover {
-            animation-play-state: paused;
-        }
+        /* Utilities */
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
-<body class="bg-grunge-black text-grunge-white font-space overflow-x-hidden selection:bg-grunge-red selection:text-white">
+<body class="font-body antialiased selection:bg-cPurple selection:text-base">
 
-    <!-- Noise Texture Overlay (Global) -->
-    <div class="fixed inset-0 noise-bg z-[999]"></div>
+    <div class="cursor-dot hidden md:block"></div>
+    <div class="cursor-outline hidden md:block"></div>
 
-    <!-- Custom Cursor Nodes -->
-    <div class="custom-cursor hidden md:block" id="customCursor"></div>
-    <div class="custom-cursor-dot hidden md:block" id="customCursorDot"></div>
+    <nav class="fixed w-full z-50 mix-blend-difference text-white py-6 px-6 md:px-12 transition-all duration-500" id="navbar">
+        <div class="flex justify-between items-center max-w-screen-2xl mx-auto">
+            <a href="#" class="font-display font-bold text-xl tracking-tight interactive-link" data-cursor="purple">Andreuw.</a>
+            
+            <div class="hidden md:flex items-center space-x-12 font-body text-sm font-medium">
+                <!-- Nav order updated to reflect sections -->
+                <a href="#projects" class="interactive-link hover:text-cGreen transition-colors" data-cursor="green">Projects</a>
+                <a href="#expertise" class="interactive-link hover:text-cOrange transition-colors" data-cursor="orange">Expertise</a>
+                <a href="#experience" class="interactive-link hover:text-cPurple transition-colors" data-cursor="purple">Experience</a>
+                <a href="#contact" class="interactive-link hover:opacity-70 transition-opacity" data-cursor="image">Contact</a>
+            </div>
+            
+            <button class="md:hidden font-body text-sm font-medium uppercase tracking-wider">Menu</button>
+        </div>
+    </nav>
 
-    <!-- FLOATING MULTI-LANGUAGE CONTROLLERS & NAV -->
-    <header class="fixed top-0 left-0 w-full z-50 px-6 py-4 flex justify-between items-center mix-blend-difference">
-        <!-- Logo / Identity Badge -->
-        <a href="#hero" class="group flex items-center gap-2">
-            <span class="font-syne text-sm md:text-lg tracking-tighter text-grunge-white group-hover:text-grunge-red transition-colors duration-300">LENGKONGANDREUW PORTFOLIO 2026</span>
-        </a>
-
-        <!-- Floating Control Suite -->
-        <div class="flex items-center gap-4">
-            <!-- Language Selector Switch -->
-            <div class="bg-grunge-black/80 backdrop-blur-md border border-grunge-white/10 px-1 py-1 rounded-full flex items-center relative shadow-xl">
-                <button onclick="toggleLanguage('en')" id="langBtn-en" class="px-3 py-1 text-xs font-bold rounded-full transition-all duration-300 bg-grunge-red text-white">
-                    EN
-                </button>
-                <button onclick="toggleLanguage('zh')" id="langBtn-zh" class="px-3 py-1 text-xs font-bold rounded-full transition-all duration-300 text-grunge-white/60 hover:text-white">
-                    中文
-                </button>
+    <header class="min-h-screen flex items-center pt-20 pb-16 px-6 md:px-12">
+        <div class="max-w-screen-2xl mx-auto w-full relative z-10">
+            <div class="gsap-fade-up">
+                <p class="font-body text-sm md:text-base text-ink/60 mb-6 flex items-center gap-3">
+                    <span class="w-2 h-2 rounded-full bg-cGreen animate-pulse"></span>
+                    Art Director & Design Enthusiast
+                </p>
+                
+                <h1 class="font-display font-bold text-5xl md:text-8xl lg:text-[7.5rem] leading-[1.05] tracking-tight mb-8">
+                    <span class="hover-color-fill green interactive-link rounded-lg px-2 -ml-2" data-cursor="green">Art</span> <br>
+                    <span class="hover-color-fill orange interactive-link rounded-lg px-2 -ml-2" data-cursor="orange">Direction</span> & <br>
+                    <span class="hover-color-fill purple interactive-link rounded-lg px-2 -ml-2" data-cursor="purple">Design.</span>
+                </h1>
             </div>
 
-            <!-- Quick Action: Lets Talk -->
-            <a href="mailto:lengkongandrew@gmail.com" class="hidden sm:inline-block px-4 py-1.5 bg-grunge-white text-grunge-black font-bold text-xs uppercase rounded-full hover:bg-grunge-red hover:text-white transition-all duration-300 border border-transparent hover:scale-105 shadow-md">
-                <span data-lang-en="GET IN TOUCH" data-lang-zh="取得联系">GET IN TOUCH</span>
-            </a>
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 mt-16 lg:mt-24 gsap-fade-up">
+                <div class="md:col-span-6 lg:col-span-5">
+                    <p class="font-body text-lg md:text-xl text-ink/70 leading-relaxed font-light">
+                        15+ years of translating abstract visions into striking visual realities. A relentless design enthusiast bridging high-end art direction with meticulous UI/UX architecture.
+                    </p>
+                </div>
+                <div class="md:col-span-6 lg:col-span-4 lg:col-start-9 flex flex-col sm:flex-row gap-4 items-start">
+                    <a href="#projects" class="group relative px-8 py-4 bg-ink text-base rounded-full font-body font-medium overflow-hidden interactive-link w-full sm:w-auto text-center" data-cursor="green">
+                        <span class="relative z-10 flex items-center justify-center gap-2">View Projects <i class="fa-solid fa-arrow-right transition-transform group-hover:translate-x-1"></i></span>
+                        <div class="absolute inset-0 bg-cGreen transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-500 ease-expo"></div>
+                    </a>
+                    <a href="#" class="group px-8 py-4 bg-transparent border border-ink/20 text-ink rounded-full font-body font-medium hover:border-ink transition-colors interactive-link w-full sm:w-auto text-center" data-cursor="purple">
+                        Download CV
+                    </a>
+                </div>
+            </div>
         </div>
     </header>
 
-    <!-- SECTION 1: HERO / COVER (Splitted Canvas Style) -->
-    <section id="hero" class="relative min-h-screen w-full flex flex-col md:flex-row items-stretch justify-between overflow-hidden pt-16 md:pt-0">
-        
-        <!-- Base portfoliobg.png Image Layer with Dynamic CSS Fallback if missing -->
-        <div class="absolute inset-0 w-full h-full pointer-events-none z-0">
-            <img src="./portfoliobg.png" alt="Portfolio Base Background" id="portfoliobg-img" class="w-full h-full object-cover hidden" onload="this.classList.remove('hidden'); document.getElementById('portfoliobg-fallback').classList.add('hidden');" onerror="this.remove();">
-        </div>
-
-        <!-- Background Layer Fallback (Runs if portfoliobg.png is missing) -->
-        <div id="portfoliobg-fallback" class="absolute inset-0 w-full h-full flex flex-col md:flex-row pointer-events-none z-0">
-            <!-- Left Half (Light/White Canvas) -->
-            <div class="w-full md:w-1/2 bg-grunge-white grid-pattern-light relative p-8 flex flex-col justify-between overflow-hidden">
-                <div class="absolute inset-0 halftone opacity-30"></div>
-                <div class="absolute left-4 bottom-1/4 text-grunge-black/5 font-syne text-[12vw] leading-none select-none uppercase font-black">
-                    DESIGNER
-                </div>
-                <div class="absolute bottom-6 left-6 opacity-10 w-48 h-48">
-                    <svg viewBox="0 0 100 100" class="fill-current text-grunge-black">
-                        <path d="M50 5 L90 25 L80 75 L50 95 L20 75 L10 25 Z" fill="none" stroke="currentColor" stroke-width="2"/>
-                        <circle cx="50" cy="50" r="15" fill="none" stroke="currentColor" stroke-width="2"/>
-                    </svg>
-                </div>
+    <section class="py-12 px-6 md:px-12 hairline-t hairline-b bg-base">
+        <div class="max-w-screen-2xl mx-auto flex flex-wrap justify-between items-center gap-8 font-display">
+            <div class="gsap-fade-up">
+                <div class="text-4xl md:text-5xl font-bold flex items-start">15<span class="text-cPurple text-2xl mt-1">+</span></div>
+                <div class="font-body text-sm text-ink/50 mt-1">Years Experience</div>
             </div>
-
-            <!-- Right Half (Dark/Black Canvas) -->
-            <div class="w-full md:w-1/2 bg-grunge-black grid-pattern-dark relative overflow-hidden flex flex-col justify-between p-8">
-                <div class="absolute inset-0 halftone-dark opacity-20"></div>
-                <div class="absolute right-4 top-12 text-grunge-white/[0.02] font-mono text-sm leading-relaxed text-right select-none">
-                    <pre>
-class AndrewLengkong {
-  constructor() {
-    this.role = "Creative Director";
-    this.skills = ["UI/UX", "Social Media", "Esports"];
-  }
-}
-                    </pre>
-                </div>
+            <div class="gsap-fade-up delay-100">
+                <div class="text-4xl md:text-5xl font-bold flex items-start">50<span class="text-cOrange text-2xl mt-1">+</span></div>
+                <div class="font-body text-sm text-ink/50 mt-1">Crafted Experiences</div>
+            </div>
+            <div class="gsap-fade-up delay-200">
+                <div class="text-4xl md:text-5xl font-bold flex items-start">100<span class="text-cGreen text-2xl mt-1">%</span></div>
+                <div class="font-body text-sm text-ink/50 mt-1">Aesthetic Focus</div>
+            </div>
+            <div class="gsap-fade-up delay-300">
+                <div class="text-4xl md:text-5xl font-bold text-ink">Lead</div>
+                <div class="font-body text-sm text-ink/50 mt-1">Art & Design</div>
             </div>
         </div>
+    </section>
 
-        <!-- HERO MAIN WORKSPACE (Poster Composition Layout) -->
-        <div class="relative w-full flex-grow min-h-screen z-10 overflow-hidden">
-            
-            <!-- RIGHT LAYER: nama.png (Cutout text, goes behind model) -->
-            <div class="absolute top-[15%] md:top-[15%] right-[-5%] md:right-[2%] z-[15] w-[90%] md:w-[50%] pointer-events-none" id="rightHeroColumn">
-                <img src="https://raw.githubusercontent.com/lengkongandreuw/portfolio/main/nama.png" alt="Andrew Lengkong" class="w-full h-auto drop-shadow-2xl">
-            </div>
-
-            <!-- CENTER LAYER: model1.png (Free-standing cutout) -->
-            <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 z-[25] w-full max-w-[800px] pointer-events-none flex justify-center items-end" id="centerHeroImage">
-                <img src="https://raw.githubusercontent.com/lengkongandreuw/portfolio/main/model1.png" alt="Andrew Lengkong Portrait" class="w-full h-auto object-contain object-bottom drop-shadow-[0_20px_50px_rgba(0,0,0,0.8)] max-h-[85vh]">
-            </div>
-
-            <!-- LEFT LAYER: headlinecover.png -->
-            <div class="absolute top-[20%] md:top-[25%] left-[5%] md:left-[8%] z-[30] w-[85%] md:w-[35%] flex flex-col items-start" id="leftHeroColumn">
-                <!-- Distressed Red Badge -->
-                <div class="inline-block transform -rotate-2 mb-4 px-3 py-1 bg-grunge-red text-white font-mono text-xs font-bold tracking-widest uppercase rounded shadow-lg animate-bounce">
-                    <i class="fa-solid fa-bolt mr-1"></i> PORTFOLIO EDITION 2026
-                </div>
-
-                <!-- Replaceable Headline Image -->
-                <div class="relative mb-6 w-full">
-                    <img src="./headlinecover.png" alt="Creative Multimedia Designer Headline" id="headlinecover-img" class="max-w-full h-auto hidden drop-shadow-xl" onload="this.classList.remove('hidden'); document.getElementById('headlinecover-fallback').classList.add('hidden');" onerror="this.remove();">
-                </div>
-
-                <!-- Fallback typography block if headlinecover.png is missing -->
-                <div id="headlinecover-fallback" class="bg-transparent rounded-lg relative mb-6">
-                    <h2 class="font-syne text-4xl lg:text-6xl font-black leading-tight tracking-tighter text-grunge-black uppercase select-none drop-shadow-md">
-                        <span class="block bg-grunge-black text-white px-2 py-1 transform -rotate-1 inline-block mb-1" data-lang-en="CREATIVE" data-lang-zh="极具创意">CREATIVE</span>
-                        <span class="block text-grunge-red bg-white px-2 py-1 transform rotate-1 inline-block border-2 border-grunge-red" data-lang-en="MULTIMEDIA" data-lang-zh="多媒体">MULTIMEDIA</span>
-                        <span class="block bg-grunge-black text-white px-2 py-1 transform -rotate-2 inline-block mt-1" data-lang-en="DESIGNER" data-lang-zh="设计师">DESIGNER</span>
-                    </h2>
-                </div>
-
-                <div class="max-w-sm mb-6 text-sm font-space text-grunge-black bg-white/80 p-3 rounded shadow-md backdrop-blur-sm transform rotate-1">
-                    Designing impactful digital experiences that drive engagement, solve problems, and deliver real business value.
-                </div>
-
-                <!-- Signature -->
-                <p class="font-brush text-4xl text-grunge-red transform -rotate-3 select-none mb-4">
-                    Andrew Lengkong
+    <section id="projects" class="py-24 md:py-32 px-6 md:px-12 bg-ink text-base rounded-[2rem] md:rounded-[4rem] mx-2 md:mx-6 mt-24 mb-24">
+        <div class="max-w-screen-2xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8 gsap-fade-up">
+                <h2 class="font-display text-4xl md:text-6xl font-bold tracking-tight">Signature Projects.</h2>
+                <p class="max-w-sm font-body text-base/70 font-light">
+                    Where art direction meets technical precision. Highlighting the visual journey, aesthetic choices, and seamless user experience.
                 </p>
-
-                <!-- Stylized Black Masking/Duct Tape with scrolling text -->
-                <div class="w-full bg-grunge-black text-grunge-white py-2 px-3 transform -rotate-1 relative overflow-hidden shadow-lg border-y-2 border-grunge-white/20 select-none max-w-sm">
-                    <div class="flex overflow-hidden whitespace-nowrap">
-                        <div class="inline-block animate-marquee uppercase font-mono text-xs tracking-widest">
-                            <span class="mx-4 text-grunge-red">★</span> <span data-lang-en="BASED IN MANADO, INDONESIA" data-lang-zh="驻于印度尼西亚万鸦老">BASED IN MANADO, INDONESIA</span>
-                            <span class="mx-4 text-grunge-red">★</span> <span data-lang-en="ESTABLISHED 1989" data-lang-zh="始于1989年">ESTABLISHED 1989</span>
-                            <span class="mx-4 text-grunge-red">★</span> <span data-lang-en="CODE IS DESIGN" data-lang-zh="代码即是设计">CODE IS DESIGN</span>
-                        </div>
-                        <div class="inline-block animate-marquee uppercase font-mono text-xs tracking-widest">
-                            <span class="mx-4 text-grunge-red">★</span> <span data-lang-en="BASED IN MANADO, INDONESIA" data-lang-zh="驻于印度尼西亚万鸦老">BASED IN MANADO, INDONESIA</span>
-                            <span class="mx-4 text-grunge-red">★</span> <span data-lang-en="ESTABLISHED 1989" data-lang-zh="始于1989年">ESTABLISHED 1989</span>
-                            <span class="mx-4 text-grunge-red">★</span> <span data-lang-en="CODE IS DESIGN" data-lang-zh="代码即es设计">CODE IS DESIGN</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- FLOATING NAVIGATION DOCK: footerkiri.png / Custom UI Dock Fallback -->
-        <div class="absolute bottom-0 left-0 w-full z-30 px-6 py-6 flex justify-center pointer-events-auto">
-            <div class="w-full max-w-5xl bg-grunge-black/95 backdrop-blur-md border-t-4 border-grunge-red p-4 rounded-t-lg shadow-2xl flex flex-wrap gap-4 items-center justify-between" id="navigationDock">
-                <!-- Replaceable Footer Left Image -->
-                <div class="flex items-center gap-3">
-                    <img src="./footerkiri.png" alt="Capabilities Dock Badge" id="footerkiri-img" class="h-10 w-auto hidden" onload="this.classList.remove('hidden'); document.getElementById('footerkiri-fallback').classList.add('hidden');" onerror="this.remove();">
-                    
-                    <!-- Fallback badge if footerkiri.png is missing -->
-                    <div id="footerkiri-fallback" class="flex items-center gap-2">
-                        <span class="w-3 h-3 bg-grunge-red rounded-full animate-ping"></span>
-                        <span class="font-mono text-xs uppercase tracking-wider text-stone-300" data-lang-en="EXPLORE CAPABILITIES" data-lang-zh="探索核心能力">EXPLORE CAPABILITIES</span>
-                    </div>
-                </div>
-                
-                <!-- Navigation Anchor Targets -->
-                <div class="flex flex-wrap items-center gap-6">
-                    <a href="#about" class="text-xs font-mono uppercase text-stone-300 hover:text-grunge-red transition-all duration-300 flex items-center gap-1.5 group">
-                        <i class="fa-solid fa-user-ninja text-grunge-red group-hover:rotate-12 transition-transform"></i>
-                        <span data-lang-en="About Andrew" data-lang-zh="关于安德鲁">About Andrew</span>
-                    </a>
-                    <a href="#services" class="text-xs font-mono uppercase text-stone-300 hover:text-grunge-red transition-all duration-300 flex items-center gap-1.5 group">
-                        <i class="fa-solid fa-cubes text-grunge-red group-hover:rotate-12 transition-transform"></i>
-                        <span data-lang-en="What I Design" data-lang-zh="我的设计门类">What I Design</span>
-                    </a>
-                    <a href="#contact" class="text-xs font-mono uppercase text-stone-300 hover:text-grunge-red transition-all duration-300 flex items-center gap-1.5 group">
-                        <i class="fa-solid fa-address-book text-grunge-red group-hover:rotate-12 transition-transform"></i>
-                        <span data-lang-en="Direct Link" data-lang-zh="直连通道">Direct Link</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION 2: ABOUT ME (Dark Grunge / Chalkboard Layout) -->
-    <section id="about" class="relative min-h-screen w-full bg-grunge-black py-24 px-6 md:px-12 lg:px-20 flex flex-col justify-center overflow-hidden">
-        
-        <!-- Base Section 2 Background Image -->
-        <div class="absolute inset-0 w-full h-full pointer-events-none z-0">
-            <img src="https://raw.githubusercontent.com/lengkongandreuw/portfolio/main/section2bg.png" alt="About Me Background" class="w-full h-full object-cover opacity-95">
-        </div>
-
-        <div class="max-w-7xl mx-auto w-full relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            
-            <!-- LEFT COLUMN: About Me Header & Info List -->
-            <div class="lg:col-span-5 flex flex-col justify-center" id="about-left">
-                
-                <!-- Stylized Text Header matching image_8dc9bf.jpg -->
-                <div class="mb-10 transform -rotate-3 select-none">
-                    <h2 class="font-syne text-6xl md:text-7xl font-black uppercase tracking-tighter flex items-center gap-3">
-                        <span class="text-white drop-shadow-md">ABOUT</span> 
-                        <span class="text-grunge-red drop-shadow-md">ME</span>
-                    </h2>
-                    <!-- Red underline stroke -->
-                    <div class="w-64 h-1.5 bg-grunge-red mt-2 rounded opacity-90 box-shadow-lg"></div>
-                    <!-- Thin secondary underline -->
-                    <div class="w-72 h-[1px] bg-grunge-red mt-1 rounded opacity-50"></div>
-                </div>
-
-                <!-- Lined List Info (White text on dark bg) -->
-                <ul class="space-y-4 font-mono text-sm pr-4">
-                    <!-- Profession -->
-                    <li class="flex items-center gap-4 border-b border-stone-500/50 pb-3 group">
-                        <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform">
-                            <i class="fa-solid fa-user text-xs"></i>
-                        </div>
-                        <span class="text-stone-200 font-bold tracking-wide" data-lang-en="Experienced Full Stack Graphic Designer" data-lang-zh="资深全栈平面视觉设计师">Experienced Full Stack Graphic Designer</span>
-                    </li>
-                    <!-- Year Born -->
-                    <li class="flex items-center gap-4 border-b border-stone-500/50 pb-3 group">
-                        <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform">
-                            <i class="fa-regular fa-calendar text-xs"></i>
-                        </div>
-                        <span class="text-stone-200 tracking-wide">born in 1989</span>
-                    </li>
-                    <!-- Location -->
-                    <li class="flex items-center gap-4 border-b border-stone-500/50 pb-3 group">
-                        <div class="w-8 h-8 rounded-full bg-red-600 flex items-center justify-center text-white flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform">
-                            <i class="fa-solid fa-location-dot text-xs"></i>
-                        </div>
-                        <span class="text-stone-200 tracking-wide">live in Manado, Indonesia</span>
-                    </li>
-                    <!-- Email -->
-                    <li class="flex items-center gap-4 border-b border-stone-500/50 pb-3 group">
-                        <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform">
-                            <i class="fa-solid fa-envelope text-xs"></i>
-                        </div>
-                        <a href="mailto:lengkongandrew@gmail.com" class="text-stone-200 tracking-wide hover:text-white transition-colors">lengkongandrew@gmail.com</a>
-                    </li>
-                    <!-- WhatsApp -->
-                    <li class="flex items-center gap-4 border-b border-stone-500/50 pb-3 group">
-                        <div class="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center text-white flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform">
-                            <i class="fa-brands fa-whatsapp text-sm"></i>
-                        </div>
-                        <span class="text-stone-200 tracking-wide flex gap-2">
-                            <span class="text-stone-400">fast response via whatsapp</span>
-                            <a href="https://wa.me/6285796400320" target="_blank" class="hover:text-white transition-colors">+62 857 9640 0320</a>
-                        </span>
-                    </li>
-                    <!-- Behance -->
-                    <li class="flex items-center gap-4 border-b border-stone-500/50 pb-3 group">
-                        <div class="w-8 h-8 rounded bg-blue-600 flex items-center justify-center text-white flex-shrink-0 shadow-lg font-bold font-syne text-sm group-hover:scale-110 transition-transform">
-                            Bē
-                        </div>
-                        <a href="https://behance.net/andrewlengkong" target="_blank" class="text-blue-400 underline tracking-wide hover:text-blue-300 transition-colors">behance.net/andrewlengkong</a>
-                    </li>
-                    <!-- LinkedIn -->
-                    <li class="flex items-center gap-4 border-b border-stone-500/50 pb-3 group">
-                        <div class="w-8 h-8 rounded bg-blue-600 flex items-center justify-center text-white flex-shrink-0 shadow-lg font-bold font-syne text-sm group-hover:scale-110 transition-transform">
-                            in
-                        </div>
-                        <a href="https://linkedin.com/in/lengkongandrew/" target="_blank" class="text-blue-400 underline tracking-wide hover:text-blue-300 transition-colors">linkedin.com/in/lengkongandrew/</a>
-                    </li>
-                </ul>
             </div>
 
-            <!-- RIGHT COLUMN: Distressed Chalk Summary Box -->
-            <div class="lg:col-span-7 flex flex-col justify-center relative mt-12 lg:mt-0" id="about-right">
-                
-                <div class="relative w-full">
-                    <!-- Floating Paperclip Decoration -->
-                    <div class="absolute -top-12 left-1/4 transform rotate-45 text-stone-300/60 select-none z-0">
-                        <i class="fa-solid fa-paperclip text-4xl"></i>
-                    </div>
-
-                    <!-- Blue Painter's Tape Title -->
-                    <div class="absolute -top-6 left-12 blue-tape px-6 py-2.5 text-white font-syne font-black text-xl lg:text-3xl tracking-widest uppercase z-20 transform -rotate-2 select-none shadow-lg border border-blue-400/20">
-                        <span data-lang-en="SUMMARY" data-lang-zh="个人自述">SUMMARY</span>
-                    </div>
-
-                    <!-- Binder Clip Hardware -->
-                    <div class="absolute -top-8 right-8 z-30 transform rotate-12 select-none drop-shadow-xl">
-                        <svg width="50" height="50" viewBox="0 0 100 100" fill="none">
-                            <rect x="35" y="40" width="30" height="35" rx="2" fill="#111" stroke="#fff" stroke-width="2"/>
-                            <path d="M50 10 C65 10, 70 25, 65 40 M50 10 C35 10, 30 25, 35 40" fill="none" stroke="#ddd" stroke-width="5" stroke-linecap="round"/>
-                        </svg>
-                    </div>
-
-                    <!-- Main Summary Chalk-Box Container -->
-                    <div class="border-[3px] border-white/80 p-8 md:p-12 relative z-10 bg-black/20 backdrop-blur-[2px] shadow-2xl">
+            <div class="space-y-32">
+                <!-- Project 1: Wardeka (Art/Design Focus) -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center gsap-fade-up">
+                    <div class="lg:col-span-7 order-2 lg:order-1">
+                        <div class="inline-block px-4 py-1 rounded-full border border-cGreen text-cGreen font-body text-xs mb-6">Game Art & UI</div>
+                        <h3 class="font-display text-3xl md:text-4xl font-bold mb-6">Wardeka: Cyber-Batik World</h3>
+                        <p class="font-body text-base/70 mb-10 font-light text-lg">
+                            Directed the visual identity and HUD design for a mobile shooter, successfully fusing aggressive Cyberpunk aesthetics with elegant, traditional local motifs.
+                        </p>
                         
-                        <!-- Pseudo double border effect -->
-                        <div class="absolute inset-2 border border-white/30 transform rotate-1 pointer-events-none"></div>
-
-                        <div class="space-y-6 text-stone-200 text-base md:text-lg leading-relaxed font-space z-10 relative mt-6">
-                            <p data-lang-en="Designer with 15+ years of experience in UI/UX, visual design, and digital products. I design mobile apps, games, and marketing visuals." data-lang-zh="拥有超过 15 年行业经验的资深设计师，专注于 UI/UX、视觉设计 and 数字产品。我设计移动应用程序、游戏和营销视觉效果。">
-                                Designer with 15+ years of experience in UI/UX, visual design, and digital products. I design mobile apps, games, and marketing visuals.
-                            </p>
-                            <p data-lang-en="Strong in turning ideas into clear and engaging designs. Experienced in leading projects and working with cross-functional teams." data-lang-zh="善于将创意转化为清晰且引人入胜的设计。在领导项目以及与跨职能团队合作方面经验丰富。">
-                                Strong in turning ideas into clear and engaging designs. Experienced in leading projects and working with cross-functional teams.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION 3: WHAT I DESIGN (Hardcoded Bento Box Grid with Direct Modal Overlays) -->
-    <section id="services" class="relative min-h-screen w-full bg-grunge-black py-24 px-6 md:px-12 lg:px-20 overflow-hidden">
-        
-        <!-- Base Section 3 Background Image -->
-        <div class="absolute inset-0 w-full h-full pointer-events-none z-0">
-            <img src="https://raw.githubusercontent.com/lengkongandreuw/portfolio/main/section3bg.png" alt="What I Design Background" class="w-full h-full object-cover opacity-90">
-            <!-- Overlay gradient untuk memastikan teks tetap terbaca -->
-            <div class="absolute inset-0 bg-gradient-to-b from-grunge-black/60 via-transparent to-grunge-black"></div>
-        </div>
-
-        <div class="max-w-7xl mx-auto relative z-10">
-            
-            <!-- THE HARDCODED BENTO BOX GRID LAYOUT -->
-            <!-- Layout logic: 4 columns setup to mimic the masonry/bento reference image -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 auto-rows-[250px] md:auto-rows-[300px]">
-
-                <!-- Title Header Box -->
-                <div class="col-span-1 md:col-span-2 lg:col-span-2 row-span-1 flex flex-col justify-center p-4 lg:p-10 bg-transparent border-none bento-item">
-                    <span class="font-mono text-grunge-red uppercase tracking-widest text-sm font-bold block mb-2">// CAPABILITIES INDEX</span>
-                    <h2 class="font-syne text-5xl lg:text-7xl font-black text-white uppercase select-none leading-none mb-4">
-                        <span data-lang-en="WHAT I" data-lang-zh="设计">WHAT I</span><br>
-                        <span class="text-grunge-red bg-grunge-white text-grunge-black px-4 transform rotate-1 inline-block" data-lang-en="DESIGN" data-lang-zh="范畴">DESIGN</span>
-                    </h2>
-                </div>
-
-                <!-- 01: Branding & Logo Design -->
-                <button onclick="openBentoModal('branding')" class="bento-item col-span-1 md:col-span-2 lg:col-span-2 row-span-1 group relative overflow-hidden rounded-xl shadow-2xl border border-white/10 bg-stone-900 block text-left w-full h-full">
-                    <!-- GitHub Raw Background with texture overlay -->
-                    <img src="https://raw.githubusercontent.com/lengkongandreuw/portfolio/main/logo.png" alt="Branding Background" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 group-hover:scale-105 transition-all duration-700">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
-                    
-                    <div class="absolute bottom-6 left-6 right-6 flex justify-between items-end z-10">
-                        <div>
-                            <span class="font-mono text-grunge-red font-bold text-lg block mb-1">01</span>
-                            <h3 class="font-syne text-2xl lg:text-3xl font-black text-white uppercase tracking-tight group-hover:text-grunge-red transition-colors" data-lang-en="BRANDING & LOGO DESIGN" data-lang-zh="品牌与标志设计">BRANDING & LOGO DESIGN</h3>
-                        </div>
-                        <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white backdrop-blur group-hover:bg-grunge-red transition-colors flex-shrink-0">
-                            <i class="fa-solid fa-arrow-right transform -rotate-45 group-hover:rotate-0 transition-transform duration-300"></i>
-                        </div>
-                    </div>
-                </button>
-
-                <!-- 02: UI/UX App & Web Design (Tall Box) -->
-                <button onclick="openBentoModal('uiux')" class="bento-item col-span-1 md:col-span-1 lg:col-span-1 row-span-2 group relative overflow-hidden rounded-xl shadow-2xl border border-white/10 bg-stone-900 block text-left w-full h-full flex flex-col justify-between">
-                    <img src="https://raw.githubusercontent.com/lengkongandreuw/portfolio/main/uiux.png" alt="UI/UX Background" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 group-hover:scale-105 transition-all duration-700">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-                    
-                    <div class="relative z-10 p-6 flex flex-col h-full w-full">
-                        <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white backdrop-blur group-hover:bg-grunge-red transition-colors self-end mb-auto">
-                            <i class="fa-solid fa-arrow-right transform -rotate-45 group-hover:rotate-0 transition-transform duration-300"></i>
-                        </div>
-                        <div class="mt-auto">
-                            <span class="font-mono text-grunge-red font-bold text-lg block mb-1">02</span>
-                            <h3 class="font-syne text-2xl font-black text-white uppercase tracking-tight group-hover:text-grunge-red transition-colors" data-lang-en="UI/UX APP & WEB DESIGN" data-lang-zh="UI/UX 应用程序与网页设计">UI/UX APP & WEB DESIGN</h3>
-                        </div>
-                    </div>
-                </button>
-
-                <!-- 03: Digital Imaging & Retouch -->
-                <button onclick="openBentoModal('digital')" class="bento-item col-span-1 md:col-span-1 lg:col-span-2 row-span-1 group relative overflow-hidden rounded-xl shadow-2xl border border-white/10 bg-stone-900 block text-left w-full h-full">
-                    <img src="https://raw.githubusercontent.com/lengkongandreuw/portfolio/main/imagedig.png" alt="Digital Imaging Background" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 group-hover:scale-105 transition-all duration-700">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
-                    
-                    <div class="absolute bottom-6 left-6 right-6 flex justify-between items-end z-10">
-                        <div>
-                            <span class="font-mono text-grunge-red font-bold text-lg block mb-1">03</span>
-                            <h3 class="font-syne text-xl lg:text-2xl font-black text-white uppercase tracking-tight group-hover:text-grunge-red transition-colors" data-lang-en="DIGITAL IMAGING & RETOUCH" data-lang-zh="数字成像与修饰">DIGITAL IMAGING & RETOUCH</h3>
-                        </div>
-                        <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white backdrop-blur group-hover:bg-grunge-red transition-colors flex-shrink-0 hidden sm:flex">
-                            <i class="fa-solid fa-arrow-right transform -rotate-45 group-hover:rotate-0 transition-transform duration-300"></i>
-                        </div>
-                    </div>
-                </button>
-
-                <!-- 04: Social Media & Pub (Tall Box) -->
-                <button onclick="openBentoModal('social')" class="bento-item col-span-1 md:col-span-1 lg:col-span-1 row-span-2 group relative overflow-hidden rounded-xl shadow-2xl border border-white/10 bg-stone-900 block text-left w-full h-full flex flex-col justify-between">
-                    <img src="https://raw.githubusercontent.com/lengkongandreuw/portfolio/main/socialmedia.png" alt="Social Media Background" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 group-hover:scale-105 transition-all duration-700">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-                    
-                    <div class="relative z-10 p-6 flex flex-col h-full w-full">
-                        <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white backdrop-blur group-hover:bg-grunge-red transition-colors self-end mb-auto">
-                            <i class="fa-solid fa-arrow-right transform -rotate-45 group-hover:rotate-0 transition-transform duration-300"></i>
-                        </div>
-                        <div class="mt-auto">
-                            <span class="font-mono text-grunge-red font-bold text-lg block mb-1">04</span>
-                            <h3 class="font-syne text-2xl font-black text-white uppercase tracking-tight group-hover:text-grunge-red transition-colors" data-lang-en="SOCIAL MEDIA & PUB" data-lang-zh="社交媒体与出版">SOCIAL MEDIA & PUB</h3>
-                        </div>
-                    </div>
-                </button>
-
-                <!-- 05: Esport Design & Brand -->
-                <button onclick="openBentoModal('esports')" class="bento-item col-span-1 md:col-span-1 lg:col-span-2 row-span-1 group relative overflow-hidden rounded-xl shadow-2xl border border-white/10 bg-stone-900 block text-left w-full h-full">
-                    <img src="https://raw.githubusercontent.com/lengkongandreuw/portfolio/main/sports.png" alt="Esport Design Background" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 group-hover:scale-105 transition-all duration-700">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
-                    
-                    <div class="absolute bottom-6 left-6 right-6 flex justify-between items-end z-10">
-                        <div>
-                            <span class="font-mono text-grunge-red font-bold text-lg block mb-1">05</span>
-                            <h3 class="font-syne text-xl lg:text-2xl font-black text-white uppercase tracking-tight group-hover:text-grunge-red transition-colors" data-lang-en="ESPORT DESIGN & BRAND" data-lang-zh="电竞设计与品牌">ESPORT DESIGN & BRAND</h3>
-                        </div>
-                        <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white backdrop-blur group-hover:bg-grunge-red transition-colors flex-shrink-0 hidden sm:flex">
-                            <i class="fa-solid fa-arrow-right transform -rotate-45 group-hover:rotate-0 transition-transform duration-300"></i>
-                        </div>
-                    </div>
-                </button>
-
-                <!-- 06: Merch and Fashion -->
-                <button onclick="openBentoModal('merch')" class="bento-item col-span-1 md:col-span-1 lg:col-span-1 row-span-1 group relative overflow-hidden rounded-xl shadow-2xl border border-white/10 bg-stone-900 block text-left w-full h-full flex flex-col justify-between">
-                    <img src="https://raw.githubusercontent.com/lengkongandreuw/portfolio/main/Screenshot%202026-06-02%20183144.png" alt="Merch and Fashion Background" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 group-hover:scale-105 transition-all duration-700">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
-                    
-                    <div class="relative z-10 p-6 flex flex-col h-full justify-end">
-                        <span class="font-mono text-grunge-red font-bold text-lg block mb-1">06</span>
-                        <h3 class="font-syne text-xl font-black text-white uppercase tracking-tight group-hover:text-grunge-red transition-colors leading-tight" data-lang-en="MERCH & FASHION" data-lang-zh="周边商品与时尚设计">MERCH & FASHION</h3>
-                    </div>
-                </button>
-
-                <!-- 07: Game Design Related -->
-                <button onclick="openBentoModal('game')" class="bento-item col-span-1 md:col-span-2 lg:col-span-3 row-span-1 group relative overflow-hidden rounded-xl shadow-2xl border border-white/10 bg-stone-900 block text-left w-full h-full">
-                    <img src="https://raw.githubusercontent.com/lengkongandreuw/portfolio/main/ganedesign.png" alt="Game Design Background" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 group-hover:scale-105 transition-all duration-700">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
-                    
-                    <div class="absolute bottom-6 left-6 right-6 flex justify-between items-end z-10">
-                        <div>
-                            <span class="font-mono text-grunge-red font-bold text-lg block mb-1">07</span>
-                            <h3 class="font-syne text-2xl font-black text-white uppercase tracking-tight group-hover:text-grunge-red transition-colors" data-lang-en="GAME DESIGN RELATED" data-lang-zh="游戏设计相关">GAME DESIGN RELATED</h3>
-                        </div>
-                        <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white backdrop-blur group-hover:bg-grunge-red transition-colors flex-shrink-0">
-                            <i class="fa-solid fa-arrow-right transform -rotate-45 group-hover:rotate-0 transition-transform duration-300"></i>
-                        </div>
-                    </div>
-                </button>
-
-            </div>
-
-            <!-- TOOLS & SYSTEMS SECTION -->
-            <div class="mt-20 pt-16 border-t border-white/10 relative z-10 bento-item">
-                <div class="flex flex-col lg:flex-row items-stretch gap-12">
-                    
-                    <div class="w-full lg:w-1/3 flex flex-col justify-between">
-                        <div>
-                            <span class="font-mono text-grunge-red text-xs uppercase tracking-widest block mb-2">// TECHNICAL PIPELINE</span>
-                            <h3 class="font-syne text-3xl font-black text-white uppercase mb-4" data-lang-en="TOOLS & OPERATIONS" data-lang-zh="技术底座与运营工具">TOOLS & OPERATIONS</h3>
-                        </div>
-                        <div class="bg-white p-3 rounded max-w-[200px] mt-6 flex flex-col items-center select-none">
-                            <div class="w-full h-8 flex items-stretch">
-                                <span class="bg-black flex-grow mr-0.5"></span>
-                                <span class="bg-black w-[1px] mr-0.5"></span>
-                                <span class="bg-black w-2 mr-0.5"></span>
-                                <span class="bg-black w-1 mr-0.5"></span>
-                                <span class="bg-black flex-grow mr-0.5"></span>
+                        <!-- STAR Framework (Design Focused) -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 hairline-t pt-8 border-base/20">
+                            <div>
+                                <h4 class="font-body text-xs text-base/50 uppercase tracking-wider mb-2">Vision</h4>
+                                <p class="text-sm font-light">Create a visually distinct IP that stands out in the saturated TPS mobile market.</p>
                             </div>
-                            <span class="font-mono text-[8px] text-grunge-black font-bold tracking-widest mt-1">BUILT_IN_INDONESIA_2026</span>
+                            <div>
+                                <h4 class="font-body text-xs text-base/50 uppercase tracking-wider mb-2">Execution</h4>
+                                <p class="text-sm font-light">Designed high-contrast, neon-infused interfaces with intuitive touch targets for fast gameplay.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-body text-xs text-cGreen uppercase tracking-wider mb-2">Result</h4>
+                                <p class="text-sm font-medium">Critically acclaimed art style leading to a massive surge in early-access pre-registrations.</p>
+                            </div>
                         </div>
                     </div>
-
-                    <div class="w-full lg:w-2/3 grid grid-cols-2 sm:grid-cols-4 gap-4">
-                        <div class="bg-stone-900/40 border border-stone-800 p-4 rounded flex items-center gap-3 hover:border-grunge-red transition-all group">
-                            <i class="fa-brands fa-figma text-2xl text-purple-500 group-hover:scale-110 transition-transform"></i>
-                            <div><h4 class="font-bold text-sm text-white">Figma</h4><p class="text-[10px] text-stone-500">Interface Arch</p></div>
-                        </div>
-                        <div class="bg-stone-900/40 border border-stone-800 p-4 rounded flex items-center gap-3 hover:border-grunge-red transition-all group">
-                            <i class="fa-solid fa-palette text-2xl text-blue-400 group-hover:scale-110 transition-transform"></i>
-                            <div><h4 class="font-bold text-sm text-white">Photoshop</h4><p class="text-[10px] text-stone-500">Raster Masterwork</p></div>
-                        </div>
-                        <div class="bg-stone-900/40 border border-stone-800 p-4 rounded flex items-center gap-3 hover:border-grunge-red transition-all group">
-                            <i class="fa-solid fa-pen-nib text-2xl text-orange-400 group-hover:scale-110 transition-transform"></i>
-                            <div><h4 class="font-bold text-sm text-white">Illustrator</h4><p class="text-[10px] text-stone-500">Scalable Vector</p></div>
-                        </div>
-                        <div class="bg-stone-900/40 border border-stone-800 p-4 rounded flex items-center gap-3 hover:border-grunge-red transition-all group">
-                            <i class="fa-solid fa-film text-2xl text-indigo-400 group-hover:scale-110 transition-transform"></i>
-                            <div><h4 class="font-bold text-sm text-white">After Effects</h4><p class="text-[10px] text-stone-500">Motion Engine</p></div>
-                        </div>
-                        <div class="bg-stone-900/40 border border-stone-800 p-4 rounded flex items-center gap-3 hover:border-grunge-red transition-all group">
-                            <i class="fa-solid fa-cubes-split text-2xl text-amber-500 group-hover:scale-110 transition-transform"></i>
-                            <div><h4 class="font-bold text-sm text-white">Blender</h4><p class="text-[10px] text-stone-500">3D Asset Modeler</p></div>
-                        </div>
-                        <div class="bg-stone-900/40 border border-stone-800 p-4 rounded flex items-center gap-3 hover:border-grunge-red transition-all group">
-                            <i class="fa-solid fa-note-sticky text-2xl text-stone-300 group-hover:scale-110 transition-transform"></i>
-                            <div><h4 class="font-bold text-sm text-white">Notion</h4><p class="text-[10px] text-stone-500">Project Operations</p></div>
-                        </div>
-                        <div class="bg-stone-900/40 border border-stone-800 p-4 rounded flex items-center gap-3 hover:border-grunge-red transition-all group">
-                            <i class="fa-solid fa-clapperboard text-2xl text-cyan-400 group-hover:scale-110 transition-transform"></i>
-                            <div><h4 class="font-bold text-sm text-white">CapCut & Pro</h4><p class="text-[10px] text-stone-500">Media Editing</p></div>
-                        </div>
-                        <div class="bg-stone-900/40 border border-stone-800 p-4 rounded flex items-center gap-3 hover:border-grunge-red transition-all group">
-                            <i class="fa-solid fa-network-wired text-2xl text-green-400 group-hover:scale-110 transition-transform"></i>
-                            <div><h4 class="font-bold text-sm text-white">Collaboration</h4><p class="text-[10px] text-stone-500">Agile Workflow</p></div>
+                    <div class="lg:col-span-5 order-1 lg:order-2 interactive-link" data-cursor="image">
+                        <div class="img-reveal h-[400px] lg:h-[500px] bg-surface/10 rounded-2xl">
+                            <!-- Placeholder with high contrast minimal style -->
+                            <img src="https://placehold.co/800x1000/222/00E676?text=Game+Art+UI" alt="Wardeka Project" class="w-full h-full object-cover opacity-80">
                         </div>
                     </div>
+                </div>
 
+                <!-- Project 2: Medical App (Clean UX Focus) -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center gsap-fade-up">
+                    <div class="lg:col-span-5 interactive-link" data-cursor="image">
+                        <div class="img-reveal h-[400px] lg:h-[500px] bg-surface/10 rounded-2xl">
+                            <img src="https://placehold.co/800x1000/222/FF3D00?text=Clean+App+UX" alt="Medical App Project" class="w-full h-full object-cover opacity-80">
+                        </div>
+                    </div>
+                    <div class="lg:col-span-7">
+                        <div class="inline-block px-4 py-1 rounded-full border border-cOrange text-cOrange font-body text-xs mb-6">Product Design</div>
+                        <h3 class="font-display text-3xl md:text-4xl font-bold mb-6">Tele-Med Elegance</h3>
+                        <p class="font-body text-base/70 mb-10 font-light text-lg">
+                            Transformed a complex, data-heavy medical system into a calming, visually pristine super-app experience. Emphasizing typography, whitespace, and micro-interactions.
+                        </p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 hairline-t pt-8 border-base/20">
+                            <div>
+                                <h4 class="font-body text-xs text-base/50 uppercase tracking-wider mb-2">Vision</h4>
+                                <p class="text-sm font-light">Reduce patient anxiety through clean, minimalist, and highly accessible design.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-body text-xs text-base/50 uppercase tracking-wider mb-2">Execution</h4>
+                                <p class="text-sm font-light">Implemented a strict Atomic Design system with a soothing, soft-contrast color palette.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-body text-xs text-cOrange uppercase tracking-wider mb-2">Result</h4>
+                                <p class="text-sm font-medium">99.8% crash-free UI sessions with user feedback praising the app's soothing aesthetics.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-
         </div>
     </section>
 
-    <!-- SECTION 4: DIRECT CONNECTS / FOOTER -->
-    <section id="contact" class="relative bg-grunge-white text-grunge-black py-20 px-6 md:px-12 lg:px-20 border-t-8 border-grunge-red overflow-hidden">
-        <div class="absolute left-0 bottom-0 opacity-[0.03] select-none pointer-events-none">
-            <h1 class="font-syne text-[24vw] uppercase font-black text-grunge-black leading-none">CONTACT</h1>
-        </div>
-
-        <div class="max-w-7xl mx-auto relative z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch">
-                
-                <div class="lg:col-span-5 flex flex-col justify-between">
-                    <div>
-                        <span class="font-mono text-grunge-red text-sm font-bold block mb-2 uppercase">// COMMENCE SYNERGY</span>
-                        <h2 class="font-syne text-4xl lg:text-6xl font-black uppercase text-grunge-black tracking-tight leading-none mb-6">
-                            <span data-lang-en="LET'S FORGE" data-lang-zh="共同打造">LET'S FORGE</span><br>
-                            <span class="text-grunge-blue" data-lang-en="GREATNESS." data-lang-zh="非凡杰作。">GREATNESS.</span>
-                        </h2>
-                        <p class="text-stone-600 font-mono text-sm leading-relaxed mb-6" data-lang-en="Seeking high-performance design pipelines, custom digital architectures, or strategic brand counseling? Shoot an dispatch below." data-lang-zh="正在寻找高性能的设计流程、定制的数字架构还是战略品牌咨询？请在下方发送邮件。">
-                            Seeking high-performance design pipelines, custom digital architectures, or strategic brand counseling? Shoot an dispatch below.
+    <section id="expertise" class="py-24 md:py-32 px-6 md:px-12">
+        <div class="max-w-screen-2xl mx-auto">
+            <div class="mb-16 md:mb-24 gsap-fade-up">
+                <h2 class="font-display text-3xl md:text-5xl font-bold tracking-tight">Creative Arsenal.</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Card 1: Purple Hover -->
+                <div class="group relative p-8 md:p-10 rounded-2xl bg-surface overflow-hidden interactive-link gsap-fade-up" data-cursor="purple">
+                    <div class="absolute inset-0 bg-cPurple transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-expo z-0"></div>
+                    <div class="relative z-10 group-hover:text-base transition-colors duration-300">
+                        <div class="font-body text-sm font-medium mb-12 opacity-60">01 // VISUAL IDENTITY</div>
+                        <h3 class="font-display text-2xl font-bold mb-4">Art Direction & Branding</h3>
+                        <p class="font-body text-sm leading-relaxed opacity-80">
+                            Directing the visual language, mood boards, and overall aesthetic vision. Ensuring every pixel aligns with the core brand story and evokes the right emotion.
                         </p>
                     </div>
+                </div>
 
-                    <div class="space-y-4">
-                        <a href="mailto:lengkongandrew@gmail.com" class="flex items-center gap-3 bg-grunge-black text-grunge-white p-4 rounded hover:bg-grunge-red transition-colors duration-300 shadow-lg">
-                            <i class="fa-solid fa-envelope text-xl"></i>
-                            <div>
-                                <p class="text-[10px] text-stone-400 font-mono uppercase">Official Email Dispatch</p>
-                                <p class="font-bold text-sm">lengkongandrew@gmail.com</p>
-                            </div>
-                        </a>
-                        <a href="https://wa.me/6285796400320" target="_blank" class="flex items-center gap-3 bg-emerald-800 text-white p-4 rounded hover:bg-emerald-700 transition-colors duration-300 shadow-lg">
-                            <i class="fa-brands fa-whatsapp text-xl"></i>
-                            <div>
-                                <p class="text-[10px] text-emerald-300 font-mono uppercase">WhatsApp Rapid Response</p>
-                                <p class="font-bold text-sm">+62 857 9640 0320</p>
-                            </div>
-                        </a>
+                <!-- Card 2: Orange Hover -->
+                <div class="group relative p-8 md:p-10 rounded-2xl bg-surface overflow-hidden interactive-link gsap-fade-up delay-100" data-cursor="orange">
+                    <div class="absolute inset-0 bg-cOrange transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-expo z-0"></div>
+                    <div class="relative z-10 group-hover:text-base transition-colors duration-300">
+                        <div class="font-body text-sm font-medium mb-12 opacity-60">02 // INTERACTION</div>
+                        <h3 class="font-display text-2xl font-bold mb-4">UI/UX & Interfaces</h3>
+                        <p class="font-body text-sm leading-relaxed opacity-80">
+                            Crafting pixel-perfect layouts where elegant design meets seamless functionality. Obsessed with micro-interactions, clean typography, and intuitive user flows.
+                        </p>
                     </div>
                 </div>
 
-                <div class="lg:col-span-7 bg-white border-4 border-grunge-black p-8 shadow-2xl relative">
-                    <div class="absolute -top-3 -right-3 bg-grunge-red text-white font-mono text-[9px] px-2 py-1 transform rotate-6 font-bold uppercase tracking-widest shadow">
-                        ID_GATEWAY
+                <!-- Card 3: Green Hover -->
+                <div class="group relative p-8 md:p-10 rounded-2xl bg-surface overflow-hidden interactive-link gsap-fade-up delay-200" data-cursor="green">
+                    <div class="absolute inset-0 bg-cGreen transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-expo z-0"></div>
+                    <div class="relative z-10 group-hover:text-base transition-colors duration-300">
+                        <div class="font-body text-sm font-medium mb-12 opacity-60">03 // MULTIMEDIA</div>
+                        <h3 class="font-display text-2xl font-bold mb-4">Digital & Game Art</h3>
+                        <p class="font-body text-sm leading-relaxed opacity-80">
+                            Pushing creative boundaries with immersive HUDs, spatial UI, and high-end graphic compositions for gaming, entertainment, and digital marketing.
+                        </p>
                     </div>
-
-                    <h3 class="font-syne text-xl font-black text-grunge-black uppercase mb-6 pb-2 border-b border-stone-200" data-lang-en="TRANSMIT MESSAGE IN REALTIME" data-lang-zh="实时发送咨询讯息">TRANSMIT MESSAGE IN REALTIME</h3>
-                    
-                    <form onsubmit="handleQuerySubmit(event)" class="space-y-6">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div>
-                                <label class="block font-mono text-xs uppercase text-stone-500 mb-1" data-lang-en="Your Name" data-lang-zh="您的姓名">Your Name</label>
-                                <input type="text" required id="queryName" class="w-full bg-stone-50 border-2 border-grunge-black p-3 text-sm font-space focus:outline-none focus:ring-2 focus:ring-grunge-red">
-                            </div>
-                            <div>
-                                <label class="block font-mono text-xs uppercase text-stone-500 mb-1" data-lang-en="Your Email" data-lang-zh="电子邮箱">Your Email</label>
-                                <input type="email" required id="queryEmail" class="w-full bg-stone-50 border-2 border-grunge-black p-3 text-sm font-space focus:outline-none focus:ring-2 focus:ring-grunge-red">
-                            </div>
-                        </div>
-
-                        <div>
-                            <label class="block font-mono text-xs uppercase text-stone-500 mb-1" data-lang-en="Project Scope Inquiry" data-lang-zh="您的咨询内容">Project Scope Inquiry</label>
-                            <textarea required id="queryMessage" rows="4" class="w-full bg-stone-50 border-2 border-grunge-black p-3 text-sm font-space focus:outline-none focus:ring-2 focus:ring-grunge-red"></textarea>
-                        </div>
-
-                        <button type="submit" class="w-full bg-grunge-black text-grunge-white font-syne font-black uppercase text-sm p-4 hover:bg-grunge-red hover:text-white transition-colors flex items-center justify-center gap-2 shadow-lg">
-                            <span data-lang-en="TRANSMIT SECURE DATA" data-lang-zh="发送安全数据">TRANSMIT SECURE DATA</span>
-                            <i class="fa-solid fa-paper-plane"></i>
-                        </button>
-                    </form>
-
-                    <div id="querySuccessMessage" class="hidden absolute inset-0 bg-white/95 backdrop-blur-sm z-30 flex flex-col justify-center items-center text-center p-8 transition-opacity duration-300">
-                        <i class="fa-solid fa-circle-check text-6xl text-emerald-600 mb-4 animate-bounce"></i>
-                        <h4 class="font-syne text-2xl font-black text-grunge-black uppercase mb-2" data-lang-en="TRANSMISSION SECURED" data-lang-zh="讯息发送成功">TRANSMISSION SECURED</h4>
-                        <p class="text-sm font-mono text-stone-500 max-w-md" data-lang-en="Andrew has received your message pipeline. Expect dispatch back within 12 business hours." data-lang-zh="安德鲁已收到您的系统联络信息。请在 12 工作小时内期待答复邮件。">Andrew has received your message pipeline. Expect dispatch back within 12 business hours.</p>
-                        <button onclick="resetInquiryForm()" class="mt-6 px-4 py-2 bg-grunge-black text-white text-xs font-mono uppercase tracking-widest hover:bg-grunge-red transition-colors">
-                            <span data-lang-en="SEND ANOTHER INQUIRY" data-lang-zh="重新撰写发送">SEND ANOTHER INQUIRY</span>
-                        </button>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="mt-20 pt-10 border-t border-stone-200 flex flex-col md:flex-row justify-between items-center gap-6">
-                <div>
-                    <p class="font-syne text-lg font-black text-grunge-black uppercase tracking-tighter">ANDREUW LENGKONG</p>
-                    <p class="text-xs font-mono text-stone-500" data-lang-en="© 2026 by Andreuw Lengkong" data-lang-zh="© 2026 by Andreuw Lengkong">© 2026 by Andreuw Lengkong</p>
-                </div>
-                <div class="flex items-center gap-6 text-xl text-grunge-black">
-                    <a href="https://behance.net/andrewlengkong" target="_blank" class="hover:text-grunge-red transition-colors"><i class="fa-brands fa-behance"></i></a>
-                    <a href="https://linkedin.com/in/lengkongandrew/" target="_blank" class="hover:text-grunge-red transition-colors"><i class="fa-brands fa-linkedin"></i></a>
-                    <a href="https://wa.me/6285796400320" target="_blank" class="hover:text-grunge-red transition-colors"><i class="fa-brands fa-whatsapp"></i></a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- INTERACTIVE PORTFOLIO MODAL OVERLAY -->
-    <div id="bento-modal" class="fixed inset-0 z-[1000] hidden items-center justify-center p-4 bg-black/90 backdrop-blur-md">
-        <!-- Modal Frame with Grunge styling -->
-        <div class="bg-stone-900 border-4 border-grunge-red max-w-2xl w-full rounded-lg shadow-2xl relative overflow-hidden transform scale-95 opacity-0 transition-all duration-300 flex flex-col" id="modal-content-container">
+    <section id="experience" class="py-24 px-6 md:px-12">
+        <div class="max-w-screen-xl mx-auto">
+            <h2 class="font-display text-4xl md:text-5xl font-bold mb-16 gsap-fade-up">Design Journey.</h2>
             
-            <!-- Tape visual on top of modal -->
-            <div class="blue-tape absolute -top-2 left-6 px-4 py-1 text-[10px] text-white font-mono uppercase z-50 tracking-widest select-none">
-                <span data-lang-en="PORTFOLIO DISPATCH" data-lang-zh="项目派遣系统">PORTFOLIO DISPATCH</span>
-            </div>
-
-            <!-- Header with close button -->
-            <div class="p-6 border-b border-white/10 flex justify-between items-center bg-black/40 pt-10">
-                <div>
-                    <span id="modal-card-num" class="font-mono text-grunge-red font-bold text-sm block">// CARD 01</span>
-                    <h3 id="modal-card-title" class="font-syne text-2xl font-black text-white uppercase tracking-tight">BRANDING & LOGO DESIGN</h3>
+            <div class="hairline-t gsap-fade-up">
+                <!-- Job 1 -->
+                <div class="group py-8 md:py-12 hairline-b relative overflow-hidden interactive-link" data-cursor="purple">
+                    <div class="absolute inset-0 bg-cPurple transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-expo z-0"></div>
+                    <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-4 group-hover:text-base transition-colors duration-300">
+                        <div class="md:w-1/3">
+                            <h3 class="font-display text-2xl font-bold">Creative & Art Director</h3>
+                            <p class="font-body text-sm mt-1 opacity-60">Tech Startup Inc.</p>
+                        </div>
+                        <div class="md:w-1/3">
+                            <p class="font-body text-sm font-light opacity-80 leading-relaxed">Spearheaded the aesthetic vision and design pipeline, elevating the brand's visual identity across all digital touchpoints.</p>
+                        </div>
+                        <div class="md:w-1/4 text-left md:text-right">
+                            <span class="font-body text-sm opacity-60">2021 — Present</span>
+                        </div>
+                    </div>
                 </div>
-                <button onclick="closeBentoModal()" class="w-10 h-10 rounded-full border border-white/20 hover:border-grunge-red text-white hover:text-grunge-red flex items-center justify-center transition-colors">
-                    <i class="fa-solid fa-xmark text-lg"></i>
-                </button>
+
+                <!-- Job 2 -->
+                <div class="group py-8 md:py-12 hairline-b relative overflow-hidden interactive-link" data-cursor="orange">
+                    <div class="absolute inset-0 bg-cOrange transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-expo z-0"></div>
+                    <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-4 group-hover:text-base transition-colors duration-300">
+                        <div class="md:w-1/3">
+                            <h3 class="font-display text-2xl font-bold">Lead UI/UX Designer</h3>
+                            <p class="font-body text-sm mt-1 opacity-60">Game Studio Dev</p>
+                        </div>
+                        <div class="md:w-1/3">
+                            <p class="font-body text-sm font-light opacity-80 leading-relaxed">Architected clean, interactive design systems. Bridged the gap between striking game art and user-friendly interface design.</p>
+                        </div>
+                        <div class="md:w-1/4 text-left md:text-right">
+                            <span class="font-body text-sm opacity-60">2018 — 2021</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Job 3 -->
+                <div class="group py-8 md:py-12 hairline-b relative overflow-hidden interactive-link" data-cursor="green">
+                    <div class="absolute inset-0 bg-cGreen transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-expo z-0"></div>
+                    <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-4 group-hover:text-base transition-colors duration-300">
+                        <div class="md:w-1/3">
+                            <h3 class="font-display text-2xl font-bold">Senior Visual Designer</h3>
+                            <p class="font-body text-sm mt-1 opacity-60">Global Agency</p>
+                        </div>
+                        <div class="md:w-1/3">
+                            <p class="font-body text-sm font-light opacity-80 leading-relaxed">Focused on high-impact digital imaging, branding, and multimedia campaigns for top-tier international clients.</p>
+                        </div>
+                        <div class="md:w-1/4 text-left md:text-right">
+                            <span class="font-body text-sm opacity-60">2014 — 2018</span>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <!-- Project Links List Container -->
-            <div class="p-6 overflow-y-auto max-h-[60vh] space-y-3" id="modal-links-container">
-                <!-- Dynamically populated by JS -->
-            </div>
-
-            <!-- Footer Badge -->
-            <div class="p-4 bg-black/60 border-t border-white/10 text-center select-none">
-                <span class="font-mono text-[9px] text-stone-500 uppercase tracking-widest">ANDREW LENGKONG STUDIO NETWORK © 2026</span>
+            <!-- Testimonial -->
+            <div class="mt-24 max-w-3xl mx-auto text-center gsap-fade-up">
+                <i class="fa-solid fa-quote-left text-cPurple text-3xl mb-6 opacity-50"></i>
+                <p class="font-display text-2xl md:text-3xl leading-snug mb-8">"Andreuw doesn't just design interfaces; he curates digital art. His passion for aesthetics elevates every product he touches into something truly elegant."</p>
+                <div class="font-body">
+                    <p class="font-bold">Jonathan Doe</p>
+                    <p class="text-sm text-ink/60">CEO, Tech Startup Inc.</p>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- JS INTERACTIONS & ANIMATION CODE -->
+    <section id="contact" class="py-32 px-6 md:px-12 bg-surface flex flex-col items-center justify-center text-center">
+        <div class="max-w-2xl w-full gsap-fade-up">
+            <h2 class="font-display text-5xl md:text-7xl font-bold tracking-tight mb-6">Let's Create.</h2>
+            <p class="font-body text-ink/60 mb-12 font-light text-lg">
+                Always open to discussing aesthetic visions, art direction, and exciting design collaborations globally.
+            </p>
+            
+            <!-- Magnetic Button -->
+            <div class="magnetic-wrap inline-block interactive-link" data-cursor="purple">
+                <a href="mailto:contact@andreuw.com" class="magnetic-btn relative flex items-center justify-center w-40 h-40 md:w-48 md:h-48 rounded-full bg-ink text-base font-body font-medium transition-transform duration-300 ease-out hover:bg-cPurple">
+                    <span class="magnetic-text relative z-10">Say Hello</span>
+                </a>
+            </div>
+
+            <div class="flex justify-center gap-8 mt-16 font-body text-sm font-medium">
+                <a href="#" class="hover:text-cGreen transition-colors interactive-link" data-cursor="green">LinkedIn</a>
+                <a href="#" class="hover:text-cOrange transition-colors interactive-link" data-cursor="orange">Behance</a>
+                <a href="#" class="hover:text-cPurple transition-colors interactive-link" data-cursor="purple">Dribbble</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-8 px-6 md:px-12 bg-base text-center md:text-left hairline-t">
+        <div class="max-w-screen-2xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 font-body text-xs text-ink/40">
+            <div>&copy; 2026 ANDREUW. ALL RIGHTS RESERVED.</div>
+            <div>ART DIRECTION & DESIGN PORTFOLIO</div>
+        </div>
+    </footer>
+
     <script>
-        // CAPABILITIES MULTI-LINK CONFIG DATA
-        const bentoProjects = {
-            branding: {
-                num: "01",
-                title_en: "BRANDING & LOGO DESIGN",
-                title_zh: "品牌与标志设计",
-                links: [
-                    { name: "Bison Insulation Rebranding Project", url: "https://www.behance.net/gallery/240372477/Bison-Insulation-Rebranding-Project" },
-                    { name: "Synthetix IT Brand Identity Design", url: "https://www.behance.net/gallery/237636239/Synthetix-IT-Brand-Identity-Design" },
-                    { name: "Tomohon City Branding Project", url: "https://www.behance.net/gallery/187744867/Tomohon-City-Branding-Project" },
-                    { name: "Airmadidi City Branding", url: "https://www.behance.net/gallery/187422859/Airmadidi-City-Branding" },
-                    { name: "Karskay Logo", url: "https://www.behance.net/gallery/101907351/Karskay-Logo" },
-                    { name: "Kasumasa Branding", url: "https://www.behance.net/gallery/101907451/Kasumasa-Branding" }
-                ]
-            },
-            uiux: {
-                num: "02",
-                title_en: "UI/UX APP & WEB DESIGN",
-                title_zh: "UI/UX 应用程序与网页设计",
-                links: [
-                    { name: "Vimigo Company Leave Application", url: "https://www.behance.net/gallery/186315043/Vimigo-Company-Leave-Application" },
-                    { name: "Manadopost Mobile App Revamp Case Study", url: "https://www.behance.net/gallery/186336023/Manadopost-Mobile-App-Revamp-Case-Study" },
-                    { name: "Pasiar Tourism Reservation App Case Study", url: "https://www.behance.net/gallery/187683203/Pasiar-Tourism-Reservation-app-a-case-study" }
-                ]
-            },
-            digital: {
-                num: "03",
-                title_en: "DIGITAL IMAGING & RETOUCH",
-                title_zh: "数字成像与修饰",
-                links: [
-                    { name: "Football Legends Artworks", url: "https://www.behance.net/gallery/67813915/Football-Legends" },
-                    { name: "Stiven & Cindy Wedding Album Layout", url: "https://www.behance.net/gallery/2932791/StivenCindy-Wedding-Album" },
-                    { name: "Tomohon International Flower Festival (TIFF) 2019", url: "https://www.behance.net/gallery/76796273/TIFF-2019" }
-                ]
-            },
-            social: {
-                num: "04",
-                title_en: "SOCIAL MEDIA & PUB",
-                title_zh: "社交媒体与出版",
-                links: [
-                    { name: "Global Marketing Dubai Layouts", url: "https://www.behance.net/gallery/250100125/Global-Marketing-Dubai" },
-                    { name: "Global Bistro Mediterranean Cuisine Publication", url: "https://www.behance.net/gallery/249977605/Global-Bistro-Mediterraniian-Cuisine-Publication" },
-                    { name: "VisionHomes Real Estate Social Media Branding", url: "https://www.behance.net/gallery/188263279/VisionHomes-Real-Estate-Social-Media-Branding" },
-                    { name: "Nadi Health Tech Social Media Post Set", url: "https://www.behance.net/gallery/188289013/Nadi-Health-Tech-Social-media-Post" },
-                    { name: "Mall Social Media Rebranding Case", url: "https://www.behance.net/gallery/227970645/MALL-SOCIAL-MEDIA-REBRANDING" }
-                ]
-            },
-            esports: {
-                num: "05",
-                title_en: "ESPORT DESIGN & BRAND",
-                title_zh: "电竞设计与品牌",
-                links: [
-                    { name: "Warbiasa Esport Tournament Publication Design", url: "https://www.behance.net/gallery/249763725/Warbiasa-Esport-Tournament-Publication-Design" },
-                    { name: "World Cup 2026 Artwork Commission", url: "https://www.behance.net/gallery/249968611/World-Cup-2026-Artwork-(Commision)" },
-                    { name: "Sport Betting Publication Design", url: "https://www.behance.net/gallery/248667443/Sport-Beting-Publication-Design" },
-                    { name: "Liga 1 Indonesia Matchday Poster Layouts", url: "https://www.behance.net/gallery/213822885/Liga-1-Indonesia-Matchday-Poster" }
-                ]
-            },
-            merch: {
-                num: "06",
-                title_en: "MERCH & FASHION",
-                title_zh: "周边商品与时尚设计",
-                links: [
-                    { name: "Centvrion Clothing Merch Layouts", url: "https://www.behance.net/gallery/153660233/CENTVRION-MERCH" },
-                    { name: "Minahasa Utara Nimau Kering Merchandise", url: "https://www.behance.net/gallery/114421547/Minut-Nimau-Kering-Merchandise" }
-                ]
-            },
-            game: {
-                num: "07",
-                title_en: "GAME DESIGN RELATED",
-                title_zh: "游戏设计相关",
-                links: [
-                    { name: "Intuitive AR-Based Guide to Historic Burial Site", url: "https://www.behance.net/gallery/187603607/Intuitive-AR-based-guide-to-historic-burial-site" },
-                    { name: "Wardeka Mobile Shooting Game Project Assets", url: "https://www.behance.net/gallery/153824559/Wardeka-Mobile-Shooting-Game" }
-                ]
-            }
-        };
+        // 1. Smooth Scrolling (Lenis)
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            direction: 'vertical',
+            gestureDirection: 'vertical',
+            smooth: true,
+            mouseMultiplier: 1,
+            smoothTouch: false,
+            touchMultiplier: 2,
+            infinite: false,
+        });
 
-        // OPEN PORTFOLIO OVERLAY MODAL
-        function openBentoModal(cardId) {
-            const data = bentoProjects[cardId];
-            if (!data) return;
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
 
-            const modal = document.getElementById('bento-modal');
-            const container = document.getElementById('modal-content-container');
-            const linksContainer = document.getElementById('modal-links-container');
-            
-            // Set Titles & Numbers
-            document.getElementById('modal-card-num').textContent = `// CARD ${data.num}`;
-            document.getElementById('modal-card-title').textContent = currentLanguage === 'en' ? data.title_en : data.title_zh;
+        // 2. Custom Cursor Logic
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+        const links = document.querySelectorAll('.interactive-link');
 
-            // Generate HTML link elements
-            linksContainer.innerHTML = '';
-            data.links.forEach(link => {
-                const linkCard = document.createElement('a');
-                linkCard.href = link.url;
-                linkCard.target = "_blank";
-                linkCard.className = "flex justify-between items-center bg-black/60 border border-white/5 p-4 rounded hover:border-grunge-red hover:bg-stone-800/80 transition-all group duration-300 shadow-md";
-                linkCard.innerHTML = `
-                    <div class="flex items-center gap-3">
-                        <span class="w-2 h-2 rounded-full bg-grunge-red group-hover:scale-125 transition-transform"></span>
-                        <span class="font-space text-sm font-bold text-stone-200 group-hover:text-white transition-colors">${link.name}</span>
-                    </div>
-                    <span class="font-mono text-xs text-stone-500 group-hover:text-grunge-red flex items-center gap-1">
-                        VIEW PROJECT <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                    </span>
-                `;
-                linksContainer.appendChild(linkCard);
+        window.addEventListener('mousemove', (e) => {
+            const posX = e.clientX;
+            const posY = e.clientY;
+
+            // Dot follows exactly
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
+
+            // Outline follows with slight delay using GSAP for smoothness
+            gsap.to(cursorOutline, {
+                x: posX,
+                y: posY,
+                duration: 0.15,
+                ease: "power2.out"
             });
+        });
 
-            // Trigger animations
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-            
-            setTimeout(() => {
-                container.classList.remove('scale-95', 'opacity-0');
-                container.classList.add('scale-100', 'opacity-100');
-            }, 10);
-        }
+        links.forEach(link => {
+            link.addEventListener('mouseenter', () => {
+                const cursorType = link.getAttribute('data-cursor');
+                cursorDot.style.opacity = 0; // Hide dot on hover
+                if(cursorType === 'green') cursorOutline.classList.add('cursor-hover-green');
+                if(cursorType === 'orange') cursorOutline.classList.add('cursor-hover-orange');
+                if(cursorType === 'purple') cursorOutline.classList.add('cursor-hover-purple');
+                if(cursorType === 'image') cursorOutline.classList.add('cursor-hover-image');
+            });
+            link.addEventListener('mouseleave', () => {
+                cursorDot.style.opacity = 1;
+                cursorOutline.className = 'cursor-outline hidden md:block'; // Reset classes
+            });
+        });
 
-        // CLOSE PORTFOLIO MODAL
-        function closeBentoModal() {
-            const modal = document.getElementById('bento-modal');
-            const container = document.getElementById('modal-content-container');
-            
-            container.classList.remove('scale-100', 'opacity-100');
-            container.classList.add('scale-95', 'opacity-0');
+        // 3. GSAP Scroll Animations
+        gsap.registerPlugin(ScrollTrigger);
 
-            setTimeout(() => {
-                modal.classList.remove('flex');
-                modal.classList.add('hidden');
-            }, 300);
-        }
-
-        // Custom Language state management
-        let currentLanguage = 'en';
-
-        function toggleLanguage(lang) {
-            currentLanguage = lang;
-            
-            // Switch Language Buttons Active State
-            const btnEn = document.getElementById('langBtn-en');
-            const btnZh = document.getElementById('langBtn-zh');
-
-            if (lang === 'en') {
-                btnEn.classList.add('bg-grunge-red', 'text-white');
-                btnEn.classList.remove('text-grunge-white/60');
-                btnZh.classList.add('text-grunge-white/60');
-                btnZh.classList.remove('bg-grunge-red', 'text-white');
-            } else {
-                btnZh.classList.add('bg-grunge-red', 'text-white');
-                btnZh.classList.remove('text-grunge-white/60');
-                btnEn.classList.add('text-grunge-white/60');
-                btnEn.classList.remove('bg-grunge-red', 'text-white');
-            }
-
-            // Iterate over all element nodes with translation tags
-            const translationElements = document.querySelectorAll('[data-lang-en]');
-            translationElements.forEach(el => {
-                if (lang === 'en') {
-                    el.innerHTML = el.getAttribute('data-lang-en');
-                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-                        el.placeholder = el.getAttribute('data-lang-en');
-                    }
-                } else {
-                    el.innerHTML = el.getAttribute('data-lang-zh');
-                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-                        el.placeholder = el.getAttribute('data-lang-zh');
+        const fadeUpElements = document.querySelectorAll('.gsap-fade-up');
+        fadeUpElements.forEach((el) => {
+            gsap.fromTo(el, 
+                { y: 50, opacity: 0 },
+                { 
+                    y: 0, 
+                    opacity: 1, 
+                    duration: 1, 
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: el,
+                        start: "top 85%", // Trigger when element is 85% from top of viewport
+                        toggleActions: "play none none reverse"
                     }
                 }
-            });
-        }
-
-        // Custom Cursor Movement with high-performance RAF
-        const cursor = document.getElementById('customCursor');
-        const cursorDot = document.getElementById('customCursorDot');
-        let mouseX = 0, mouseY = 0;
-        let cursorX = 0, cursorY = 0;
-
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-            
-            cursorDot.style.left = mouseX + 'px';
-            cursorDot.style.top = mouseY + 'px';
+            );
         });
 
-        function animateCursor() {
-            let dx = mouseX - cursorX;
-            let dy = mouseY - cursorY;
-            
-            cursorX += dx * 0.15;
-            cursorY += dy * 0.15;
-            
-            cursor.style.left = cursorX + 'px';
-            cursor.style.top = cursorY + 'px';
-            
-            requestAnimationFrame(animateCursor);
+        // 4. Magnetic Button Logic
+        const magneticWrap = document.querySelector('.magnetic-wrap');
+        const magneticBtn = document.querySelector('.magnetic-btn');
+        const magneticText = document.querySelector('.magnetic-text');
+
+        if(magneticWrap && magneticBtn) {
+            magneticWrap.addEventListener('mousemove', (e) => {
+                const position = magneticWrap.getBoundingClientRect();
+                const x = e.clientX - position.left - position.width / 2;
+                const y = e.clientY - position.top - position.height / 2;
+
+                gsap.to(magneticBtn, {
+                    x: x * 0.3,
+                    y: y * 0.3,
+                    duration: 1,
+                    ease: "power3.out"
+                });
+                gsap.to(magneticText, {
+                    x: x * 0.1,
+                    y: y * 0.1,
+                    duration: 1,
+                    ease: "power3.out"
+                });
+            });
+
+            magneticWrap.addEventListener('mouseleave', () => {
+                gsap.to(magneticBtn, { x: 0, y: 0, duration: 1, ease: "elastic.out(1, 0.3)" });
+                gsap.to(magneticText, { x: 0, y: 0, duration: 1, ease: "elastic.out(1, 0.3)" });
+            });
         }
-        animateCursor();
-
-        // Mouse Hover Expansion for Interactive Anchors
-        const interactiveSelectors = 'a, button, input, textarea, [role="button"]';
-        document.querySelectorAll(interactiveSelectors).forEach(item => {
-            item.addEventListener('mouseenter', () => {
-                cursor.style.width = '35px';
-                cursor.style.height = '35px';
-                cursor.style.backgroundColor = 'rgba(209, 45, 45, 0.4)';
-            });
-            item.addEventListener('mouseleave', () => {
-                cursor.style.width = '20px';
-                cursor.style.height = '20px';
-                cursor.style.backgroundColor = 'rgba(209, 45, 45, 0.2)';
-            });
-        });
-
-        // Query Dispatch Form Actions
-        function handleQuerySubmit(e) {
-            e.preventDefault();
-            const form = e.target;
-            const successOverlay = document.getElementById('querySuccessMessage');
-            
-            successOverlay.classList.remove('hidden');
-            successOverlay.classList.add('flex');
-            form.reset();
-        }
-
-        function resetInquiryForm() {
-            const successOverlay = document.getElementById('querySuccessMessage');
-            successOverlay.classList.add('hidden');
-            successOverlay.classList.remove('flex');
-        }
-
-        // GSAP Elite Scroll & Entrance Animations on Load
-        window.addEventListener('DOMContentLoaded', () => {
-            // Register ScrollTrigger
-            gsap.registerPlugin(ScrollTrigger);
-
-            const entranceTl = gsap.timeline();
-
-            entranceTl.from('header', {
-                y: -50,
-                opacity: 0,
-                duration: 1,
-                ease: 'power3.out'
-            });
-
-            entranceTl.from('#leftHeroColumn', {
-                scale: 1.1,
-                opacity: 0,
-                duration: 0.8,
-                ease: 'power2.out'
-            }, '-=0.5');
-
-            entranceTl.from('#centerHeroImage', {
-                y: 100,
-                opacity: 0,
-                duration: 1.2,
-                ease: 'power3.out'
-            }, '-=0.6');
-
-            entranceTl.from('#rightHeroColumn', {
-                x: 50,
-                opacity: 0,
-                duration: 0.8,
-                ease: 'power2.out'
-            }, '-=0.8');
-
-            entranceTl.from('#navigationDock', {
-                y: 50,
-                opacity: 0,
-                duration: 0.8,
-                ease: 'power2.out'
-            }, '-=0.4');
-
-            // Notebook & Summary Box Scroll trigger (Updated Selectors for Section 2)
-            gsap.from('#about-left', {
-                scrollTrigger: {
-                    trigger: '#about',
-                    start: 'top 80%',
-                    end: 'top 40%',
-                    scrub: true
-                },
-                x: -50,
-                opacity: 0,
-                duration: 1
-            });
-
-            gsap.from('#about-right', {
-                scrollTrigger: {
-                    trigger: '#about',
-                    start: 'top 70%',
-                    end: 'top 30%',
-                    scrub: true
-                },
-                y: 50,
-                opacity: 0,
-                duration: 1
-            });
-
-            // Bento Boxes Reveal Trigger (Updated Selector)
-            gsap.from('#services .bento-item', {
-                scrollTrigger: {
-                    trigger: '#services',
-                    start: 'top 60%',
-                },
-                y: 50,
-                opacity: 0,
-                duration: 0.8,
-                stagger: 0.12,
-                ease: 'power2.out'
-            });
-        });
     </script>
 </body>
 </html>
