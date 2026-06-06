@@ -6,10 +6,10 @@
     <title>Andreuw - Art Director & Design Enthusiast</title>
     <meta name="description" content="Portfolio of Andreuw, Art Director, UI/UX Expert, and Design Enthusiast.">
     
-    <!-- Fonts: Plus Jakarta Sans (Elegant Display) & Inter (Clean Body) -->
+    <!-- Fonts: Bebas Neue (Narrow/Tegas), Instrument Serif (Elegant Accent), Inter (Clean Sans Body) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -27,8 +27,9 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        display: ['Plus Jakarta Sans', 'sans-serif'],
-                        body: ['Inter', 'sans-serif'],
+                        display: ['"Bebas Neue"', 'sans-serif'], // Narrow & Tegas
+                        accent: ['"Instrument Serif"', 'serif'], // Elegant 20%
+                        body: ['"Inter"', 'sans-serif'], // Clean Sans
                     },
                     colors: {
                         base: '#FCFCFC', // Very clean white
@@ -52,7 +53,7 @@
             background-color: #FCFCFC;
             color: #0A0A0A;
             overflow-x: hidden;
-            cursor: none; /* Hide default cursor for custom interactive cursor */
+            cursor: none; /* Hide default cursor */
         }
 
         /* Custom Interactive Cursor */
@@ -62,38 +63,37 @@
             top: 0;
             left: 0;
             transform: translate(-50%, -50%);
-            border-radius: 50%;
             z-index: 9999;
             pointer-events: none;
         }
         .cursor-dot {
-            width: 8px;
-            height: 8px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
             background-color: #0A0A0A;
             transition: width 0.3s, height 0.3s, background-color 0.3s;
         }
         .cursor-outline {
             width: 40px;
             height: 40px;
+            border-radius: 4px; /* Minimally rounded */
             border: 1px solid rgba(10, 10, 10, 0.2);
-            transition: width 0.3s, height 0.3s, border-color 0.3s, background-color 0.3s;
+            transition: width 0.3s, height 0.3s, border-color 0.3s, background-color 0.3s, border-radius 0.3s;
         }
 
         /* Hover States for Cursor */
-        .cursor-hover-green .cursor-outline { background-color: #00E676; border-color: transparent; mix-blend-mode: multiply; transform: translate(-50%, -50%) scale(1.5); }
-        .cursor-hover-orange .cursor-outline { background-color: #FF3D00; border-color: transparent; mix-blend-mode: multiply; transform: translate(-50%, -50%) scale(1.5); }
-        .cursor-hover-purple .cursor-outline { background-color: #651FFF; border-color: transparent; mix-blend-mode: multiply; transform: translate(-50%, -50%) scale(1.5); }
-        .cursor-hover-image .cursor-outline { width: 80px; height: 80px; background-color: rgba(255, 255, 255, 0.8); mix-blend-mode: difference; }
+        .cursor-hover-green .cursor-outline { background-color: #00E676; border-color: transparent; mix-blend-mode: multiply; transform: translate(-50%, -50%) scale(1.5) rotate(5deg); }
+        .cursor-hover-orange .cursor-outline { background-color: #FF3D00; border-color: transparent; mix-blend-mode: multiply; transform: translate(-50%, -50%) scale(1.5) rotate(-5deg); }
+        .cursor-hover-purple .cursor-outline { background-color: #651FFF; border-color: transparent; mix-blend-mode: multiply; transform: translate(-50%, -50%) scale(1.5) rotate(5deg); }
+        .cursor-hover-image .cursor-outline { width: 80px; height: 80px; border-radius: 4px; background-color: rgba(255, 255, 255, 0.8); mix-blend-mode: difference; }
 
         /* Elegant Text Reveals & Hovers */
-        .clip-text {
-            clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-        }
-        
         .hover-color-fill {
             position: relative;
             display: inline-block;
             overflow: hidden;
+            padding: 0 0.1rem;
+            border-radius: 2px;
         }
         .hover-color-fill::after {
             content: '';
@@ -113,216 +113,281 @@
         /* Image Parallax Container */
         .img-reveal {
             overflow: hidden;
-            border-radius: 16px;
+            border-radius: 4px; /* Minimal rounded */
         }
         .img-reveal img {
-            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .img-reveal:hover img {
             transform: scale(1.05);
         }
 
-        /* Clean Lines */
-        .hairline-b { border-bottom: 1px solid rgba(10, 10, 10, 0.1); }
-        .hairline-t { border-top: 1px solid rgba(10, 10, 10, 0.1); }
+        /* Loop Animations */
+        .marquee-container {
+            overflow: hidden;
+            white-space: nowrap;
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+            padding: 1.5rem 0;
+            display: flex;
+            border-top: 1px solid rgba(10,10,10,0.1);
+            border-bottom: 1px solid rgba(10,10,10,0.1);
+        }
+        .marquee-content {
+            display: flex;
+            flex-shrink: 0;
+            animation: marquee 25s linear infinite;
+        }
+        .marquee-text {
+            padding-right: 3rem;
+            font-size: 3rem;
+            color: transparent;
+            -webkit-text-stroke: 1px #0A0A0A;
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            line-height: 1;
+        }
+        .marquee-text .asterisk {
+            color: #0A0A0A;
+            -webkit-text-stroke: 0;
+            font-size: 1.5rem;
+            font-style: normal;
+        }
+        .marquee-text .accent-green { color: #00E676; -webkit-text-stroke: 0; }
+        .marquee-text .accent-orange { color: #FF3D00; -webkit-text-stroke: 0; }
+        .marquee-text .accent-purple { color: #651FFF; -webkit-text-stroke: 0; }
+        
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+        
+        .spin-slow {
+            animation: spin 8s linear infinite;
+        }
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
 
-        /* Utilities */
-        .hide-scrollbar::-webkit-scrollbar { display: none; }
-        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        /* Typography tweaks for Asymmetry */
+        .text-indent-1 { margin-left: 8%; }
+        .text-indent-2 { margin-left: 20%; }
+        
+        @media (max-width: 768px) {
+            .text-indent-1 { margin-left: 0; }
+            .text-indent-2 { margin-left: 1rem; }
+        }
     </style>
 </head>
 <body class="font-body antialiased selection:bg-cPurple selection:text-base">
 
+    <!-- Custom Cursor -->
     <div class="cursor-dot hidden md:block"></div>
     <div class="cursor-outline hidden md:block"></div>
 
     <nav class="fixed w-full z-50 mix-blend-difference text-white py-6 px-6 md:px-12 transition-all duration-500" id="navbar">
         <div class="flex justify-between items-center max-w-screen-2xl mx-auto">
-            <a href="#" class="font-display font-bold text-xl tracking-tight interactive-link" data-cursor="purple">Andreuw.</a>
+            <!-- Narrow/Tegas Logo -->
+            <a href="#" class="font-display text-4xl tracking-wide interactive-link" data-cursor="purple">ANDREUW</a>
             
-            <div class="hidden md:flex items-center space-x-12 font-body text-sm font-medium">
-                <!-- Nav order updated to reflect sections -->
-                <a href="#projects" class="interactive-link hover:text-cGreen transition-colors" data-cursor="green">Projects</a>
+            <div class="hidden md:flex items-center space-x-12 font-body text-xs font-semibold tracking-widest uppercase">
+                <a href="#projects" class="interactive-link hover:text-cGreen transition-colors" data-cursor="green">Cases</a>
                 <a href="#expertise" class="interactive-link hover:text-cOrange transition-colors" data-cursor="orange">Expertise</a>
-                <a href="#experience" class="interactive-link hover:text-cPurple transition-colors" data-cursor="purple">Experience</a>
-                <a href="#contact" class="interactive-link hover:opacity-70 transition-opacity" data-cursor="image">Contact</a>
+                <a href="#experience" class="interactive-link hover:text-cPurple transition-colors" data-cursor="purple">Journey</a>
+                <a href="#contact" class="interactive-link hover:opacity-70 transition-opacity" data-cursor="image">Connect</a>
             </div>
             
-            <button class="md:hidden font-body text-sm font-medium uppercase tracking-wider">Menu</button>
+            <button class="md:hidden font-body text-xs font-semibold uppercase tracking-wider">Menu</button>
         </div>
     </nav>
 
-    <header class="min-h-screen flex items-center pt-20 pb-16 px-6 md:px-12">
+    <!-- Asymmetrical Hero Section -->
+    <header class="min-h-screen flex flex-col justify-center pt-32 pb-16 px-6 md:px-12 relative">
         <div class="max-w-screen-2xl mx-auto w-full relative z-10">
-            <div class="gsap-fade-up">
-                <p class="font-body text-sm md:text-base text-ink/60 mb-6 flex items-center gap-3">
-                    <span class="w-2 h-2 rounded-full bg-cGreen animate-pulse"></span>
-                    Art Director & Design Enthusiast
+            
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 md:mb-20 gsap-fade-up">
+                <p class="font-body text-xs md:text-sm text-ink flex items-center gap-3 uppercase tracking-widest font-semibold mb-8 md:mb-0">
+                    <span class="w-2 h-2 rounded-sm bg-cOrange animate-pulse"></span>
+                    Portfolio / 2026
                 </p>
                 
-                <h1 class="font-display font-bold text-5xl md:text-8xl lg:text-[7.5rem] leading-[1.05] tracking-tight mb-8">
-                    <span class="hover-color-fill green interactive-link rounded-lg px-2 -ml-2" data-cursor="green">Art</span> <br>
-                    <span class="hover-color-fill orange interactive-link rounded-lg px-2 -ml-2" data-cursor="orange">Direction</span> & <br>
-                    <span class="hover-color-fill purple interactive-link rounded-lg px-2 -ml-2" data-cursor="purple">Design.</span>
+                <div class="flex items-center gap-4 interactive-link" data-cursor="purple">
+                    <a href="#" class="font-body text-xs font-semibold uppercase tracking-widest border-b border-ink/30 hover:border-ink transition-colors pb-1 flex items-center gap-2">
+                        Download CV <i class="fa-solid fa-arrow-down text-[10px]"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Staggered / Asymmetrical Typography -->
+            <div class="gsap-fade-up">
+                <h1 class="font-display text-7xl md:text-[8rem] lg:text-[11rem] leading-[0.85] tracking-normal">
+                    <div class="overflow-hidden"><span class="block hover-color-fill green interactive-link" data-cursor="green">ART DIRECTION</span></div>
+                    <div class="overflow-hidden text-indent-1 flex items-center gap-2 md:gap-6">
+                        <!-- Elegant 20% Accent Here -->
+                        <span class="font-accent text-ink/60 italic lowercase text-5xl md:text-8xl lg:text-[9rem] font-light leading-none -mt-4">&</span> 
+                        <span class="block hover-color-fill orange interactive-link" data-cursor="orange">AESTHETIC</span>
+                    </div>
+                    <div class="overflow-hidden text-indent-2"><span class="block hover-color-fill purple interactive-link" data-cursor="purple">ENTHUSIAST</span></div>
                 </h1>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 mt-16 lg:mt-24 gsap-fade-up">
-                <div class="md:col-span-6 lg:col-span-5">
-                    <p class="font-body text-lg md:text-xl text-ink/70 leading-relaxed font-light">
-                        15+ years of translating abstract visions into striking visual realities. A relentless design enthusiast bridging high-end art direction with meticulous UI/UX architecture.
-                    </p>
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 mt-16 md:mt-24 gsap-fade-up">
+                <!-- Elegant Accent 20% applied to the quote -->
+                <div class="md:col-span-5 font-accent text-3xl md:text-4xl italic text-ink/80 border-l-[3px] border-cGreen pl-6 font-light leading-tight">
+                    "Bridging high-end art direction with meticulous UI/UX architecture."
                 </div>
-                <div class="md:col-span-6 lg:col-span-4 lg:col-start-9 flex flex-col sm:flex-row gap-4 items-start">
-                    <a href="#projects" class="group relative px-8 py-4 bg-ink text-base rounded-full font-body font-medium overflow-hidden interactive-link w-full sm:w-auto text-center" data-cursor="green">
-                        <span class="relative z-10 flex items-center justify-center gap-2">View Projects <i class="fa-solid fa-arrow-right transition-transform group-hover:translate-x-1"></i></span>
-                        <div class="absolute inset-0 bg-cGreen transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-500 ease-expo"></div>
-                    </a>
-                    <a href="#" class="group px-8 py-4 bg-transparent border border-ink/20 text-ink rounded-full font-body font-medium hover:border-ink transition-colors interactive-link w-full sm:w-auto text-center" data-cursor="purple">
-                        Download CV
-                    </a>
+                <div class="md:col-span-5 md:col-start-8">
+                    <!-- Clean Sans Body text -->
+                    <p class="font-body text-base md:text-lg text-ink/70 leading-relaxed font-light">
+                        Over 15 years of translating abstract visions into striking visual realities. I specialize in crafting digital experiences that are not only perfectly usable but visually unforgettable.
+                    </p>
                 </div>
             </div>
         </div>
     </header>
 
-    <section class="py-12 px-6 md:px-12 hairline-t hairline-b bg-base">
-        <div class="max-w-screen-2xl mx-auto flex flex-wrap justify-between items-center gap-8 font-display">
-            <div class="gsap-fade-up">
-                <div class="text-4xl md:text-5xl font-bold flex items-start">15<span class="text-cPurple text-2xl mt-1">+</span></div>
-                <div class="font-body text-sm text-ink/50 mt-1">Years Experience</div>
-            </div>
-            <div class="gsap-fade-up delay-100">
-                <div class="text-4xl md:text-5xl font-bold flex items-start">50<span class="text-cOrange text-2xl mt-1">+</span></div>
-                <div class="font-body text-sm text-ink/50 mt-1">Crafted Experiences</div>
-            </div>
-            <div class="gsap-fade-up delay-200">
-                <div class="text-4xl md:text-5xl font-bold flex items-start">100<span class="text-cGreen text-2xl mt-1">%</span></div>
-                <div class="font-body text-sm text-ink/50 mt-1">Aesthetic Focus</div>
-            </div>
-            <div class="gsap-fade-up delay-300">
-                <div class="text-4xl md:text-5xl font-bold text-ink">Lead</div>
-                <div class="font-body text-sm text-ink/50 mt-1">Art & Design</div>
+    <!-- Loop Animation: Asymmetrical Ticker -->
+    <div class="marquee-container bg-base my-12">
+        <div class="marquee-content">
+            <div class="marquee-text">
+                <span class="font-display tracking-wide">ART DIRECTION</span>
+                <i class="fa-solid fa-asterisk asterisk spin-slow"></i>
+                <span class="accent-green font-accent italic">Visual Identity</span>
+                <i class="fa-solid fa-asterisk asterisk spin-slow"></i>
+                <span class="font-display tracking-wide">UI/UX ARCHITECTURE</span>
+                <i class="fa-solid fa-asterisk asterisk spin-slow"></i>
+                <span class="accent-orange font-accent italic">Game Art</span>
+                <i class="fa-solid fa-asterisk asterisk spin-slow"></i>
             </div>
         </div>
-    </section>
+        <div class="marquee-content">
+            <div class="marquee-text">
+                <span class="font-display tracking-wide">ART DIRECTION</span>
+                <i class="fa-solid fa-asterisk asterisk spin-slow"></i>
+                <span class="accent-purple font-accent italic">Visual Identity</span>
+                <i class="fa-solid fa-asterisk asterisk spin-slow"></i>
+                <span class="font-display tracking-wide">UI/UX ARCHITECTURE</span>
+                <i class="fa-solid fa-asterisk asterisk spin-slow"></i>
+                <span class="accent-green font-accent italic">Game Art</span>
+                <i class="fa-solid fa-asterisk asterisk spin-slow"></i>
+            </div>
+        </div>
+    </div>
 
-    <section id="projects" class="py-24 md:py-32 px-6 md:px-12 bg-ink text-base rounded-[2rem] md:rounded-[4rem] mx-2 md:mx-6 mt-24 mb-24">
+    <section id="projects" class="py-24 px-6 md:px-12 bg-base">
         <div class="max-w-screen-2xl mx-auto">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8 gsap-fade-up">
-                <h2 class="font-display text-4xl md:text-6xl font-bold tracking-tight">Signature Projects.</h2>
-                <p class="max-w-sm font-body text-base/70 font-light">
-                    Where art direction meets technical precision. Highlighting the visual journey, aesthetic choices, and seamless user experience.
-                </p>
+            <div class="mb-24 gsap-fade-up flex flex-col md:flex-row justify-between items-baseline border-b border-ink/10 pb-8">
+                <!-- Mix of Narrow/Tegas and Accent Elegant -->
+                <h2 class="font-display text-6xl md:text-8xl leading-none">MOST <span class="font-accent italic text-ink/40 lowercase text-5xl md:text-7xl">Cases</span></h2>
+                <p class="font-body text-xs uppercase tracking-widest font-semibold mt-4 md:mt-0 opacity-60">Selected Works 14—26</p>
             </div>
 
-            <div class="space-y-32">
-                <!-- Project 1: Wardeka (Art/Design Focus) -->
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center gsap-fade-up">
-                    <div class="lg:col-span-7 order-2 lg:order-1">
-                        <div class="inline-block px-4 py-1 rounded-full border border-cGreen text-cGreen font-body text-xs mb-6">Game Art & UI</div>
-                        <h3 class="font-display text-3xl md:text-4xl font-bold mb-6">Wardeka: Cyber-Batik World</h3>
-                        <p class="font-body text-base/70 mb-10 font-light text-lg">
-                            Directed the visual identity and HUD design for a mobile shooter, successfully fusing aggressive Cyberpunk aesthetics with elegant, traditional local motifs.
-                        </p>
-                        
-                        <!-- STAR Framework (Design Focused) -->
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 hairline-t pt-8 border-base/20">
-                            <div>
-                                <h4 class="font-body text-xs text-base/50 uppercase tracking-wider mb-2">Vision</h4>
-                                <p class="text-sm font-light">Create a visually distinct IP that stands out in the saturated TPS mobile market.</p>
-                            </div>
-                            <div>
-                                <h4 class="font-body text-xs text-base/50 uppercase tracking-wider mb-2">Execution</h4>
-                                <p class="text-sm font-light">Designed high-contrast, neon-infused interfaces with intuitive touch targets for fast gameplay.</p>
-                            </div>
-                            <div>
-                                <h4 class="font-body text-xs text-cGreen uppercase tracking-wider mb-2">Result</h4>
-                                <p class="text-sm font-medium">Critically acclaimed art style leading to a massive surge in early-access pre-registrations.</p>
-                            </div>
+            <div class="space-y-32 md:space-y-48">
+                
+                <!-- Project 1: Asymmetrical Left-Heavy -->
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-start gsap-fade-up">
+                    <div class="md:col-span-8 interactive-link" data-cursor="image">
+                        <div class="img-reveal h-[50vh] md:h-[80vh] bg-surface/50 rounded-sm shadow-sm border border-ink/5">
+                            <img src="https://placehold.co/1200x1600/111/00E676?text=Wardeka+Visuals" alt="Wardeka Art Direction" class="w-full h-full object-cover">
                         </div>
                     </div>
-                    <div class="lg:col-span-5 order-1 lg:order-2 interactive-link" data-cursor="image">
-                        <div class="img-reveal h-[400px] lg:h-[500px] bg-surface/10 rounded-2xl">
-                            <!-- Placeholder with high contrast minimal style -->
-                            <img src="https://placehold.co/800x1000/222/00E676?text=Game+Art+UI" alt="Wardeka Project" class="w-full h-full object-cover opacity-80">
+                    <div class="md:col-span-4 md:mt-auto pb-12">
+                        <div class="flex items-center gap-3 mb-6">
+                            <span class="w-1.5 h-1.5 bg-cGreen rounded-sm"></span>
+                            <span class="font-body text-[10px] uppercase tracking-widest font-bold">Art Direction & Game UI</span>
+                        </div>
+                        <h3 class="font-display text-5xl md:text-6xl leading-[0.9] mb-8">WARDEKA<br><span class="text-ink/50">CYBER-BATIK</span></h3>
+                        
+                        <div class="space-y-6 font-body text-sm font-light leading-relaxed text-ink/80">
+                            <div>
+                                <strong class="font-semibold text-ink block mb-1">Challenge</strong>
+                                Creating a visually distinct IP in a highly saturated TPS mobile market, blending local culture with futuristic themes.
+                            </div>
+                            <div>
+                                <strong class="font-semibold text-ink block mb-1">Strategy</strong>
+                                Designed high-contrast, neon-infused UI architectures with intuitive touch areas tailored for fast-paced gameplay.
+                            </div>
+                            <div class="pl-4 border-l-2 border-cGreen">
+                                <strong class="font-semibold text-cGreen block mb-1">Impact</strong>
+                                Visual identity praised globally, leading to a massive 200% surge in early-access pre-registrations.
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Project 2: Medical App (Clean UX Focus) -->
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center gsap-fade-up">
-                    <div class="lg:col-span-5 interactive-link" data-cursor="image">
-                        <div class="img-reveal h-[400px] lg:h-[500px] bg-surface/10 rounded-2xl">
-                            <img src="https://placehold.co/800x1000/222/FF3D00?text=Clean+App+UX" alt="Medical App Project" class="w-full h-full object-cover opacity-80">
+                <!-- Project 2: Asymmetrical Right-Heavy -->
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center gsap-fade-up">
+                    <div class="md:col-span-5 md:col-start-2 order-2 md:order-1 z-10 md:-mr-12 bg-base p-8 md:p-12 rounded-sm border border-ink/10 shadow-2xl">
+                        <div class="flex items-center gap-3 mb-6">
+                            <span class="w-1.5 h-1.5 bg-cOrange rounded-sm"></span>
+                            <span class="font-body text-[10px] uppercase tracking-widest font-bold">Product Design & UX</span>
+                        </div>
+                        <h3 class="font-display text-5xl md:text-6xl leading-[0.9] mb-8">TELE-MED<br><span class="text-ink/50">ELEGANCE</span></h3>
+                        
+                        <div class="space-y-6 font-body text-sm font-light leading-relaxed text-ink/80">
+                            <div>
+                                <strong class="font-semibold text-ink block mb-1">Challenge</strong>
+                                Complex, data-heavy medical systems causing high cognitive load and anxiety for elderly patients.
+                            </div>
+                            <div>
+                                <strong class="font-semibold text-ink block mb-1">Strategy</strong>
+                                Implemented strict Atomic Design, expanding whitespace, utilizing soothing color palettes, and refining micro-interactions.
+                            </div>
+                            <div class="pl-4 border-l-2 border-cOrange">
+                                <strong class="font-semibold text-cOrange block mb-1">Impact</strong>
+                                Increased task completion speed by 40% and maintained 99.8% crash-free visually stable UI sessions.
+                            </div>
                         </div>
                     </div>
-                    <div class="lg:col-span-7">
-                        <div class="inline-block px-4 py-1 rounded-full border border-cOrange text-cOrange font-body text-xs mb-6">Product Design</div>
-                        <h3 class="font-display text-3xl md:text-4xl font-bold mb-6">Tele-Med Elegance</h3>
-                        <p class="font-body text-base/70 mb-10 font-light text-lg">
-                            Transformed a complex, data-heavy medical system into a calming, visually pristine super-app experience. Emphasizing typography, whitespace, and micro-interactions.
-                        </p>
-                        
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 hairline-t pt-8 border-base/20">
-                            <div>
-                                <h4 class="font-body text-xs text-base/50 uppercase tracking-wider mb-2">Vision</h4>
-                                <p class="text-sm font-light">Reduce patient anxiety through clean, minimalist, and highly accessible design.</p>
-                            </div>
-                            <div>
-                                <h4 class="font-body text-xs text-base/50 uppercase tracking-wider mb-2">Execution</h4>
-                                <p class="text-sm font-light">Implemented a strict Atomic Design system with a soothing, soft-contrast color palette.</p>
-                            </div>
-                            <div>
-                                <h4 class="font-body text-xs text-cOrange uppercase tracking-wider mb-2">Result</h4>
-                                <p class="text-sm font-medium">99.8% crash-free UI sessions with user feedback praising the app's soothing aesthetics.</p>
-                            </div>
+                    <div class="md:col-span-6 md:col-start-7 order-1 md:order-2 interactive-link" data-cursor="image">
+                        <div class="img-reveal h-[60vh] md:h-[90vh] bg-surface/50 rounded-sm shadow-sm border border-ink/5">
+                            <img src="https://placehold.co/900x1600/111/FF3D00?text=App+UX+Design" alt="Tele-Med App" class="w-full h-full object-cover">
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
 
-    <section id="expertise" class="py-24 md:py-32 px-6 md:px-12">
+    <section id="expertise" class="py-24 px-6 md:px-12 bg-ink text-base overflow-hidden">
         <div class="max-w-screen-2xl mx-auto">
-            <div class="mb-16 md:mb-24 gsap-fade-up">
-                <h2 class="font-display text-3xl md:text-5xl font-bold tracking-tight">Creative Arsenal.</h2>
-            </div>
+            <h2 class="font-display text-6xl md:text-8xl leading-none mb-20 gsap-fade-up">CREATIVE <span class="font-accent italic text-base/50 lowercase text-5xl md:text-7xl">Arsenal</span></h2>
             
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <!-- Card 1: Purple Hover -->
-                <div class="group relative p-8 md:p-10 rounded-2xl bg-surface overflow-hidden interactive-link gsap-fade-up" data-cursor="purple">
-                    <div class="absolute inset-0 bg-cPurple transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-expo z-0"></div>
-                    <div class="relative z-10 group-hover:text-base transition-colors duration-300">
-                        <div class="font-body text-sm font-medium mb-12 opacity-60">01 // VISUAL IDENTITY</div>
-                        <h3 class="font-display text-2xl font-bold mb-4">Art Direction & Branding</h3>
-                        <p class="font-body text-sm leading-relaxed opacity-80">
-                            Directing the visual language, mood boards, and overall aesthetic vision. Ensuring every pixel aligns with the core brand story and evokes the right emotion.
+            <!-- Staggered / Cascading Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                
+                <div class="group relative p-10 bg-base text-ink rounded-sm overflow-hidden interactive-link gsap-fade-up border border-transparent hover:border-cPurple transition-colors duration-500" data-cursor="purple">
+                    <div class="relative z-10">
+                        <div class="font-body text-[10px] font-bold uppercase tracking-widest mb-16 text-cPurple">01 // Identity</div>
+                        <h3 class="font-display text-4xl mb-4">ART DIRECTION</h3>
+                        <p class="font-body text-sm font-light leading-relaxed opacity-80">
+                            Directing visual languages and mood boards. Ensuring every pixel aligns with the core brand narrative and evokes profound emotional responses.
                         </p>
                     </div>
                 </div>
 
-                <!-- Card 2: Orange Hover -->
-                <div class="group relative p-8 md:p-10 rounded-2xl bg-surface overflow-hidden interactive-link gsap-fade-up delay-100" data-cursor="orange">
-                    <div class="absolute inset-0 bg-cOrange transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-expo z-0"></div>
-                    <div class="relative z-10 group-hover:text-base transition-colors duration-300">
-                        <div class="font-body text-sm font-medium mb-12 opacity-60">02 // INTERACTION</div>
-                        <h3 class="font-display text-2xl font-bold mb-4">UI/UX & Interfaces</h3>
-                        <p class="font-body text-sm leading-relaxed opacity-80">
-                            Crafting pixel-perfect layouts where elegant design meets seamless functionality. Obsessed with micro-interactions, clean typography, and intuitive user flows.
+                <div class="group relative p-10 bg-base text-ink rounded-sm overflow-hidden interactive-link gsap-fade-up md:mt-12 border border-transparent hover:border-cOrange transition-colors duration-500" data-cursor="orange">
+                    <div class="relative z-10">
+                        <div class="font-body text-[10px] font-bold uppercase tracking-widest mb-16 text-cOrange">02 // Interaction</div>
+                        <h3 class="font-display text-4xl mb-4">UI/UX DESIGN</h3>
+                        <p class="font-body text-sm font-light leading-relaxed opacity-80">
+                            Crafting minimalist layouts where elegant design meets rigorous functionality. Obsessed with intuitive user flows and micro-interactions.
                         </p>
                     </div>
                 </div>
 
-                <!-- Card 3: Green Hover -->
-                <div class="group relative p-8 md:p-10 rounded-2xl bg-surface overflow-hidden interactive-link gsap-fade-up delay-200" data-cursor="green">
-                    <div class="absolute inset-0 bg-cGreen transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-expo z-0"></div>
-                    <div class="relative z-10 group-hover:text-base transition-colors duration-300">
-                        <div class="font-body text-sm font-medium mb-12 opacity-60">03 // MULTIMEDIA</div>
-                        <h3 class="font-display text-2xl font-bold mb-4">Digital & Game Art</h3>
-                        <p class="font-body text-sm leading-relaxed opacity-80">
-                            Pushing creative boundaries with immersive HUDs, spatial UI, and high-end graphic compositions for gaming, entertainment, and digital marketing.
+                <div class="group relative p-10 bg-base text-ink rounded-sm overflow-hidden interactive-link gsap-fade-up md:mt-24 border border-transparent hover:border-cGreen transition-colors duration-500" data-cursor="green">
+                    <div class="relative z-10">
+                        <div class="font-body text-[10px] font-bold uppercase tracking-widest mb-16 text-cGreen">03 // Multimedia</div>
+                        <h3 class="font-display text-4xl mb-4">GAME ART</h3>
+                        <p class="font-body text-sm font-light leading-relaxed opacity-80">
+                            Pushing aesthetic boundaries with immersive spatial UIs, HUDs, and high-end graphic compositions for interactive entertainment.
                         </p>
                     </div>
                 </div>
@@ -330,90 +395,92 @@
         </div>
     </section>
 
-    <section id="experience" class="py-24 px-6 md:px-12">
+    <section id="experience" class="py-24 px-6 md:px-12 bg-base">
         <div class="max-w-screen-xl mx-auto">
-            <h2 class="font-display text-4xl md:text-5xl font-bold mb-16 gsap-fade-up">Design Journey.</h2>
+            <div class="flex flex-col md:flex-row justify-between items-baseline mb-20 border-b border-ink/10 pb-8 gsap-fade-up">
+                <h2 class="font-display text-6xl md:text-8xl leading-none">CAREER <span class="font-accent italic text-ink/40 lowercase text-5xl md:text-7xl">Journey</span></h2>
+                <div class="flex gap-12 mt-8 md:mt-0 font-display">
+                    <div>
+                        <div class="text-4xl">15<span class="text-cPurple font-body font-light">+</span></div>
+                        <div class="font-body text-[10px] font-bold uppercase tracking-widest opacity-50 mt-1">Years</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl">50<span class="text-cGreen font-body font-light">+</span></div>
+                        <div class="font-body text-[10px] font-bold uppercase tracking-widest opacity-50 mt-1">Projects</div>
+                    </div>
+                </div>
+            </div>
             
-            <div class="hairline-t gsap-fade-up">
-                <!-- Job 1 -->
-                <div class="group py-8 md:py-12 hairline-b relative overflow-hidden interactive-link" data-cursor="purple">
-                    <div class="absolute inset-0 bg-cPurple transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-expo z-0"></div>
-                    <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-4 group-hover:text-base transition-colors duration-300">
-                        <div class="md:w-1/3">
-                            <h3 class="font-display text-2xl font-bold">Creative & Art Director</h3>
-                            <p class="font-body text-sm mt-1 opacity-60">Tech Startup Inc.</p>
-                        </div>
-                        <div class="md:w-1/3">
-                            <p class="font-body text-sm font-light opacity-80 leading-relaxed">Spearheaded the aesthetic vision and design pipeline, elevating the brand's visual identity across all digital touchpoints.</p>
-                        </div>
-                        <div class="md:w-1/4 text-left md:text-right">
-                            <span class="font-body text-sm opacity-60">2021 — Present</span>
-                        </div>
+            <div class="gsap-fade-up">
+                <div class="group py-10 border-b border-ink/10 flex flex-col md:flex-row md:items-start gap-4 md:gap-12 hover:bg-surface/50 transition-colors px-4 -mx-4 rounded-sm interactive-link" data-cursor="purple">
+                    <div class="font-body text-xs font-semibold opacity-50 md:w-32 pt-2">2021 — PRES.</div>
+                    <div class="md:w-1/3">
+                        <h3 class="font-display text-3xl tracking-wide">CREATIVE DIRECTOR</h3>
+                        <p class="font-body text-[10px] font-bold uppercase tracking-widest text-cPurple mt-2">Tech Startup Inc.</p>
+                    </div>
+                    <div class="md:flex-1 font-body text-sm font-light opacity-80 leading-relaxed pt-1">
+                        Spearheaded the aesthetic vision and design pipeline, elevating the brand's visual identity across all digital touchpoints. Directed a team of 12 multidisciplinary designers.
                     </div>
                 </div>
 
-                <!-- Job 2 -->
-                <div class="group py-8 md:py-12 hairline-b relative overflow-hidden interactive-link" data-cursor="orange">
-                    <div class="absolute inset-0 bg-cOrange transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-expo z-0"></div>
-                    <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-4 group-hover:text-base transition-colors duration-300">
-                        <div class="md:w-1/3">
-                            <h3 class="font-display text-2xl font-bold">Lead UI/UX Designer</h3>
-                            <p class="font-body text-sm mt-1 opacity-60">Game Studio Dev</p>
-                        </div>
-                        <div class="md:w-1/3">
-                            <p class="font-body text-sm font-light opacity-80 leading-relaxed">Architected clean, interactive design systems. Bridged the gap between striking game art and user-friendly interface design.</p>
-                        </div>
-                        <div class="md:w-1/4 text-left md:text-right">
-                            <span class="font-body text-sm opacity-60">2018 — 2021</span>
-                        </div>
+                <div class="group py-10 border-b border-ink/10 flex flex-col md:flex-row md:items-start gap-4 md:gap-12 hover:bg-surface/50 transition-colors px-4 -mx-4 rounded-sm interactive-link" data-cursor="orange">
+                    <div class="font-body text-xs font-semibold opacity-50 md:w-32 pt-2">2018 — 2021</div>
+                    <div class="md:w-1/3">
+                        <h3 class="font-display text-3xl tracking-wide">LEAD UI/UX</h3>
+                        <p class="font-body text-[10px] font-bold uppercase tracking-widest text-cOrange mt-2">Game Studio Dev</p>
+                    </div>
+                    <div class="md:flex-1 font-body text-sm font-light opacity-80 leading-relaxed pt-1">
+                        Architected clean, interactive design systems. Bridged the gap between striking game art and frictionless interface design. Increased player retention by 25%.
                     </div>
                 </div>
 
-                <!-- Job 3 -->
-                <div class="group py-8 md:py-12 hairline-b relative overflow-hidden interactive-link" data-cursor="green">
-                    <div class="absolute inset-0 bg-cGreen transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-expo z-0"></div>
-                    <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-4 group-hover:text-base transition-colors duration-300">
-                        <div class="md:w-1/3">
-                            <h3 class="font-display text-2xl font-bold">Senior Visual Designer</h3>
-                            <p class="font-body text-sm mt-1 opacity-60">Global Agency</p>
-                        </div>
-                        <div class="md:w-1/3">
-                            <p class="font-body text-sm font-light opacity-80 leading-relaxed">Focused on high-impact digital imaging, branding, and multimedia campaigns for top-tier international clients.</p>
-                        </div>
-                        <div class="md:w-1/4 text-left md:text-right">
-                            <span class="font-body text-sm opacity-60">2014 — 2018</span>
-                        </div>
+                <div class="group py-10 flex flex-col md:flex-row md:items-start gap-4 md:gap-12 hover:bg-surface/50 transition-colors px-4 -mx-4 rounded-sm interactive-link" data-cursor="green">
+                    <div class="font-body text-xs font-semibold opacity-50 md:w-32 pt-2">2014 — 2018</div>
+                    <div class="md:w-1/3">
+                        <h3 class="font-display text-3xl tracking-wide">SR. VISUAL DESIGNER</h3>
+                        <p class="font-body text-[10px] font-bold uppercase tracking-widest text-cGreen mt-2">Global Agency</p>
+                    </div>
+                    <div class="md:flex-1 font-body text-sm font-light opacity-80 leading-relaxed pt-1">
+                        Focused on high-impact digital imaging, bespoke branding, and multimedia campaigns for top-tier international clients.
                     </div>
                 </div>
             </div>
 
-            <!-- Testimonial -->
-            <div class="mt-24 max-w-3xl mx-auto text-center gsap-fade-up">
-                <i class="fa-solid fa-quote-left text-cPurple text-3xl mb-6 opacity-50"></i>
-                <p class="font-display text-2xl md:text-3xl leading-snug mb-8">"Andreuw doesn't just design interfaces; he curates digital art. His passion for aesthetics elevates every product he touches into something truly elegant."</p>
-                <div class="font-body">
-                    <p class="font-bold">Jonathan Doe</p>
-                    <p class="text-sm text-ink/60">CEO, Tech Startup Inc.</p>
+            <!-- Elegant Accent 20% in the quote block -->
+            <div class="mt-24 md:ml-auto md:w-2/3 bg-ink text-base p-10 md:p-12 rounded-sm shadow-2xl gsap-fade-up relative">
+                <i class="fa-solid fa-quote-left text-cOrange text-3xl absolute top-8 left-8 opacity-20"></i>
+                <p class="font-accent text-3xl md:text-4xl italic font-light leading-tight mb-8 relative z-10 text-base/90">
+                    "Andreuw doesn't just design interfaces; he curates digital art. His eye for asymmetry and bold typography elevates every product into something truly premium."
+                </p>
+                <div class="font-body flex items-center gap-4">
+                    <div class="w-10 h-10 rounded-sm bg-surface/20"></div>
+                    <div>
+                        <p class="font-semibold text-xs">Jonathan Doe</p>
+                        <p class="text-[10px] text-base/50 font-bold uppercase tracking-widest mt-1">CEO, Tech Startup Inc.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="py-32 px-6 md:px-12 bg-surface flex flex-col items-center justify-center text-center">
+    <section id="contact" class="py-32 px-6 md:px-12 bg-surface flex flex-col items-center justify-center text-center rounded-t-xl md:rounded-t-3xl mt-24">
         <div class="max-w-2xl w-full gsap-fade-up">
-            <h2 class="font-display text-5xl md:text-7xl font-bold tracking-tight mb-6">Let's Create.</h2>
-            <p class="font-body text-ink/60 mb-12 font-light text-lg">
-                Always open to discussing aesthetic visions, art direction, and exciting design collaborations globally.
+            <h2 class="font-display text-7xl md:text-9xl leading-[0.8] mb-6">LET'S <span class="font-accent italic text-ink/80 lowercase text-6xl md:text-8xl">Create</span></h2>
+            <p class="font-body text-ink/60 mb-16 font-light text-base md:text-lg">
+                Open to discussing aesthetic visions, art direction, and exciting design collaborations globally.
             </p>
             
-            <!-- Magnetic Button -->
-            <div class="magnetic-wrap inline-block interactive-link" data-cursor="purple">
-                <a href="mailto:contact@andreuw.com" class="magnetic-btn relative flex items-center justify-center w-40 h-40 md:w-48 md:h-48 rounded-full bg-ink text-base font-body font-medium transition-transform duration-300 ease-out hover:bg-cPurple">
-                    <span class="magnetic-text relative z-10">Say Hello</span>
+            <div class="inline-block interactive-link" data-cursor="purple">
+                <a href="mailto:contact@andreuw.com" class="group relative flex items-center justify-center px-12 py-5 border border-ink rounded-sm text-ink font-body font-bold uppercase tracking-widest text-[10px] overflow-hidden transition-all duration-500 hover:text-base hover:border-cPurple">
+                    <div class="absolute inset-0 bg-cPurple transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-expo z-0"></div>
+                    <span class="relative z-10 flex items-center gap-3">
+                        Transmit Signal
+                        <i class="fa-solid fa-arrow-right -rotate-45 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"></i>
+                    </span>
                 </a>
             </div>
 
-            <div class="flex justify-center gap-8 mt-16 font-body text-sm font-medium">
+            <div class="flex justify-center gap-10 mt-24 font-body text-[10px] font-bold uppercase tracking-widest">
                 <a href="#" class="hover:text-cGreen transition-colors interactive-link" data-cursor="green">LinkedIn</a>
                 <a href="#" class="hover:text-cOrange transition-colors interactive-link" data-cursor="orange">Behance</a>
                 <a href="#" class="hover:text-cPurple transition-colors interactive-link" data-cursor="purple">Dribbble</a>
@@ -421,17 +488,17 @@
         </div>
     </section>
 
-    <footer class="py-8 px-6 md:px-12 bg-base text-center md:text-left hairline-t">
-        <div class="max-w-screen-2xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 font-body text-xs text-ink/40">
-            <div>&copy; 2026 ANDREUW. ALL RIGHTS RESERVED.</div>
-            <div>ART DIRECTION & DESIGN PORTFOLIO</div>
+    <footer class="py-8 px-6 md:px-12 bg-base text-center md:text-left">
+        <div class="max-w-screen-2xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 font-body text-[10px] font-bold text-ink/40 uppercase tracking-widest">
+            <div>&copy; 2026 ANDREUW. EST. IN DESIGN.</div>
+            <div>ART DIRECTION & AESTHETICS</div>
         </div>
     </footer>
 
     <script>
-        // 1. Smooth Scrolling (Lenis)
+        // Smooth Scrolling (Lenis)
         const lenis = new Lenis({
-            duration: 1.2,
+            duration: 1.5,
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
             direction: 'vertical',
             gestureDirection: 'vertical',
@@ -448,7 +515,7 @@
         }
         requestAnimationFrame(raf);
 
-        // 2. Custom Cursor Logic
+        // Custom Cursor Logic
         const cursorDot = document.querySelector('.cursor-dot');
         const cursorOutline = document.querySelector('.cursor-outline');
         const links = document.querySelectorAll('.interactive-link');
@@ -457,11 +524,9 @@
             const posX = e.clientX;
             const posY = e.clientY;
 
-            // Dot follows exactly
             cursorDot.style.left = `${posX}px`;
             cursorDot.style.top = `${posY}px`;
 
-            // Outline follows with slight delay using GSAP for smoothness
             gsap.to(cursorOutline, {
                 x: posX,
                 y: posY,
@@ -473,7 +538,7 @@
         links.forEach(link => {
             link.addEventListener('mouseenter', () => {
                 const cursorType = link.getAttribute('data-cursor');
-                cursorDot.style.opacity = 0; // Hide dot on hover
+                cursorDot.style.opacity = 0; 
                 if(cursorType === 'green') cursorOutline.classList.add('cursor-hover-green');
                 if(cursorType === 'orange') cursorOutline.classList.add('cursor-hover-orange');
                 if(cursorType === 'purple') cursorOutline.classList.add('cursor-hover-purple');
@@ -481,11 +546,11 @@
             });
             link.addEventListener('mouseleave', () => {
                 cursorDot.style.opacity = 1;
-                cursorOutline.className = 'cursor-outline hidden md:block'; // Reset classes
+                cursorOutline.className = 'cursor-outline hidden md:block'; 
             });
         });
 
-        // 3. GSAP Scroll Animations
+        // GSAP Scroll Animations
         gsap.registerPlugin(ScrollTrigger);
 
         const fadeUpElements = document.querySelectorAll('.gsap-fade-up');
@@ -495,47 +560,16 @@
                 { 
                     y: 0, 
                     opacity: 1, 
-                    duration: 1, 
+                    duration: 1.2, 
                     ease: "power3.out",
                     scrollTrigger: {
                         trigger: el,
-                        start: "top 85%", // Trigger when element is 85% from top of viewport
+                        start: "top 85%",
                         toggleActions: "play none none reverse"
                     }
                 }
             );
         });
-
-        // 4. Magnetic Button Logic
-        const magneticWrap = document.querySelector('.magnetic-wrap');
-        const magneticBtn = document.querySelector('.magnetic-btn');
-        const magneticText = document.querySelector('.magnetic-text');
-
-        if(magneticWrap && magneticBtn) {
-            magneticWrap.addEventListener('mousemove', (e) => {
-                const position = magneticWrap.getBoundingClientRect();
-                const x = e.clientX - position.left - position.width / 2;
-                const y = e.clientY - position.top - position.height / 2;
-
-                gsap.to(magneticBtn, {
-                    x: x * 0.3,
-                    y: y * 0.3,
-                    duration: 1,
-                    ease: "power3.out"
-                });
-                gsap.to(magneticText, {
-                    x: x * 0.1,
-                    y: y * 0.1,
-                    duration: 1,
-                    ease: "power3.out"
-                });
-            });
-
-            magneticWrap.addEventListener('mouseleave', () => {
-                gsap.to(magneticBtn, { x: 0, y: 0, duration: 1, ease: "elastic.out(1, 0.3)" });
-                gsap.to(magneticText, { x: 0, y: 0, duration: 1, ease: "elastic.out(1, 0.3)" });
-            });
-        }
     </script>
 </body>
 </html>
