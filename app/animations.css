@@ -31,13 +31,13 @@ main{position:relative}
 .topbar>*{animation:hero-enter .65s both}.topbar>*:nth-child(1){animation-delay:.05s}.topbar>*:nth-child(2){animation-delay:.14s}.topbar>*:nth-child(3){animation-delay:.23s}
 
 @supports (animation-timeline:view()){
-  section:not(.hero) .kicker,section:not(.hero) .display-title,section:not(.hero) .glow-rule,section:not(.hero) .profile-list>*,section:not(.hero) .mini-metrics>*,section:not(.hero) .card-grid>*,section:not(.hero) .featured-tools>*,section:not(.hero) .tool-row>*,section:not(.hero) .proof-strip>*,section:not(.hero) .experience-intro>*,section:not(.hero) .job-head>*,section:not(.hero) .job-body>*,section:not(.hero) .logo-strip>*,footer>*{animation:scroll-reveal linear both;animation-timeline:view();animation-range:entry 0% cover 24%}
-  .card-grid>*:nth-child(even),.tool-row>*:nth-child(even),.logo-strip>*:nth-child(even){animation-range:entry 4% cover 28%}
+  section:not(.hero) .kicker,section:not(.hero) .display-title,section:not(.hero) .glow-rule,section:not(.hero) .profile-list>*,section:not(.hero) .mini-metrics>*,section:not(.hero) .card-grid>*,section:not(.hero) .featured-tools>*,section:not(.hero) .tool-row>*,section:not(.hero) .proof-strip>*,section:not(.hero) .experience-intro>*,section:not(.hero) .job-head>*,section:not(.hero) .job-body>*,section:not(.hero) .logo-strip>*,footer>*{animation:scroll-reveal linear both;animation-timeline:view();animation-range:entry 0% cover 16%}
+  .card-grid>*:nth-child(even),.tool-row>*:nth-child(even),.logo-strip>*:nth-child(even){animation-range:entry 2% cover 18%}
 }
 
 @keyframes hero-enter{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
 @keyframes portrait-enter{from{opacity:0;transform:translateY(45px) scale(.97);filter:blur(7px) drop-shadow(0 18px 25px rgba(0,0,0,.45))}to{opacity:1;transform:none;filter:blur(0) drop-shadow(0 18px 25px rgba(0,0,0,.45))}}
-@keyframes scroll-reveal{from{opacity:0;transform:translateY(38px) scale(.985);filter:blur(5px)}to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes scroll-reveal{from{opacity:0;transform:translateY(30px) scale(.99)}to{opacity:1;transform:none}}
 @keyframes shine-pass{0%,58%{left:-55%}82%,100%{left:135%}}
 @keyframes line-shimmer{0%,100%{background-position:0 50%;opacity:.65}50%{background-position:100% 50%;opacity:1}}
 @keyframes pulse-ring{0%,100%{transform:translateY(0);box-shadow:0 0 20px rgba(255,171,10,.2)}50%{transform:translateY(6px);box-shadow:0 0 34px rgba(255,171,10,.48)}}
@@ -46,4 +46,5 @@ main{position:relative}
 
 @media(max-width:1000px){.portrait{inset:6% 8% 0 28%;mask-image:none}}
 @media(max-width:700px){.portrait{inset:24% -30% 0 5%;mask-image:none;opacity:.56}.motion-backdrop{opacity:.16}.motion-backdrop span:nth-child(1){width:72vw;height:72vw;left:-50vw}}
+.added-role .job-copy ul{margin:0;padding-left:18px}.added-role .job-note{margin-top:24px;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);color:#aeb9c8}.studio-role{background:radial-gradient(circle at 80% 15%,#0c1d36,#010714 48%,#010611 100%)}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important;animation:none!important}.motion-backdrop{display:none}}
