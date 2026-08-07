@@ -29,6 +29,7 @@ const tools = [
 
 const clients = ["Tito's Diner", "Global Bistro", "Bison Insulation", "JJ Trading", "Moon Bounce", "Global Marketing"];
 const engagements = ["Jalalive", "spb1.com", "BK8", "dafabet"];
+const gmailComposeUrl = "https://mail.google.com/mail/?view=cm&fs=1&to=lengkongandrew@gmail.com&su=Portfolio%20Project%20Inquiry";
 
 function Kicker({ number, children }: { number: string; children: React.ReactNode }) {
   return (
@@ -56,7 +57,7 @@ export default function Home() {
         <nav aria-label="Primary navigation">
           <a href="#about">About</a><a href="#tools">Tools</a><a href="#experience">Experience</a>
         </nav>
-        <a className="nav-cta shine-target" href="mailto:lengkongandrew@gmail.com">Let&apos;s talk <span>↗</span></a>
+        <a className="nav-cta shine-target" href={gmailComposeUrl} target="_blank" rel="noreferrer">Let&apos;s talk <span>↗</span></a>
       </header>
 
       <section className="hero" id="top">
@@ -75,7 +76,7 @@ export default function Home() {
           <div><strong>20+</strong><span>Clients<br />worldwide</span></div>
         </aside>
         <a className="scroll-cue" href="#about"><span>Scroll to explore</span><b>↓</b></a>
-        <div className="availability"><small>Available for freelance</small><a className="shine-target" href="mailto:lengkongandrew@gmail.com">Let&apos;s work together <span>↗</span></a></div>
+        <div className="availability"><small>Available for freelance</small><a className="shine-target" href={gmailComposeUrl} target="_blank" rel="noreferrer">Let&apos;s work together <span>↗</span></a></div>
       </section>
 
       <section className="split-section" id="about">
@@ -140,7 +141,23 @@ export default function Home() {
         </article>
       </section>
 
-      <footer id="contact"><p>Have a project in mind?</p><h2>Let&apos;s create<br /><span>something bold.</span></h2><a className="shine-target" href="mailto:lengkongandrew@gmail.com">lengkongandrew@gmail.com <span>↗</span></a><small>© 2026 Andrew Lengkong · Available worldwide</small></footer>
+      <section className="experience-section added-role">
+        <div className="experience-intro compact"><Kicker number="06">Regional impact</Kicker><h2 className="display-title">Digital<br />Strategy</h2><p>Editorial, marketing, and product visuals built for a high-volume regional media environment.</p></div>
+        <article className="job-card">
+          <div className="job-head"><span className="job-icon">▣</span><div><h3>Digital Business Visual and Marketing Strategist</h3><p><b>Manado Post</b> · Manado, Indonesia — Hybrid</p></div><time>April 2024–April 2026</time></div>
+          <div className="job-body"><div className="job-copy"><ul><li>Lead hands-on graphic design and visual direction for Voxlumedia&apos;s brand, website, social media, digital products, and client accounts.</li><li>Improved the company&apos;s visual identity and produced content supporting Instagram growth from fewer than 100 to more than 4,000 followers and Facebook growth from fewer than 100 to more than 2,000.</li><li>Redesigned the company website and designed VoxCard, a free link-page product for individuals and businesses.</li><li>Collaborated with product and development teams on the visual direction and interface design of VoxSocial and VoxAudit.</li></ul><p className="job-note">The company&apos;s annual online-view achievements were collective results of the editorial, content, marketing, and publication teams. My contribution focused on visual production, publication direction, client content, and selected campaign execution.</p></div><div className="project-links"><a href="https://www.behance.net/gallery/227970645/MALL-SOCIAL-MEDIA-REBRANDING" target="_blank" rel="noreferrer">View Mall Social Media Rebranding ↗</a></div></div>
+        </article>
+      </section>
+
+      <section className="experience-section added-role studio-role">
+        <div className="experience-intro compact"><Kicker number="07">Studio leadership</Kicker><h2 className="display-title">Product &<br />Game Design</h2><p>Original characters, product visuals, and interactive experiences developed from concept through publication.</p></div>
+        <article className="job-card">
+          <div className="job-head"><span className="job-icon">▣</span><div><h3>Co Founder and Design Lead</h3><p><b>Big Dade Interactive / Big Dade Studio</b> · Indonesia — Hybrid</p></div><time>2019–2021<br />2022–2025</time></div>
+          <div className="job-body"><ul className="job-copy"><li>Led and produced visual directions, character designs, illustrations, interface graphics, promotional assets, and game publications.</li><li>Produced and supervised 2D and 3D visual assets for mobile games and interactive applications.</li><li>Designed publication materials for product launches, esports tournaments, community events, and social media campaigns.</li><li>Collaborated with developers, artists, and product teams while personally producing major visual deliverables and conducting design reviews.</li></ul><div className="project-links"><a href="https://www.behance.net/gallery/186364327/Game-Character-Design-Manguni-Squad" target="_blank" rel="noreferrer">View Manguni Squad ↗</a><a href="https://www.behance.net/gallery/153824559/Wardeka-Mobile-Shooting-Game" target="_blank" rel="noreferrer">View Wardeka ↗</a></div></div>
+        </article>
+      </section>
+
+      <footer id="contact"><p>Have a project in mind?</p><h2>Let&apos;s create<br /><span>something bold.</span></h2><a className="shine-target" href={gmailComposeUrl} target="_blank" rel="noreferrer">lengkongandrew@gmail.com <span>↗</span></a><small>© 2026 Andrew Lengkong · Available worldwide</small></footer>
     </main>
   );
 }
