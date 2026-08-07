@@ -47,4 +47,25 @@ main{position:relative}
 @media(max-width:1000px){.portrait{inset:6% 8% 0 28%;mask-image:none}}
 @media(max-width:700px){.portrait{inset:24% -30% 0 5%;mask-image:none;opacity:.56}.motion-backdrop{opacity:.16}.motion-backdrop span:nth-child(1){width:72vw;height:72vw;left:-50vw}}
 .added-role .job-copy ul{margin:0;padding-left:18px}.added-role .job-note{margin-top:24px;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);color:#aeb9c8}.studio-role{background:radial-gradient(circle at 80% 15%,#0c1d36,#010714 48%,#010611 100%)}
+
+/* A continuous post-hero canvas and a consistent editorial type scale. */
+.split-section,.tools-section,.experience-section,.studio-role,footer{background:#000613}
+.display-title{font-size:clamp(3.25rem,4.6vw,5.5rem);line-height:.94}
+.profile-list strong{font-size:clamp(.88rem,.18vw + .84rem,1rem)}
+.profile-list span{font-size:clamp(.78rem,.16vw + .74rem,.9rem);line-height:1.7}
+.card-grid span{font-size:clamp(.9rem,.2vw + .84rem,1.05rem)}
+.featured-tools h3{font-size:clamp(1.15rem,.35vw + 1rem,1.45rem)}
+.featured-tools p{font-size:clamp(.78rem,.14vw + .74rem,.88rem)}
+.experience-intro>p{font-size:clamp(.95rem,.25vw + .9rem,1.15rem)}
+.job-head h3{font-size:clamp(1.65rem,1.65vw,2.25rem);line-height:1.15}
+.job-head p,.job-head time{font-size:clamp(.8rem,.18vw + .76rem,.92rem)}
+.job-copy{font-size:clamp(.78rem,.2vw + .72rem,.9rem);line-height:1.72}
+.project-links a{font-size:clamp(.8rem,.18vw + .76rem,.92rem);line-height:1.45}
+.mini-metrics b{font-size:clamp(.78rem,.18vw + .74rem,.9rem)}
+.mini-metrics span{font-size:clamp(.75rem,.14vw + .72rem,.84rem)}
+.proof-strip p{font-size:clamp(.72rem,.16vw + .68rem,.84rem)}
+.impact-card b{font-size:clamp(1.35rem,.8vw + 1rem,1.75rem)}
+.impact-card span{font-size:clamp(.65rem,.12vw + .62rem,.75rem)}
+.logo-strip b{font-size:clamp(.7rem,.12vw + .66rem,.8rem)}
+@media(max-width:700px){.display-title{font-size:clamp(3rem,14vw,4.4rem)}.job-head h3{font-size:clamp(1.45rem,7vw,1.85rem)}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important;animation:none!important}.motion-backdrop{display:none}}
