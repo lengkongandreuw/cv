@@ -1,0 +1,49 @@
+/* Motion and updated hero treatment */
+main{position:relative}
+.motion-backdrop{position:fixed;inset:0;z-index:12;pointer-events:none;overflow:hidden;opacity:.25;mix-blend-mode:screen}
+.motion-backdrop span{position:absolute;display:block;border:1px solid rgba(28,133,255,.24);border-radius:50%;filter:drop-shadow(0 0 9px rgba(0,111,255,.35));animation:orbital-drift 24s ease-in-out infinite}
+.motion-backdrop span:nth-child(1){width:32vw;height:32vw;left:-19vw;top:18vh}
+.motion-backdrop span:nth-child(2){width:20vw;height:20vw;right:-10vw;top:53vh;border-color:rgba(255,145,0,.18);animation-delay:-8s;animation-duration:29s}
+.motion-backdrop span:nth-child(3){width:4px;height:4px;left:63vw;top:20vh;border:0;background:#fff;box-shadow:0 0 18px 5px rgba(19,129,255,.6);animation-delay:-15s;animation-duration:18s}
+
+.hero{background-image:linear-gradient(90deg,rgba(1,7,19,.3),rgba(1,7,19,.02) 48%,rgba(1,7,19,.2)),url('/latar.png');background-size:cover;background-position:center;background-repeat:no-repeat}
+.portrait{inset:3% 22% 0 31%;mask-image:none;filter:drop-shadow(0 18px 25px rgba(0,0,0,.45))}
+.portrait div{background-image:url('/andreuwphoto.png');background-size:auto 100%;background-position:50% 100%;filter:saturate(.94) contrast(1.04)}
+
+.shine-target{position:relative;overflow:hidden}
+.shine-target:after{content:"";position:absolute;inset:-40% auto -40% -55%;width:32%;transform:skewX(-22deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.62),transparent);animation:shine-pass 4.8s ease-in-out infinite}
+.glow-rule,.kicker i,.hero-role i{position:relative;overflow:hidden;background-size:200% 100%;animation:line-shimmer 2.8s ease-in-out infinite}
+.kicker i{background-image:linear-gradient(90deg,transparent,rgba(22,136,255,.65),var(--gold),transparent)}
+.scroll-cue b{animation:pulse-ring 2.3s ease-in-out infinite}
+.job-icon,.tool-mark{animation:soft-float 5.5s ease-in-out infinite}
+.tool-card:nth-child(even) .tool-mark{animation-delay:-2.6s}
+
+.hero .eyebrow{animation:hero-enter .7s .12s both}
+.hero h1{animation:hero-enter .85s .24s both}
+.hero-role{animation:hero-enter .75s .38s both}
+.hero-intro{animation:hero-enter .75s .5s both}
+.portrait{animation:portrait-enter 1s .25s both}
+.hero-stats>div{animation:hero-enter .7s both}
+.hero-stats>div:nth-child(1){animation-delay:.5s}
+.hero-stats>div:nth-child(2){animation-delay:.64s}
+.hero-stats>div:nth-child(3){animation-delay:.78s}
+.scroll-cue,.availability{animation:hero-enter .75s .9s both}
+.topbar>*{animation:hero-enter .65s both}.topbar>*:nth-child(1){animation-delay:.05s}.topbar>*:nth-child(2){animation-delay:.14s}.topbar>*:nth-child(3){animation-delay:.23s}
+
+@supports (animation-timeline:view()){
+  section:not(.hero) .kicker,section:not(.hero) .display-title,section:not(.hero) .glow-rule,section:not(.hero) .profile-list>*,section:not(.hero) .mini-metrics>*,section:not(.hero) .card-grid>*,section:not(.hero) .featured-tools>*,section:not(.hero) .tool-row>*,section:not(.hero) .proof-strip>*,section:not(.hero) .experience-intro>*,section:not(.hero) .job-head>*,section:not(.hero) .job-body>*,section:not(.hero) .logo-strip>*,footer>*{animation:scroll-reveal linear both;animation-timeline:view();animation-range:entry 0% cover 24%}
+  .card-grid>*:nth-child(even),.tool-row>*:nth-child(even),.logo-strip>*:nth-child(even){animation-range:entry 4% cover 28%}
+}
+
+@keyframes hero-enter{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+@keyframes portrait-enter{from{opacity:0;transform:translateY(45px) scale(.97);filter:blur(7px) drop-shadow(0 18px 25px rgba(0,0,0,.45))}to{opacity:1;transform:none;filter:blur(0) drop-shadow(0 18px 25px rgba(0,0,0,.45))}}
+@keyframes scroll-reveal{from{opacity:0;transform:translateY(38px) scale(.985);filter:blur(5px)}to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes shine-pass{0%,58%{left:-55%}82%,100%{left:135%}}
+@keyframes line-shimmer{0%,100%{background-position:0 50%;opacity:.65}50%{background-position:100% 50%;opacity:1}}
+@keyframes pulse-ring{0%,100%{transform:translateY(0);box-shadow:0 0 20px rgba(255,171,10,.2)}50%{transform:translateY(6px);box-shadow:0 0 34px rgba(255,171,10,.48)}}
+@keyframes soft-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@keyframes orbital-drift{0%,100%{transform:translate3d(0,0,0) rotate(0);opacity:.35}45%{transform:translate3d(4vw,-4vh,0) rotate(120deg);opacity:.72}70%{transform:translate3d(-2vw,2vh,0) rotate(240deg);opacity:.45}}
+
+@media(max-width:1000px){.portrait{inset:6% 8% 0 28%;mask-image:none}}
+@media(max-width:700px){.portrait{inset:24% -30% 0 5%;mask-image:none;opacity:.56}.motion-backdrop{opacity:.16}.motion-backdrop span:nth-child(1){width:72vw;height:72vw;left:-50vw}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important;animation:none!important}.motion-backdrop{display:none}}
