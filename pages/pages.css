@@ -1,0 +1,8 @@
+:root {
+  --font-display: "Oswald", sans-serif;
+  --font-body: "Poppins", sans-serif;
+}
+
+body {
+  min-width: 320px;
+}

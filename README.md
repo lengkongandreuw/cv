@@ -4,7 +4,7 @@ Source code for Andrew Lengkong's responsive graphic-design portfolio.
 
 ## Live site
 
-[andrew-lengkong-portfolio.lengkongandrew.chatgpt.site](https://andrew-lengkong-portfolio.lengkongandrew.chatgpt.site)
+[lengkongandreuw.github.io/cv](https://lengkongandreuw.github.io/cv/)
 
 ## Highlights
 
@@ -27,6 +27,12 @@ Create a production build with:
 
 ```bash
 pnpm build
+```
+
+Create the static GitHub Pages build with:
+
+```bash
+pnpm build:pages
 ```
 
 The application uses React, TypeScript, Vinext, and Vite.
