@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const services = [
   "Social Media Design",
   "Campaign Key Visuals",
@@ -48,10 +50,22 @@ function ToolCard({ mark, name, type, tone }: (typeof tools)[number]) {
   );
 }
 
+function RoleDetails({ children }: { children: React.ReactNode }) {
+  const [open, setOpen] = useState(() => typeof window === "undefined" || !window.matchMedia("(max-width: 700px)").matches);
+
+  return (
+    <details className="job-details" open={open} onToggle={event => setOpen(event.currentTarget.open)}>
+      <summary><span>View role details</span><b aria-hidden="true">+</b></summary>
+      {children}
+    </details>
+  );
+}
+
 export default function Home() {
   return (
     <main>
       <div className="motion-backdrop" aria-hidden="true"><span /><span /><span /></div>
+      <div className="scroll-progress" aria-hidden="true" />
       <header className="topbar">
         <a className="monogram" href="#top" aria-label="Andrew Lengkong — home">AL<span>.</span></a>
         <nav aria-label="Primary navigation">
@@ -126,8 +140,8 @@ export default function Home() {
         </div>
         <article className="job-card job-primary">
           <div className="job-head"><span className="job-icon">▣</span><div><h3>Creative Lead</h3><p><b>VoxLumedia</b> · Tysons Corner, VA, USA — Remote</p></div><time>September 2025–Present</time></div>
-          <div className="job-body"><div className="job-copy"><p>Lead hands-on graphic design and visual direction for VoxLumedia&apos;s brand, website, social media, digital products, and client accounts.</p><p>Improved the company&apos;s visual identity and grew Instagram from under 100 to 4,000+ followers and Facebook from under 100 to 2,000+.</p><p>Redesigned the company website and shaped visual direction for VoxCard, VoxSocial, and VoxAudit.</p></div>
-          <aside className="impact-card"><small>Impact & growth</small><p><b>4,000+</b><span>Instagram followers</span></p><p><b>2,000+</b><span>Facebook followers</span></p><p><b>Remote</b><span>USA</span></p></aside></div>
+          <RoleDetails><div className="job-body"><div className="job-copy"><p>Lead hands-on graphic design and visual direction for VoxLumedia&apos;s brand, website, social media, digital products, and client accounts.</p><p>Improved the company&apos;s visual identity and grew Instagram from under 100 to 4,000+ followers and Facebook from under 100 to 2,000+.</p><p>Redesigned the company website and shaped visual direction for VoxCard, VoxSocial, and VoxAudit.</p></div>
+          <aside className="impact-card"><small>Impact & growth</small><p><b>4,000+</b><span>Instagram followers</span></p><p><b>2,000+</b><span>Facebook followers</span></p><p><b>Remote</b><span>USA</span></p></aside></div></RoleDetails>
           <div className="logo-strip"><span>Selected clients</span>{clients.map(client => <b key={client}>{client}</b>)}</div>
         </article>
       </section>
@@ -136,7 +150,7 @@ export default function Home() {
         <div className="experience-intro compact"><Kicker number="05">Selected engagement</Kicker><h2 className="display-title">Sports<br />Media</h2><p>Fast, editorial visual systems for matchday campaigns and global sports audiences.</p></div>
         <article className="job-card">
           <div className="job-head"><span className="job-icon">▣</span><div><h3>Freelance Sport Media Designer</h3><p><b>Multiple platforms</b> · Philippines — Remote</p></div><time>July 2024–July 2025<br />Jan–July 2026</time></div>
-          <div className="job-body"><ul className="job-copy"><li>Produce static and animated matchday posters, banners, GIFs, tournament campaigns, and promotional graphics.</li><li>Create Photoshop-based sports compositions with player cutouts, lighting, typography, color grading, and visual effects.</li><li>Adapt high-volume campaign assets across competitions, teams, social media, web, and mobile.</li><li>Own projects from concept development through revisions and final delivery.</li></ul><div className="project-links"><a href="#contact">View Football Matchday Campaigns ↗</a><a href="#contact">View FIFA World Cup 2026 Campaign ↗</a><a href="#contact">View Sports Betting Publications ↗</a></div></div>
+          <RoleDetails><div className="job-body"><ul className="job-copy"><li>Produce static and animated matchday posters, banners, GIFs, tournament campaigns, and promotional graphics.</li><li>Create Photoshop-based sports compositions with player cutouts, lighting, typography, color grading, and visual effects.</li><li>Adapt high-volume campaign assets across competitions, teams, social media, web, and mobile.</li><li>Own projects from concept development through revisions and final delivery.</li></ul><div className="project-links"><a href="#contact">View Football Matchday Campaigns ↗</a><a href="#contact">View FIFA World Cup 2026 Campaign ↗</a><a href="#contact">View Sports Betting Publications ↗</a></div></div></RoleDetails>
           <div className="logo-strip"><span>Selected engagement</span>{engagements.map(item => <b key={item}>{item}</b>)}</div>
         </article>
       </section>
@@ -145,7 +159,7 @@ export default function Home() {
         <div className="experience-intro compact"><Kicker number="06">Regional impact</Kicker><h2 className="display-title">Digital<br />Strategy</h2><p>Editorial, marketing, and product visuals built for a high-volume regional media environment.</p></div>
         <article className="job-card">
           <div className="job-head"><span className="job-icon">▣</span><div><h3>Digital Business Visual and Marketing Strategist</h3><p><b>Manado Post</b> · Manado, Indonesia — Hybrid</p></div><time>April 2024–April 2026</time></div>
-          <div className="job-body"><div className="job-copy"><ul><li>Lead hands-on graphic design and visual direction for Voxlumedia&apos;s brand, website, social media, digital products, and client accounts.</li><li>Improved the company&apos;s visual identity and produced content supporting Instagram growth from fewer than 100 to more than 4,000 followers and Facebook growth from fewer than 100 to more than 2,000.</li><li>Redesigned the company website and designed VoxCard, a free link-page product for individuals and businesses.</li><li>Collaborated with product and development teams on the visual direction and interface design of VoxSocial and VoxAudit.</li></ul><p className="job-note">The company&apos;s annual online-view achievements were collective results of the editorial, content, marketing, and publication teams. My contribution focused on visual production, publication direction, client content, and selected campaign execution.</p></div><div className="project-links"><a href="https://www.behance.net/gallery/227970645/MALL-SOCIAL-MEDIA-REBRANDING" target="_blank" rel="noreferrer">View Mall Social Media Rebranding ↗</a></div></div>
+          <RoleDetails><div className="job-body"><div className="job-copy"><ul><li>Lead hands-on graphic design and visual direction for Voxlumedia&apos;s brand, website, social media, digital products, and client accounts.</li><li>Improved the company&apos;s visual identity and produced content supporting Instagram growth from fewer than 100 to more than 4,000 followers and Facebook growth from fewer than 100 to more than 2,000.</li><li>Redesigned the company website and designed VoxCard, a free link-page product for individuals and businesses.</li><li>Collaborated with product and development teams on the visual direction and interface design of VoxSocial and VoxAudit.</li></ul><p className="job-note">The company&apos;s annual online-view achievements were collective results of the editorial, content, marketing, and publication teams. My contribution focused on visual production, publication direction, client content, and selected campaign execution.</p></div><div className="project-links"><a href="https://www.behance.net/gallery/227970645/MALL-SOCIAL-MEDIA-REBRANDING" target="_blank" rel="noreferrer">View Mall Social Media Rebranding ↗</a></div></div></RoleDetails>
         </article>
       </section>
 
@@ -153,7 +167,7 @@ export default function Home() {
         <div className="experience-intro compact"><Kicker number="07">Studio leadership</Kicker><h2 className="display-title">Product &<br />Game Design</h2><p>Original characters, product visuals, and interactive experiences developed from concept through publication.</p></div>
         <article className="job-card">
           <div className="job-head"><span className="job-icon">▣</span><div><h3>Co Founder and Design Lead</h3><p><b>Big Dade Interactive / Big Dade Studio</b> · Indonesia — Hybrid</p></div><time>2019–2021<br />2022–2025</time></div>
-          <div className="job-body"><ul className="job-copy"><li>Led and produced visual directions, character designs, illustrations, interface graphics, promotional assets, and game publications.</li><li>Produced and supervised 2D and 3D visual assets for mobile games and interactive applications.</li><li>Designed publication materials for product launches, esports tournaments, community events, and social media campaigns.</li><li>Collaborated with developers, artists, and product teams while personally producing major visual deliverables and conducting design reviews.</li></ul><div className="project-links"><a href="https://www.behance.net/gallery/186364327/Game-Character-Design-Manguni-Squad" target="_blank" rel="noreferrer">View Manguni Squad ↗</a><a href="https://www.behance.net/gallery/153824559/Wardeka-Mobile-Shooting-Game" target="_blank" rel="noreferrer">View Wardeka ↗</a></div></div>
+          <RoleDetails><div className="job-body"><ul className="job-copy"><li>Led and produced visual directions, character designs, illustrations, interface graphics, promotional assets, and game publications.</li><li>Produced and supervised 2D and 3D visual assets for mobile games and interactive applications.</li><li>Designed publication materials for product launches, esports tournaments, community events, and social media campaigns.</li><li>Collaborated with developers, artists, and product teams while personally producing major visual deliverables and conducting design reviews.</li></ul><div className="project-links"><a href="https://www.behance.net/gallery/186364327/Game-Character-Design-Manguni-Squad" target="_blank" rel="noreferrer">View Manguni Squad ↗</a><a href="https://www.behance.net/gallery/153824559/Wardeka-Mobile-Shooting-Game" target="_blank" rel="noreferrer">View Wardeka ↗</a></div></div></RoleDetails>
         </article>
       </section>
 
