@@ -34,17 +34,16 @@ const linkedInUrl = "https://www.linkedin.com/in/lengkongandreuw/";
 const behanceUrl = "https://www.behance.net/andrewlengkong";
 
 const selectedWorks = [
+  { title: "FIFA World Cup 2026 Team Poster Design", category: "Sports Campaign", image: "/work-fifa.png", href: "https://www.behance.net/gallery/249968611/FIFA-World-Cup-2026-Team-Poster-Design" },
+  { title: "Warbiasa Esport Tournament", category: "Publication Design", image: "/work-warbiasa.jpg", href: "https://www.behance.net/gallery/249763725/Warbiasa-Esport-Tournament-Publication-Design" },
+  { title: "NADI My Doctor", category: "Healthcare UX / UI", image: "/work-nadi.jpg", href: "https://www.behance.net/gallery/250701473/NADI-My-Doctor-Telemedicine-UXUI-Case-Study" },
+  { title: "Save the Forrest Campaign", category: "Campaign Visual", image: "/work-forest.png", href: "https://www.behance.net/gallery/253177443/Save-the-Forrest-Campaign" },
   { title: "Bison Insulation Rebranding", category: "Brand Identity", image: "/work-bison.jpg", href: "https://www.behance.net/gallery/240372477/Bison-Insulation-Rebranding-Project" },
   { title: "Tito's Diner Social Content", category: "Social Media", image: "/work-titos.jpg", href: "https://www.behance.net/gallery/237246055/Titos-Diner-Restaurant-Social-Media-Content-Design" },
-  { title: "Synthetix IT Brand Identity", category: "Visual Identity", image: "/work-synthetix.png", href: "https://www.behance.net/gallery/237636239/Synthetix-IT-Brand-Identity-Design" },
-  { title: "Mall Social Media Rebranding", category: "Campaign Design", image: "/work-mall.png", href: "https://www.behance.net/gallery/227970645/MALL-SOCIAL-MEDIA-REBRANDING" },
-  { title: "Manguni Squad", category: "Character Design", image: "/work-manguni.png", href: "https://www.behance.net/gallery/186364327/Game-Character-Design-Manguni-Squad" },
-  { title: "Commodity Feature for News App", category: "UI / Visual Design", image: "/work-uiux.png", href: "https://www.behance.net/gallery/234003485/UIUX-Commodiy-Feature-for-News-App" },
 ];
 
 const earlierExperience = [
   { role: "Founder & Creative Project Lead", company: "Kustomisasi Kreasi Kreatif Agency", period: "2022–2026", href: "https://www.behance.net/KustomisasiKreasi", label: "Behance team" },
-  { role: "Senior UX Designer / Associate Product Manager", company: "NADI Health", period: "2021–2022", href: "https://www.linkedin.com/company/nadihealthapp", label: "LinkedIn" },
   { role: "Lecturer — UI/UX, HCI & Digital Marketing", company: "Universitas Prisma", period: "2017–2026", href: "https://prisma.ac.id/", label: "Website" },
   { role: "Teacher, Graphic Designer & Web Developer", company: "Manado Prisma School", period: "2012–2017", href: "https://manadoprisma.sch.id/", label: "Website" },
 ];
@@ -78,6 +77,30 @@ const journeyExperiences = [
       { label: "LinkedIn", href: "https://www.linkedin.com/company/voxlumedia" },
       { label: "Behance team", href: "https://www.behance.net/VoxlumediaDesign" },
     ],
+    highlightClients: [
+      {
+        name: "Bison Insulation",
+        location: "Ottawa, Canada",
+        summary: "Brand redefinition, a repeatable social media kit, and a refreshed digital presence for an insulation company.",
+        services: ["Rebranding", "Social media kit", "Web redesign"],
+        links: [
+          { label: "Brand case study", href: "https://www.behance.net/gallery/240372477/Bison-Insulation-Rebranding-Project" },
+          { label: "Social media kit", href: "https://www.behance.net/gallery/251893479/Bison-Insulation-Sosial-Media-Design" },
+          { label: "Website", href: "https://bisoninsulation.ca/" },
+          { label: "Instagram", href: "https://www.instagram.com/bison.insulation/" },
+        ],
+      },
+      {
+        name: "Global Marketing LLC",
+        location: "Dubai, UAE",
+        summary: "Rebranding and a cohesive social content direction for a Dubai-based marketing and e-learning company.",
+        services: ["Rebranding", "Social content", "Visual direction"],
+        links: [
+          { label: "Website", href: "https://globalmarketingdubai.com/" },
+          { label: "Instagram", href: "https://www.instagram.com/globalmarketing.llc" },
+        ],
+      },
+    ],
   },
   {
     id: "philippines",
@@ -101,6 +124,7 @@ const journeyExperiences = [
       { label: "FIFA World Cup", href: "https://www.behance.net/gallery/249968611/FIFA-World-Cup-2026-Team-Poster-Design" },
       { label: "Sports portfolio", href: behanceUrl },
     ],
+    highlightClients: [],
   },
   {
     id: "manado",
@@ -124,6 +148,7 @@ const journeyExperiences = [
       { label: "Mall rebranding", href: "https://www.behance.net/gallery/227970645/MALL-SOCIAL-MEDIA-REBRANDING" },
       { label: "News app UI", href: "https://www.behance.net/gallery/234003485/UIUX-Commodiy-Feature-for-News-App" },
     ],
+    highlightClients: [],
   },
   {
     id: "indonesia",
@@ -148,7 +173,36 @@ const journeyExperiences = [
       { label: "Manguni Squad", href: "https://www.behance.net/gallery/186364327/Game-Character-Design-Manguni-Squad" },
       { label: "Wardeka", href: "https://www.behance.net/gallery/153824559/Wardeka-Mobile-Shooting-Game" },
     ],
+    highlightClients: [],
   },
+  {
+    id: "malaysia",
+    mapLabel: "Kuala Lumpur",
+    location: "Kuala Lumpur, Malaysia",
+    x: 78.25,
+    y: 48.26,
+    role: "Associate Product Manager & Sr. UX Designer",
+    company: "NADI Health",
+    mode: "Full-time · Hybrid",
+    period: "Dec 2021–Nov 2022",
+    summary: "Product management and end-to-end UX leadership for a healthcare super-app connecting patients, doctors, clinics, content, and health events.",
+    bullets: [
+      "Owned personas, scenarios, wireframes, UX standards, flow diagrams, and moderated usability testing across mobile and desktop products.",
+      "Managed requirements, product documents, design-team delivery, module plans, and timelines with product owners, engineers, business analysts, and the CTO.",
+      "Led My Doctor's chat, video consultation, clinic booking, dashboard, and professional-access experience, while contributing to My Happiness and the global super-app module.",
+    ],
+    metrics: ["Healthcare product", "UX strategy", "Product management"],
+    links: [
+      { label: "My Doctor case study", href: "https://www.behance.net/gallery/250701473/NADI-My-Doctor-Telemedicine-UXUI-Case-Study" },
+      { label: "NADI Health", href: "https://www.linkedin.com/company/nadihealthapp" },
+    ],
+    highlightClients: [],
+  },
+];
+
+const highlightedClientLocations = [
+  { id: "bison", label: "Bison · Ottawa", x: 28.97, y: 24.77 },
+  { id: "global-marketing", label: "Global Marketing · Dubai", x: 65.35, y: 36 },
 ];
 
 function Kicker({ number, children }: { number: string; children: React.ReactNode }) {
@@ -194,14 +248,14 @@ function ExperienceJourney() {
 
   const goToExperience = (index: number) => {
     setActiveIndex(index);
-    stepRefs.current[index]?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "center" });
+    stepRefs.current[index]?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
   };
 
   return (
     <section className="journey-section" id="experience">
       <header className="journey-heading">
         <div><Kicker number="05">Career journey</Kicker><h2 className="display-title">Experience<br />Across Borders</h2></div>
-        <p>Scroll through the locations that shaped my work—from design leadership for a US agency to sports media in the Philippines and product, editorial, and game design in Indonesia.</p>
+        <p>Scroll through the locations that shaped my work—from agency and client work across the US, Canada, and Dubai to sports media in the Philippines, healthcare products in Malaysia, and design leadership in Indonesia.</p>
       </header>
 
       <div className="journey-shell">
@@ -213,6 +267,9 @@ function ExperienceJourney() {
               <path className={`route-leg route-leg-1 ${activeIndex >= 1 ? "is-reached" : ""}`} d="M285 142 C155 108 66 130 0 188 M1000 188 C930 184 874 194 836 210" />
               <path className={`route-leg route-leg-2 ${activeIndex >= 2 ? "is-reached" : ""}`} d="M836 210 C842 224 846 238 847 246" />
               <path className={`route-leg route-leg-3 ${activeIndex >= 3 ? "is-reached" : ""}`} d="M847 246 C831 255 807 267 785 278" />
+              <path className={`route-leg route-leg-4 ${activeIndex >= 4 ? "is-reached" : ""}`} d="M785 278 C791 264 790 249 783 241" />
+              <path className={`client-route ${activeIndex === 0 ? "is-visible" : ""}`} d="M285 142 C286 134 288 128 290 124" />
+              <path className={`client-route ${activeIndex === 0 ? "is-visible" : ""}`} d="M285 142 C394 115 522 137 654 180" />
             </svg>
             {journeyExperiences.map((experience, index) => (
               <button
@@ -225,6 +282,17 @@ function ExperienceJourney() {
                 onClick={() => goToExperience(index)}
               ><span aria-hidden="true" /><b>0{index + 1}</b><em>{experience.mapLabel}</em></button>
             ))}
+            {highlightedClientLocations.map((client, index) => (
+              <a
+                className={`client-marker ${activeIndex === 0 ? "is-visible" : ""}`}
+                style={{ left: `${client.x}%`, top: `${client.y}%` }}
+                href={index === 0 ? "https://www.behance.net/gallery/240372477/Bison-Insulation-Rebranding-Project" : "https://globalmarketingdubai.com/"}
+                target="_blank"
+                rel="noreferrer"
+                key={client.id}
+                aria-label={`Open highlighted client work: ${client.label}`}
+              ><span aria-hidden="true" /><em>{client.label}</em></a>
+            ))}
             <div className="map-status" aria-live="polite"><small>Now viewing</small><strong>{activeExperience.location}</strong><span>{activeExperience.company}</span></div>
             <div className="map-stepper" aria-label="Experience locations">{journeyExperiences.map((experience, index) => <button key={experience.id} type="button" className={index === activeIndex ? "is-active" : ""} onClick={() => goToExperience(index)} aria-label={`${index + 1} of ${journeyExperiences.length}: ${experience.location}`}><span>0{index + 1}</span></button>)}</div>
             <a className="map-credit" href="https://commons.wikimedia.org/wiki/File:Equirectangular_projection_world_map_without_borders.svg" target="_blank" rel="noreferrer">Map: Ebrahim / Wikimedia Commons · CC BY-SA 4.0</a>
@@ -233,7 +301,7 @@ function ExperienceJourney() {
 
         <div className="journey-steps">
           {journeyExperiences.map((experience, index) => (
-            <article className={`journey-step ${index === activeIndex ? "is-active" : ""}`} key={experience.id} data-journey-index={index} ref={element => { stepRefs.current[index] = element; }}>
+            <article className={`journey-step ${index === activeIndex ? "is-active" : ""} ${experience.highlightClients.length ? "has-client-highlights" : ""}`} key={experience.id} data-journey-index={index} ref={element => { stepRefs.current[index] = element; }}>
               <div className="journey-step-meta"><span>Stop 0{index + 1}</span><time>{experience.period}</time></div>
               <p className="journey-location"><span aria-hidden="true">⌖</span>{experience.location} · {experience.mode}</p>
               <h3>{experience.role}</h3><p className="journey-company">{experience.company}</p>
@@ -241,6 +309,21 @@ function ExperienceJourney() {
               <ul>{experience.bullets.map(bullet => <li key={bullet}>{bullet}</li>)}</ul>
               <div className="journey-metrics">{experience.metrics.map(metric => <span key={metric}>{metric}</span>)}</div>
               <div className="journey-links">{experience.links.map(link => <a href={link.href} target="_blank" rel="noreferrer" key={link.label}>{link.label} ↗</a>)}</div>
+              {experience.highlightClients.length > 0 && (
+                <div className="journey-client-work">
+                  <p className="journey-client-label">Highlighted client work</p>
+                  <div className="journey-client-grid">
+                    {experience.highlightClients.map(client => (
+                      <article className="journey-client-card" key={client.name}>
+                        <div><span>{client.location}</span><h4>{client.name}</h4></div>
+                        <p>{client.summary}</p>
+                        <div className="journey-client-services">{client.services.map(service => <span key={service}>{service}</span>)}</div>
+                        <div className="journey-client-links">{client.links.map(link => <a href={link.href} target="_blank" rel="noreferrer" key={link.label}>{link.label} ↗</a>)}</div>
+                      </article>
+                    ))}
+                  </div>
+                </div>
+              )}
             </article>
           ))}
         </div>
@@ -324,7 +407,7 @@ export default function Home() {
       <section className="portfolio-section" id="work">
         <div className="portfolio-heading">
           <div><Kicker number="04">Selected work</Kicker><h2 className="display-title">Visual<br />Portfolio</h2></div>
-          <div className="portfolio-summary"><p>Selected graphic design work spanning brand identity, social media systems, campaigns, character design, and digital interfaces.</p><a href={behanceUrl} target="_blank" rel="noreferrer">View complete Behance portfolio <span>↗</span></a></div>
+          <div className="portfolio-summary"><p>A focused selection spanning sports and esports graphics, campaign storytelling, healthcare UX/UI, brand identity, and social content systems.</p><a href={behanceUrl} target="_blank" rel="noreferrer">View complete Behance portfolio <span>↗</span></a></div>
         </div>
         <div className="work-grid">{selectedWorks.map(work => <WorkCard key={work.title} {...work} />)}</div>
       </section>
