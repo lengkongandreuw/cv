@@ -338,7 +338,9 @@ export default function Home() {
       <div className="motion-backdrop" aria-hidden="true"><span /><span /><span /></div>
       <div className="scroll-progress" aria-hidden="true" />
       <header className="topbar">
-        <a className="monogram" href="#top" aria-label="Andrew Lengkong — home">AL<span>.</span></a>
+        <a className="monogram" href="#top" aria-label="Andrew Lengkong — home">
+          <img src={`${import.meta.env.BASE_URL}logo-al.svg`} alt="" />
+        </a>
         <nav aria-label="Primary navigation">
           <a href="#about">About</a><a href="#work">Work</a><a href="#experience">Experience</a>
         </nav>
@@ -423,7 +425,7 @@ export default function Home() {
         </div>
       </section>
 
-      <footer id="contact"><p>Have a project in mind?</p><h2>Let&apos;s create<br /><span>something bold.</span></h2><a className="shine-target" href={gmailComposeUrl} target="_blank" rel="noreferrer">lengkongandrew@gmail.com <span>↗</span></a><div className="social-links"><a href={linkedInUrl} target="_blank" rel="noreferrer">LinkedIn</a><a href={behanceUrl} target="_blank" rel="noreferrer">Behance</a><a href="https://dribbble.com/lengkongandrew" target="_blank" rel="noreferrer">Dribbble</a><a href="https://instagram.com/lengkongandrew" target="_blank" rel="noreferrer">Instagram</a></div><small>© 2026 Andrew Lengkong · Graphic Designer · Available worldwide</small></footer>
+      <footer id="contact"><img className="footer-mark" src={`${import.meta.env.BASE_URL}logo-al.svg`} alt="Andrew Lengkong monogram" /><p>Have a project in mind?</p><h2>Let&apos;s create<br /><span>something bold.</span></h2><a className="shine-target" href={gmailComposeUrl} target="_blank" rel="noreferrer">lengkongandrew@gmail.com <span>↗</span></a><div className="social-links"><a href={linkedInUrl} target="_blank" rel="noreferrer">LinkedIn</a><a href={behanceUrl} target="_blank" rel="noreferrer">Behance</a><a href="https://dribbble.com/lengkongandrew" target="_blank" rel="noreferrer">Dribbble</a><a href="https://instagram.com/lengkongandrew" target="_blank" rel="noreferrer">Instagram</a></div><small>© 2026 Andrew Lengkong · Graphic Designer · Available worldwide</small></footer>
     </main>
   );
 }

@@ -112,6 +112,7 @@ main{position:relative;overflow-x:clip;overflow-y:visible}
 a:focus-visible{outline:2px solid var(--gold);outline-offset:4px;border-radius:4px}
 
 @media(hover:hover){
+  .monogram:hover img{filter:drop-shadow(0 0 14px rgba(255,171,10,.42));transform:translateY(-2px) rotate(-3deg) scale(1.06)}
   .hero-links a:hover,.company-links a:hover,.social-links a:hover{color:#06101f;border-color:var(--gold);background:var(--gold);transform:translateY(-2px)}
   .profile-list p:hover{transform:translateX(7px);border-color:rgba(255,171,10,.42)}
   .mini-metrics p:hover{border-color:rgba(255,171,10,.34);transform:translateY(-2px)}
