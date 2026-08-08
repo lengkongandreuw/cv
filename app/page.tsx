@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const services = [
   "Social Media Design",
@@ -29,8 +29,6 @@ const tools = [
   { mark: "F", name: "Figma", type: "UI / UX design", tone: "figma" },
 ];
 
-const clients = ["Tito's Diner", "Global Bistro", "Bison Insulation", "JJ Trading", "Moon Bounce", "Global Marketing"];
-const engagements = ["Jalalive", "spb1.com", "BK8", "dafabet"];
 const gmailComposeUrl = "https://mail.google.com/mail/?view=cm&fs=1&to=lengkongandrew@gmail.com&su=Portfolio%20Project%20Inquiry";
 const linkedInUrl = "https://www.linkedin.com/in/lengkongandreuw/";
 const behanceUrl = "https://www.behance.net/andrewlengkong";
@@ -55,6 +53,102 @@ const certifications = [
   { title: "Graphic Design Essentials", issuer: "Canva", meta: "Issued Aug 2024 · Credential 4ad46b" },
   { title: "Adobe Certified Associate", issuer: "Adobe", meta: "Issued Sep 2019" },
   { title: "Introduction to User Experience Design", issuer: "Coursera", meta: "Issued Jan 2022" },
+];
+
+const journeyExperiences = [
+  {
+    id: "usa",
+    mapLabel: "Tysons Corner",
+    location: "Virginia, USA",
+    x: 28.55,
+    y: 28.38,
+    role: "Creative & Digital Marketing Lead",
+    company: "VoxLumedia",
+    mode: "Remote from Indonesia",
+    period: "Sep 2025–Present",
+    summary: "Creative direction and hands-on design for a US-based digital agency, its products, and international client accounts.",
+    bullets: [
+      "Lead brand, website, campaign, social media, and digital-product visual direction.",
+      "Built scalable creative systems supporting content growth and consistent cross-channel output.",
+      "Shaped the visual language of VoxCard, VoxSocial, and VoxAudit.",
+    ],
+    metrics: ["4,000+ Instagram", "2,000+ Facebook", "USA · Remote"],
+    links: [
+      { label: "Website", href: "https://voxlumedia.com/" },
+      { label: "LinkedIn", href: "https://www.linkedin.com/company/voxlumedia" },
+      { label: "Behance team", href: "https://www.behance.net/VoxlumediaDesign" },
+    ],
+  },
+  {
+    id: "philippines",
+    mapLabel: "Philippines",
+    location: "Philippines",
+    x: 83.61,
+    y: 41.9,
+    role: "Freelance Sport Media Designer",
+    company: "Multiple sports platforms",
+    mode: "Remote",
+    period: "Jul 2024–Jul 2025 · Jan–Jul 2026",
+    summary: "High-volume sports visual production for matchday campaigns, tournaments, betting publications, and global football audiences.",
+    bullets: [
+      "Produced static and animated matchday posters, banners, GIFs, and tournament campaigns.",
+      "Created Photoshop composites with player cutouts, lighting, typography, and color grading.",
+      "Adapted campaign systems across social, web, mobile, and competition formats.",
+    ],
+    metrics: ["Matchday systems", "Static + motion", "Multi-platform"],
+    links: [
+      { label: "Premier League", href: "https://www.behance.net/gallery/234660819/Premiere-League-Match-Poster" },
+      { label: "FIFA World Cup", href: "https://www.behance.net/gallery/249968611/FIFA-World-Cup-2026-Team-Poster-Design" },
+      { label: "Sports portfolio", href: behanceUrl },
+    ],
+  },
+  {
+    id: "manado",
+    mapLabel: "Manado",
+    location: "Manado, Indonesia",
+    x: 84.68,
+    y: 49.17,
+    role: "Visual Content & Business Strategist",
+    company: "Manado Post / MPMeta",
+    mode: "Hybrid",
+    period: "Mar 2024–Mar 2026",
+    summary: "Editorial, marketing, and product visuals created inside a fast-moving regional media and digital-publication environment.",
+    bullets: [
+      "Directed visual quality across MPMeta, MPGrow, MPCerita, and MPSekitar.",
+      "Developed content and user-acquisition strategies for digital platforms and the mobile app.",
+      "Connected editorial, marketing, product, and development teams through shared visual systems.",
+    ],
+    metrics: ["Editorial design", "Mobile product", "Regional media"],
+    links: [
+      { label: "Official website", href: "https://manadopost.jawapos.com/" },
+      { label: "Mall rebranding", href: "https://www.behance.net/gallery/227970645/MALL-SOCIAL-MEDIA-REBRANDING" },
+      { label: "News app UI", href: "https://www.behance.net/gallery/234003485/UIUX-Commodiy-Feature-for-News-App" },
+    ],
+  },
+  {
+    id: "indonesia",
+    mapLabel: "Indonesia",
+    location: "Indonesia",
+    x: 78.5,
+    y: 55.5,
+    role: "Art Director & Design Lead",
+    company: "Big Dade Interactive / Studio",
+    mode: "Hybrid",
+    period: "2019–2021 · 2022–2025",
+    summary: "Visual direction for original game characters, interactive products, esports publications, and community-facing creative campaigns.",
+    bullets: [
+      "Led character design, illustration, interface graphics, promotional assets, and game publications.",
+      "Produced and supervised 2D and 3D visual assets for mobile games and interactive applications.",
+      "Collaborated with developers and artists from concept through design review and release.",
+    ],
+    metrics: ["Art direction", "Game visuals", "2D + 3D"],
+    links: [
+      { label: "Website", href: "http://bigdade.id/" },
+      { label: "LinkedIn", href: "https://www.linkedin.com/company/bigdade" },
+      { label: "Manguni Squad", href: "https://www.behance.net/gallery/186364327/Game-Character-Design-Manguni-Squad" },
+      { label: "Wardeka", href: "https://www.behance.net/gallery/153824559/Wardeka-Mobile-Shooting-Game" },
+    ],
+  },
 ];
 
 function Kicker({ number, children }: { number: string; children: React.ReactNode }) {
@@ -83,14 +177,75 @@ function WorkCard({ title, category, image, href }: (typeof selectedWorks)[numbe
   );
 }
 
-function RoleDetails({ children }: { children: React.ReactNode }) {
-  const [open, setOpen] = useState(() => typeof window === "undefined" || !window.matchMedia("(max-width: 700px)").matches);
+function ExperienceJourney() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const stepRefs = useRef<Array<HTMLElement | null>>([]);
+  const activeExperience = journeyExperiences[activeIndex];
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      const visible = entries.filter(entry => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (visible) setActiveIndex(Number((visible.target as HTMLElement).dataset.journeyIndex));
+    }, { rootMargin: "-28% 0px -38% 0px", threshold: [0, .2, .45, .7] });
+
+    stepRefs.current.forEach(step => step && observer.observe(step));
+    return () => observer.disconnect();
+  }, []);
+
+  const goToExperience = (index: number) => {
+    setActiveIndex(index);
+    stepRefs.current[index]?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "center" });
+  };
 
   return (
-    <details className="job-details" open={open} onToggle={event => setOpen(event.currentTarget.open)}>
-      <summary><span>View role details</span><b aria-hidden="true">+</b></summary>
-      {children}
-    </details>
+    <section className="journey-section" id="experience">
+      <header className="journey-heading">
+        <div><Kicker number="05">Career journey</Kicker><h2 className="display-title">Experience<br />Across Borders</h2></div>
+        <p>Scroll through the locations that shaped my work—from design leadership for a US agency to sports media in the Philippines and product, editorial, and game design in Indonesia.</p>
+      </header>
+
+      <div className="journey-shell">
+        <div className="journey-map-column">
+          <div className="journey-map" aria-label={`Interactive career map. Active location: ${activeExperience.location}`}>
+            <div className="map-grid" aria-hidden="true" />
+            <img src={`${import.meta.env.BASE_URL}world-map.svg`} alt="Equirectangular world map" />
+            <svg className="journey-route" viewBox="0 0 1000 500" preserveAspectRatio="none" aria-hidden="true">
+              <path className={`route-leg route-leg-1 ${activeIndex >= 1 ? "is-reached" : ""}`} d="M285 142 C155 108 66 130 0 188 M1000 188 C930 184 874 194 836 210" />
+              <path className={`route-leg route-leg-2 ${activeIndex >= 2 ? "is-reached" : ""}`} d="M836 210 C842 224 846 238 847 246" />
+              <path className={`route-leg route-leg-3 ${activeIndex >= 3 ? "is-reached" : ""}`} d="M847 246 C831 255 807 267 785 278" />
+            </svg>
+            {journeyExperiences.map((experience, index) => (
+              <button
+                className={`map-marker ${index === activeIndex ? "is-active" : ""} ${index < activeIndex ? "is-reached" : ""}`}
+                style={{ left: `${experience.x}%`, top: `${experience.y}%` }}
+                type="button"
+                key={experience.id}
+                aria-label={`Go to ${experience.role} in ${experience.location}`}
+                aria-current={index === activeIndex ? "step" : undefined}
+                onClick={() => goToExperience(index)}
+              ><span aria-hidden="true" /><b>0{index + 1}</b><em>{experience.mapLabel}</em></button>
+            ))}
+            <div className="map-status" aria-live="polite"><small>Now viewing</small><strong>{activeExperience.location}</strong><span>{activeExperience.company}</span></div>
+            <div className="map-stepper" aria-label="Experience locations">{journeyExperiences.map((experience, index) => <button key={experience.id} type="button" className={index === activeIndex ? "is-active" : ""} onClick={() => goToExperience(index)} aria-label={`${index + 1} of ${journeyExperiences.length}: ${experience.location}`}><span>0{index + 1}</span></button>)}</div>
+            <a className="map-credit" href="https://commons.wikimedia.org/wiki/File:Equirectangular_projection_world_map_without_borders.svg" target="_blank" rel="noreferrer">Map: Ebrahim / Wikimedia Commons · CC BY-SA 4.0</a>
+          </div>
+        </div>
+
+        <div className="journey-steps">
+          {journeyExperiences.map((experience, index) => (
+            <article className={`journey-step ${index === activeIndex ? "is-active" : ""}`} key={experience.id} data-journey-index={index} ref={element => { stepRefs.current[index] = element; }}>
+              <div className="journey-step-meta"><span>Stop 0{index + 1}</span><time>{experience.period}</time></div>
+              <p className="journey-location"><span aria-hidden="true">⌖</span>{experience.location} · {experience.mode}</p>
+              <h3>{experience.role}</h3><p className="journey-company">{experience.company}</p>
+              <p className="journey-summary">{experience.summary}</p>
+              <ul>{experience.bullets.map(bullet => <li key={bullet}>{bullet}</li>)}</ul>
+              <div className="journey-metrics">{experience.metrics.map(metric => <span key={metric}>{metric}</span>)}</div>
+              <div className="journey-links">{experience.links.map(link => <a href={link.href} target="_blank" rel="noreferrer" key={link.label}>{link.label} ↗</a>)}</div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -174,47 +329,10 @@ export default function Home() {
         <div className="work-grid">{selectedWorks.map(work => <WorkCard key={work.title} {...work} />)}</div>
       </section>
 
-      <section className="experience-section" id="experience">
-        <div className="experience-intro">
-          <Kicker number="05">Career journey</Kicker>
-          <h2 className="display-title">Professional<br />Experience</h2><div className="glow-rule" />
-          <p>Leading design, building brands, and crafting digital experiences that drive growth and engagement.</p><span className="giant-number">05</span>
-        </div>
-        <article className="job-card job-primary">
-          <div className="job-head"><span className="job-icon">▣</span><div><h3>Creative &amp; Digital Marketing Lead</h3><p><b>VoxLumedia</b> · Tysons Corner, VA, USA — Remote</p><div className="company-links"><a href="https://voxlumedia.com/" target="_blank" rel="noreferrer">Website ↗</a><a href="https://www.linkedin.com/company/voxlumedia" target="_blank" rel="noreferrer">LinkedIn ↗</a><a href="https://www.behance.net/VoxlumediaDesign" target="_blank" rel="noreferrer">Behance ↗</a></div></div><time>September 2025–Present</time></div>
-          <RoleDetails><div className="job-body"><div className="job-copy"><p>Lead hands-on graphic design and visual direction for VoxLumedia&apos;s brand, website, social media, digital products, and client accounts.</p><p>Improved the company&apos;s visual identity and grew Instagram from under 100 to 4,000+ followers and Facebook from under 100 to 2,000+.</p><p>Redesigned the company website and shaped visual direction for VoxCard, VoxSocial, and VoxAudit.</p></div>
-          <aside className="impact-card"><small>Impact & growth</small><p><b>4,000+</b><span>Instagram followers</span></p><p><b>2,000+</b><span>Facebook followers</span></p><p><b>Remote</b><span>USA</span></p></aside></div></RoleDetails>
-          <div className="logo-strip"><span>Selected clients</span>{clients.map(client => <b key={client}>{client}</b>)}</div>
-        </article>
-      </section>
-
-      <section className="experience-section second-job">
-        <div className="experience-intro compact"><Kicker number="06">Selected engagement</Kicker><h2 className="display-title">Sports<br />Media</h2><p>Fast, editorial visual systems for matchday campaigns and global sports audiences.</p></div>
-        <article className="job-card">
-          <div className="job-head"><span className="job-icon">▣</span><div><h3>Freelance Sport Media Designer</h3><p><b>Multiple platforms</b> · Philippines — Remote</p></div><time>July 2024–July 2025<br />Jan–July 2026</time></div>
-          <RoleDetails><div className="job-body"><ul className="job-copy"><li>Produce static and animated matchday posters, banners, GIFs, tournament campaigns, and promotional graphics.</li><li>Create Photoshop-based sports compositions with player cutouts, lighting, typography, color grading, and visual effects.</li><li>Adapt high-volume campaign assets across competitions, teams, social media, web, and mobile.</li><li>Own projects from concept development through revisions and final delivery.</li></ul><div className="project-links"><a href="https://www.behance.net/gallery/234660819/Premiere-League-Match-Poster" target="_blank" rel="noreferrer">View Football Matchday Campaigns ↗</a><a href="https://www.behance.net/gallery/249968611/FIFA-World-Cup-2026-Team-Poster-Design" target="_blank" rel="noreferrer">View FIFA World Cup 2026 Campaign ↗</a><a href={behanceUrl} target="_blank" rel="noreferrer">View Sports Publications ↗</a></div></div></RoleDetails>
-          <div className="logo-strip"><span>Selected engagement</span>{engagements.map(item => <b key={item}>{item}</b>)}</div>
-        </article>
-      </section>
-
-      <section className="experience-section added-role">
-        <div className="experience-intro compact"><Kicker number="07">Regional impact</Kicker><h2 className="display-title">Digital<br />Strategy</h2><p>Editorial, marketing, and product visuals built for a high-volume regional media environment.</p></div>
-        <article className="job-card">
-          <div className="job-head"><span className="job-icon">▣</span><div><h3>Visual Content &amp; Business Strategist</h3><p><b>Manado Post / MPMeta</b> · Manado, Indonesia — Hybrid</p><div className="company-links"><a href="https://manadopost.jawapos.com/" target="_blank" rel="noreferrer">Official website ↗</a></div></div><time>March 2024–March 2026</time></div>
-          <RoleDetails><div className="job-body"><div className="job-copy"><ul><li>Directed visual and content quality across MPMeta, MPGrow, MPCerita, and MPSekitar.</li><li>Developed content, monetization, and digital user-acquisition strategies for Manado Post platforms and its mobile app.</li><li>Created and curated editorial and social assets aligned with audience, publication, and brand goals.</li><li>Collaborated with editorial, marketing, product, and development teams while using performance insights to refine creative output.</li></ul></div><div className="project-links"><a href="https://www.behance.net/gallery/227970645/MALL-SOCIAL-MEDIA-REBRANDING" target="_blank" rel="noreferrer">Mall Social Media Rebranding ↗</a><a href="https://www.behance.net/gallery/234003485/UIUX-Commodiy-Feature-for-News-App" target="_blank" rel="noreferrer">News App UI/UX ↗</a><a href="https://manadopost.jawapos.com/" target="_blank" rel="noreferrer">Visit Manado Post ↗</a></div></div></RoleDetails>
-        </article>
-      </section>
-
-      <section className="experience-section added-role studio-role">
-        <div className="experience-intro compact"><Kicker number="08">Studio leadership</Kicker><h2 className="display-title">Product &<br />Game Design</h2><p>Original characters, product visuals, and interactive experiences developed from concept through publication.</p></div>
-        <article className="job-card">
-          <div className="job-head"><span className="job-icon">▣</span><div><h3>Art Director &amp; Design Lead</h3><p><b>Big Dade Interactive / Big Dade Studio</b> · Indonesia — Hybrid</p><div className="company-links"><a href="http://bigdade.id/" target="_blank" rel="noreferrer">Website ↗</a><a href="https://www.linkedin.com/company/bigdade" target="_blank" rel="noreferrer">LinkedIn ↗</a></div></div><time>2019–2021<br />2022–2025</time></div>
-          <RoleDetails><div className="job-body"><ul className="job-copy"><li>Led and produced visual directions, character designs, illustrations, interface graphics, promotional assets, and game publications.</li><li>Produced and supervised 2D and 3D visual assets for mobile games and interactive applications.</li><li>Designed publication materials for product launches, esports tournaments, community events, and social media campaigns.</li><li>Collaborated with developers, artists, and product teams while personally producing major visual deliverables and conducting design reviews.</li></ul><div className="project-links"><a href="https://www.behance.net/gallery/186364327/Game-Character-Design-Manguni-Squad" target="_blank" rel="noreferrer">View Manguni Squad ↗</a><a href="https://www.behance.net/gallery/153824559/Wardeka-Mobile-Shooting-Game" target="_blank" rel="noreferrer">View Wardeka ↗</a></div></div></RoleDetails>
-        </article>
-      </section>
+      <ExperienceJourney />
 
       <section className="credentials-section" id="credentials">
-        <div className="credentials-heading"><Kicker number="09">Career foundation</Kicker><h2 className="display-title">Experience &amp;<br />Credentials</h2><p>Selected earlier roles, qualifications, and cross-disciplinary foundations supporting a graphic-design career.</p></div>
+        <div className="credentials-heading"><Kicker number="06">Career foundation</Kicker><h2 className="display-title">Experience &amp;<br />Credentials</h2><p>Selected earlier roles, qualifications, and cross-disciplinary foundations supporting a graphic-design career.</p></div>
         <div className="credentials-grid">
           <article className="credential-card career-card"><p className="overline">Earlier relevant experience</p><div className="timeline-list">{earlierExperience.map(item => <div className="timeline-item" key={item.company}><time>{item.period}</time><div><h3>{item.role}</h3><p>{item.company}</p><a href={item.href} target="_blank" rel="noreferrer">{item.label} ↗</a></div></div>)}</div></article>
           <article className="credential-card"><p className="overline">Certifications</p><div className="credential-list">{certifications.map(item => <div key={item.title}><h3>{item.title}</h3><p>{item.issuer}</p><small>{item.meta}</small></div>)}</div></article>
